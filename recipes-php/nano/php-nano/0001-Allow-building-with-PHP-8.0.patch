@@ -1,0 +1,71 @@
+From c8bd531fceb637ea3510cc92bf71a9089433d600 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Zolt=C3=A1n=20B=C3=B6sz=C3=B6rm=C3=A9nyi?=
+ <zboszor@gmail.com>
+Date: Mon, 27 Nov 2023 14:59:52 +0100
+Subject: [PATCH] Allow building with PHP 8.0+
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+ZTS symbols are no more.
+
+zend_update_property_*() functions in PHP 8.0+ take a pointer to
+a zend_object, not a zval.
+
+Upstream-Status: Submitted [https://github.com/treeleaf/php-nano/pull/4]
+Signed-off-by: Zoltán Böszörményi <zboszor@gmail.com>
+---
+ nano.c             |  9 +++++++++
+ php_nano_private.h | 11 +++++++++++
+ 2 files changed, 20 insertions(+)
+
+diff --git a/nano.c b/nano.c
+index f6f590c..3a5946e 100644
+--- a/nano.c
++++ b/nano.c
+@@ -55,11 +55,20 @@ void s_symbol_info_to_zval (zval *zv, struct nn_symbol_properties *buffer TSRMLS
+      * remove by recoye
+     object_init (zv);
+     */
++#if PHP_VERSION_ID >= 80000
++    zend_object *zo = Z_OBJ(*zv);
++    zend_update_property_string (NULL, zo, "name", sizeof ("name") - 1, buffer->name TSRMLS_CC);
++    zend_update_property_long (NULL, zo, "value", sizeof ("value") - 1, (long) buffer->value TSRMLS_CC);
++    zend_update_property_long (NULL, zo, "ns", sizeof ("ns") - 1, (long) buffer->ns TSRMLS_CC);
++    zend_update_property_long (NULL, zo, "type", sizeof ("type") - 1, (long) buffer->type TSRMLS_CC);
++    zend_update_property_long (NULL, zo, "unit", sizeof ("unit") - 1, (long) buffer->unit TSRMLS_CC);
++#else
+     zend_update_property_string (NULL, zv, "name", sizeof ("name") - 1, buffer->name TSRMLS_CC);
+     zend_update_property_long (NULL, zv, "value", sizeof ("value") - 1, (long) buffer->value TSRMLS_CC);
+     zend_update_property_long (NULL, zv, "ns", sizeof ("ns") - 1, (long) buffer->ns TSRMLS_CC);
+     zend_update_property_long (NULL, zv, "type", sizeof ("type") - 1, (long) buffer->type TSRMLS_CC);
+     zend_update_property_long (NULL, zv, "unit", sizeof ("unit") - 1, (long) buffer->unit TSRMLS_CC);
++#endif
+ }
+ 
+ /* {{{ proto void NanoMsg\Nano::symbolInfo([integer symbol])
+diff --git a/php_nano_private.h b/php_nano_private.h
+index f8bab28..ec90bc4 100644
+--- a/php_nano_private.h
++++ b/php_nano_private.h
+@@ -39,6 +39,17 @@
+ #include "Zend/zend_exceptions.h"
+ #include "ext/standard/info.h"
+ 
++#if PHP_VERSION_ID >= 80000
++#undef TSRMLS_D
++#define TSRMLS_D
++#undef TSRMLS_DC
++#define TSRMLS_DC
++#undef TSRMLS_C
++#define TSRMLS_C
++#undef TSRMLS_CC
++#define TSRMLS_CC
++#endif
++
+ /*
+   Definition for the main class (holds constants)
+ */
+-- 
+2.43.0
+
