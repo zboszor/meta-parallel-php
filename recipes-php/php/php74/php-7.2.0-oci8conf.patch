@@ -1,0 +1,35 @@
+diff -up ./ext/ldap/php_ldap.h.remi-oci8 ./ext/ldap/php_ldap.h
+--- ./ext/ldap/php_ldap.h.remi-oci8	2017-06-20 15:45:35.000000000 +0200
++++ ./ext/ldap/php_ldap.h	2017-06-20 16:55:01.640203868 +0200
+@@ -27,7 +27,7 @@
+ #include <lber.h>
+ #endif
+ 
+-#include <ldap.h>
++#include "/usr/include/ldap.h"
+ 
+ extern zend_module_entry ldap_module_entry;
+ #define ldap_module_ptr &ldap_module_entry
+diff -up ./ext/oci8/config.m4.remi-oci8 ./ext/oci8/config.m4
+--- ./ext/oci8/config.m4.remi-oci8	2017-06-20 15:45:39.000000000 +0200
++++ ./ext/oci8/config.m4	2017-06-20 16:55:01.640203868 +0200
+@@ -372,6 +372,7 @@ if test "$PHP_OCI8" != "no"; then
+ 
+     dnl Header directory for Instant Client SDK RPM install
+     OCISDKRPMINC=`echo "$PHP_OCI8_INSTANT_CLIENT" | $PHP_OCI8_SED -e 's!^/usr/lib/oracle/\(.*\)/client\('${PHP_OCI8_IC_LIBDIR_SUFFIX}'\)*/lib[/]*$!/usr/include/oracle/\1/client\2!'`
++    OCISDKRPMINC=`echo "$PHP_OCI8_INSTANT_CLIENT" | $PHP_OCI8_SED -e 's!^/usr/\(lib64\|lib\)/oracle/\(.*\)/\(client64\|client\)/lib[/]*$!/usr/include/oracle/\2/\3!'`
+ 
+     dnl Header directory for Instant Client SDK zip file install
+     OCISDKZIPINC=$PHP_OCI8_INSTANT_CLIENT/sdk/include
+diff -up ./ext/pdo_oci/config.m4.remi-oci8 ./ext/pdo_oci/config.m4
+--- ./ext/pdo_oci/config.m4.remi-oci8	2017-06-20 16:55:01.640203868 +0200
++++ ./ext/pdo_oci/config.m4	2017-06-20 17:16:03.053538358 +0200
+@@ -93,7 +93,7 @@ if test "$PHP_PDO_OCI" != "no"; then
+ 
+     AC_MSG_CHECKING([for oci.h])
+     dnl Header directory for Instant Client SDK RPM install
+-    OCISDKRPMINC=`echo "$PDO_OCI_LIB_DIR" | $PHP_PDO_OCI_SED -e 's!^\(.*\)/lib/oracle/\(.*\)/\('${PDO_OCI_CLIENT_DIR}'\)/lib[/]*$!\1/include/oracle/\2/\3!'`
++    OCISDKRPMINC=`echo "$PDO_OCI_LIB_DIR" | $PHP_PDO_OCI_SED -e 's!^\(.*\)/\(lib64\|lib\)/oracle/\(.*\)/\('${PDO_OCI_CLIENT_DIR}'\)/lib[/]*$!\1/include/oracle/\3/\4!'`
+ 
+     dnl Header directory for manual installation
+     OCISDKMANINC=`echo "$PDO_OCI_LIB_DIR" | $PHP_PDO_OCI_SED -e 's!^\(.*\)/lib[/]*$!\1/include!'`
