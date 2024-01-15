@@ -1,0 +1,23 @@
+diff -up ./ext/curl/curl_arginfo.h.bck ./ext/curl/curl_arginfo.h
+--- ./ext/curl/curl_arginfo.h.bck	2022-09-01 09:46:21.410502957 +0200
++++ ./ext/curl/curl_arginfo.h	2022-09-01 09:47:16.020506046 +0200
+@@ -723,13 +723,16 @@ static void register_curl_symbols(int mo
+ #if LIBCURL_VERSION_NUM >= 0x072200 /* Available since 7.34.0 */
+ 	REGISTER_LONG_CONSTANT("CURLOPT_LOGIN_OPTIONS", CURLOPT_LOGIN_OPTIONS, CONST_PERSISTENT);
+ #endif
+-#if LIBCURL_VERSION_NUM >= 0x072200 /* Available since 7.34.0 */
++/* Available since 7.19.0 (in upstream curl 7.34)
++   backported in RHEL-7 curl-7.29.0-16.el7 rhbz#1012136
++   backported in RHEL-6 curl-7.19.7-43.el6 rhbz#1036789  */
++#if LIBCURL_VERSION_NUM >= 0x071300 /* Available since 7.34.0 */
+ 	REGISTER_LONG_CONSTANT("CURL_SSLVERSION_TLSv1_0", CURL_SSLVERSION_TLSv1_0, CONST_PERSISTENT);
+ #endif
+-#if LIBCURL_VERSION_NUM >= 0x072200 /* Available since 7.34.0 */
++#if LIBCURL_VERSION_NUM >= 0x071300 /* Available since 7.34.0 */
+ 	REGISTER_LONG_CONSTANT("CURL_SSLVERSION_TLSv1_1", CURL_SSLVERSION_TLSv1_1, CONST_PERSISTENT);
+ #endif
+-#if LIBCURL_VERSION_NUM >= 0x072200 /* Available since 7.34.0 */
++#if LIBCURL_VERSION_NUM >= 0x071300 /* Available since 7.34.0 */
+ 	REGISTER_LONG_CONSTANT("CURL_SSLVERSION_TLSv1_2", CURL_SSLVERSION_TLSv1_2, CONST_PERSISTENT);
+ #endif
+ #if LIBCURL_VERSION_NUM >= 0x072400 /* Available since 7.36.0 */

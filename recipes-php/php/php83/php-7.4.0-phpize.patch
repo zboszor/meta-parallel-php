@@ -1,0 +1,65 @@
+diff -up ./scripts/phpize.in.headers ./scripts/phpize.in
+--- ./scripts/phpize.in.headers	2019-07-23 10:05:11.000000000 +0200
++++ ./scripts/phpize.in	2019-07-23 10:18:13.648098089 +0200
+@@ -166,6 +166,15 @@ phpize_autotools()
+   $PHP_AUTOHEADER || exit 1
+ }
+ 
++phpize_check_headers()
++{
++  if test ! -f $includedir/main/php.h; then
++    echo "Can't find PHP headers in $includedir"
++    echo "The php-devel package is required for use of this command."
++    exit 1
++  fi
++}
++
+ # Main script
+ 
+ case "$1" in
+@@ -184,12 +193,15 @@ case "$1" in
+ 
+   # Version
+   --version|-v)
++    phpize_check_headers
+     phpize_print_api_numbers
+     exit 0
+   ;;
+ 
+   # Default
+   *)
++     phpize_check_headers
++
+      phpize_check_configm4 0
+ 
+      phpize_check_build_files
+From c454f120857df6f771c5475bf1fcc99e683b87dc Mon Sep 17 00:00:00 2001
+From: Remi Collet <remi@remirepo.net>
+Date: Thu, 7 Sep 2023 09:56:51 +0200
+Subject: [PATCH] also display PHP version in phpize
+
+---
+ scripts/phpize.in | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/scripts/phpize.in b/scripts/phpize.in
+index 7d9c1df14c8e..81605e06a590 100644
+--- a/scripts/phpize.in
++++ b/scripts/phpize.in
+@@ -59,6 +59,8 @@ phpize_check_configm4()
+ phpize_get_api_numbers()
+ {
+   # extracting API NOs:
++  PHP_MINOR_VERSION=`grep '#define PHP_MINOR_VERSION' $includedir/main/php_version.h|$SED 's/#define PHP_MINOR_VERSION //'`
++  PHP_MAJOR_VERSION=`grep '#define PHP_MAJOR_VERSION' $includedir/main/php_version.h|$SED 's/#define PHP_MAJOR_VERSION//'`
+   PHP_API_VERSION=`grep '#define PHP_API_VERSION' $includedir/main/php.h|$SED 's/#define PHP_API_VERSION//'`
+   ZEND_MODULE_API_NO=`grep '#define ZEND_MODULE_API_NO' $includedir/Zend/zend_modules.h|$SED 's/#define ZEND_MODULE_API_NO//'`
+   ZEND_EXTENSION_API_NO=`grep '#define ZEND_EXTENSION_API_NO' $includedir/Zend/zend_extensions.h|$SED 's/#define ZEND_EXTENSION_API_NO//'`
+@@ -68,6 +70,7 @@ phpize_print_api_numbers()
+ {
+   phpize_get_api_numbers
+   echo "Configuring for:"
++  echo "PHP Version:            ${PHP_MAJOR_VERSION}.${PHP_MINOR_VERSION}"
+   echo "PHP Api Version:        "$PHP_API_VERSION
+   echo "Zend Module Api No:     "$ZEND_MODULE_API_NO
+   echo "Zend Extension Api No:  "$ZEND_EXTENSION_API_NO
