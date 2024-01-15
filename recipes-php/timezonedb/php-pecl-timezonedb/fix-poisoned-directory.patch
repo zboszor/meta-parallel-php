@@ -1,0 +1,8 @@
+--- timezonedb-2022.7/config.m4.old	2023-03-29 14:45:09.969863758 +0200
++++ timezonedb-2022.7/config.m4	2023-03-29 14:46:34.903723603 +0200
+@@ -8,5 +8,4 @@
+   PHP_SUBST(TIMEZONEDB_SHARED_LIBADD)
+   PHP_NEW_EXTENSION(timezonedb, timezonedb.c, $ext_shared)
+   CPPFLAGS="$CPPFLAGS -Wall"
+-  INCLUDES="$INCLUDES -I$prefix/include/php/ext/date/lib"
+ fi
