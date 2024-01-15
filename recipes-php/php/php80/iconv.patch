@@ -1,0 +1,12 @@
+diff -durpN php-8.0.0.orig/build/php.m4 php-8.0.0/build/php.m4
+--- php-8.0.0.orig/build/php.m4	2020-12-15 07:10:12.833206473 -0500
++++ php-8.0.0/build/php.m4	2020-12-15 07:11:06.303634858 -0500
+@@ -1923,7 +1923,7 @@ AC_DEFUN([PHP_SETUP_ICONV], [
+   unset ICONV_DIR
+ 
+   dnl Check libc first if no path is provided in --with-iconv.
+-  if test "$PHP_ICONV" = "yes"; then
++  if test "$PHP_ICONV" != "no"; then
+     dnl Reset LIBS temporarily as it may have already been included -liconv in.
+     LIBS_save="$LIBS"
+     LIBS=

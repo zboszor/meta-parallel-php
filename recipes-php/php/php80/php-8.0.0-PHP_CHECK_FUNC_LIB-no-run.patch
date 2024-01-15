@@ -1,0 +1,17 @@
+diff -durpN php-8.0.0.orig/build/php.m4 php-8.0.0/build/php.m4
+--- php-8.0.0.orig/build/php.m4	2020-12-15 07:24:45.334205812 -0500
++++ php-8.0.0/build/php.m4	2020-12-15 07:29:34.415528812 -0500
+@@ -1576,13 +1576,6 @@ AC_DEFUN([PHP_CHECK_FUNC_LIB],[
+   ])
+ 
+   if test "$found" = "yes"; then
+-    ac_libs=$LIBS
+-    LIBS="$LIBS -l$2"
+-    AC_RUN_IFELSE([AC_LANG_SOURCE([[int main() { return (0); }]])],[found=yes],[found=no],[found=no])
+-    LIBS=$ac_libs
+-  fi
+-
+-  if test "$found" = "yes"; then
+     PHP_ADD_LIBRARY($2)
+     PHP_DEF_HAVE($1)
+     PHP_DEF_HAVE(lib$2)
