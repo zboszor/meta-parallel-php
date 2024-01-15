@@ -1,0 +1,49 @@
+diff -durpN php-8.1.0.orig/ext/opcache/config.m4 php-8.1.0/ext/opcache/config.m4
+--- php-8.1.0.orig/ext/opcache/config.m4	2021-11-29 13:32:15.230416521 +0000
++++ php-8.1.0/ext/opcache/config.m4	2021-11-29 13:36:20.176159078 +0000
+@@ -172,7 +172,7 @@
+   }
+   return 0;
+ }
+-]])],[have_shm_ipc=yes],[have_shm_ipc=no],[have_shm_ipc=no])
++]])],[have_shm_ipc=yes],[have_shm_ipc=no],[have_shm_ipc=yes])
+   if test "$have_shm_ipc" = "yes"; then
+     AC_DEFINE(HAVE_SHM_IPC, 1, [Define if you have SysV IPC SHM support])
+   fi
+@@ -305,7 +305,7 @@
+   }
+   return 0;
+ }
+-]])],[have_shm_mmap_posix=yes],[have_shm_mmap_posix=no],[have_shm_mmap_posix=no])
++]])],[have_shm_mmap_posix=yes],[have_shm_mmap_posix=no],[have_shm_mmap_posix=yes])
+   if test "$have_shm_mmap_posix" = "yes"; then
+     AC_DEFINE(HAVE_SHM_MMAP_POSIX, 1, [Define if you have POSIX mmap() SHM support])
+     PHP_CHECK_LIBRARY(rt, shm_unlink, [PHP_ADD_LIBRARY(rt,1,OPCACHE_SHARED_LIBADD)])
+diff -durpN php-8.1.0.orig/ext/posix/config.m4 php-8.1.0/ext/posix/config.m4
+--- php-8.1.0.orig/ext/posix/config.m4	2020-12-15 07:15:37.646809943 -0500
++++ php-8.1.0/ext/posix/config.m4	2020-12-15 07:22:13.921989833 -0500
+@@ -28,7 +28,10 @@ int main(int argc, char *argv[])
+   ],[
+     AC_MSG_RESULT([no, posix_ttyname() will be thread-unsafe])
+   ], [
+-    AC_MSG_RESULT([no, cannot detect working ttyname_r() when cross compiling. posix_ttyname() will be thread-unsafe])
++    AC_CHECK_FUNCS(ttyname_r,
++      [AC_MSG_RESULT([yes])
++       AC_DEFINE(HAVE_TTYNAME_R, 1, [Whether you have a working ttyname_r])],
++      [AC_MSG_RESULT([no, cannot detect working ttyname_r() when cross compiling. posix_ttyname() will be thread-unsafe])])
+   ])
+ 
+   AC_CACHE_CHECK([for utsname.domainname], ac_cv_have_utsname_domainname, [
+diff -durpN php-8.1.0.orig/sapi/fpm/config.m4 php-8.1.0/sapi/fpm/config.m4
+--- php-8.1.0.orig/sapi/fpm/config.m4	2020-12-15 07:15:37.646809943 -0500
++++ php-8.1.0/sapi/fpm/config.m4	2020-12-15 07:22:13.922989841 -0500
+@@ -262,7 +262,8 @@ AC_DEFUN([AC_FPM_TRACE],
+       proc_mem_file=""
+       AC_MSG_RESULT([no])
+     ], [
+-      AC_MSG_RESULT([skipped (cross-compiling)])
++      AC_MSG_RESULT([cross compiling for Linux, using 'mem'])
++      proc_mem_file="mem"
+     ])
+   fi
+ 

@@ -1,0 +1,56 @@
+--- php-8.1.20/ext/phar/Makefile.frag	2018-12-04 11:12:23.000000000 -0500
++++ php-8.1.20/ext/phar/Makefile.frag	2019-01-04 05:57:18.079360729 -0500
+@@ -8,22 +8,10 @@
+ 
+ pharcmd: $(builddir)/phar.php $(builddir)/phar.phar
+ 
+-PHP_PHARCMD_SETTINGS = -n -d 'open_basedir=' -d 'output_buffering=0' -d 'memory_limit=-1' -d phar.readonly=0
+-PHP_PHARCMD_EXECUTABLE = ` \
+-	if test -x "$(top_builddir)/$(SAPI_CLI_PATH)"; then \
+-		$(top_srcdir)/build/shtool echo -n -- "$(top_builddir)/$(SAPI_CLI_PATH) -n"; \
+-		if test "x$(PHP_MODULES)" != "x"; then \
+-		$(top_srcdir)/build/shtool echo -n -- " -d extension_dir=$(top_builddir)/modules"; \
+-		for i in bz2 zlib phar; do \
+-			if test -f "$(top_builddir)/modules/$$i.la"; then \
+-				. $(top_builddir)/modules/$$i.la; $(top_srcdir)/build/shtool echo -n -- " -d extension=$$dlname"; \
+-			fi; \
+-		done; \
+-		fi; \
+-	else \
+-		$(top_srcdir)/build/shtool echo -n -- "$(PHP_EXECUTABLE)"; \
+-	fi;`
+-PHP_PHARCMD_BANG = `$(top_srcdir)/build/shtool echo -n -- "$(INSTALL_ROOT)$(bindir)/$(program_prefix)php$(program_suffix)$(EXEEXT)";`
++PHP_PHARCMD_SETTINGS = -d 'open_basedir=' -d 'output_buffering=0' -d 'memory_limit=-1' -d phar.readonly=0
++PHP_PHARCMD_EXECUTABLE = `$(top_srcdir)/build/shtool echo -n -- "$(PHP_EXECUTABLE)";`
++PHP_PHARCMD_BANG = `$(top_srcdir)/build/shtool echo -n -- "/usr/bin/env $(program_prefix)php$(program_suffix)$(EXEEXT)";`
++
+ 
+ $(builddir)/phar/phar.inc: $(srcdir)/phar/phar.inc
+ 	-@test -d $(builddir)/phar || mkdir $(builddir)/phar
+@@ -35,22 +23,18 @@
+ 
+ $(builddir)/phar.php: $(srcdir)/build_precommand.php $(srcdir)/phar/*.inc $(srcdir)/phar/*.php $(SAPI_CLI_PATH)
+ 	-@(echo "Generating phar.php"; \
+-	if [ "$(TEST_PHP_EXECUTABLE_RES)" != 1 ]; then \
++		echo "Command: $(PHP_PHARCMD_EXECUTABLE) $(PHP_PHARCMD_SETTINGS) $(srcdir)/build_precommand.php > $(builddir)/phar.php"; \
+ 		$(PHP_PHARCMD_EXECUTABLE) $(PHP_PHARCMD_SETTINGS) $(srcdir)/build_precommand.php > $(builddir)/phar.php; \
+-	else \
+-		echo "Skipping phar.php generating during cross compilation"; \
+-	fi)
++	)
+ 
+ $(builddir)/phar.phar: $(builddir)/phar.php $(builddir)/phar/phar.inc $(srcdir)/phar/*.inc $(srcdir)/phar/*.php $(SAPI_CLI_PATH)
+ 	-@(echo "Generating phar.phar"; \
+-	if [ "$(TEST_PHP_EXECUTABLE_RES)" != 1 ]; then \
++		echo "Command: $(PHP_PHARCMD_EXECUTABLE) $(PHP_PHARCMD_SETTINGS) $(builddir)/phar.php pack -f $(builddir)/phar.phar -a pharcommand -c auto -x \\.svn -p 0 -s $(srcdir)/phar/phar.php -h sha1 -b "$(PHP_PHARCMD_BANG)" $(srcdir)/phar/"; \
+ 		rm -f $(builddir)/phar.phar; \
+ 		rm -f $(srcdir)/phar.phar; \
+ 		$(PHP_PHARCMD_EXECUTABLE) $(PHP_PHARCMD_SETTINGS) $(builddir)/phar.php pack -f $(builddir)/phar.phar -a pharcommand -c auto -x \\.svn -p 0 -s $(srcdir)/phar/phar.php -h sha1 -b "$(PHP_PHARCMD_BANG)"  $(srcdir)/phar/; \
+ 		chmod +x $(builddir)/phar.phar; \
+-	else \
+-		echo "Skipping phar.phar generating during cross compilation"; \
+-	fi)
++	)
+ 
+ install-pharcmd: pharcmd
+ 	@(if [ "$(TEST_PHP_EXECUTABLE_RES)" != 1 ]; then \
