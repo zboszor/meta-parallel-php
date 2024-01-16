@@ -1,0 +1,16 @@
+--- php-5.6.5/ext/xsl/config.m4.orig	2015-01-26 10:34:25.686422993 +0100
++++ php-5.6.5/ext/xsl/config.m4	2015-01-26 11:16:33.650843821 +0100
+@@ -16,12 +16,7 @@
+     AC_MSG_ERROR([XSL extension requires DOM extension, add --enable-dom])
+   fi
+ 
+-  for i in $PHP_XSL /usr/local /usr; do
+-    if test -x "$i/bin/xslt-config"; then
+-      XSLT_CONFIG=$i/bin/xslt-config
+-      break
+-    fi
+-  done
++  AC_PATH_PROG(XSLT_CONFIG, xslt-config)
+ 
+   if test -z "$XSLT_CONFIG"; then
+     AC_MSG_ERROR([xslt-config not found. Please reinstall the libxslt >= 1.1.0 distribution])

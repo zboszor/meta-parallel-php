@@ -1,0 +1,18 @@
+--- php-7.1.27.orig/acinclude.m4	2019-03-26 06:41:35.809713647 -0400
++++ php-7.1.27/acinclude.m4	2019-03-26 06:42:08.308909152 -0400
+@@ -2576,12 +2576,9 @@
+   dnl First try to find xml2-config
+   AC_CACHE_CHECK([for xml2-config path], ac_cv_php_xml2_config_path,
+   [
+-    for i in $PHP_LIBXML_DIR /usr/local /usr; do
+-      if test -x "$i/bin/xml2-config"; then
+-        ac_cv_php_xml2_config_path="$i/bin/xml2-config"
+-        break
+-      fi
+-    done
++
++	ac_cv_php_xml2_config_path="$PHP_LIBXML_DIR/xml2-config"
++
+   ])
+ 
+   if test -x "$ac_cv_php_xml2_config_path"; then

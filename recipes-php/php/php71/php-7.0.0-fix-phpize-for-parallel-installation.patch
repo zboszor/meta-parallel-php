@@ -1,0 +1,11 @@
+--- php-5.6.24/scripts/phpize.m4.old	2016-07-26 10:26:52.306196789 -0400
++++ php-5.6.24/scripts/phpize.m4	2016-07-26 10:27:26.708520553 -0400
+@@ -36,7 +36,7 @@
+ 
+ dnl Find php-config script
+ PHP_ARG_WITH(php-config,,
+-[  --with-php-config=PATH  Path to php-config [php-config]], php-config, no)
++[  --with-php-config=PATH  Path to php-config [php-config71]], php-config71, no)
+ 
+ dnl For BC
+ PHP_CONFIG=$PHP_PHP_CONFIG

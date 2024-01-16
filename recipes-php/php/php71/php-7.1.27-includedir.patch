@@ -1,0 +1,12 @@
+diff -durpN php-7.1.27.orig/configure.in php-7.1.27/configure.in
+--- php-7.1.27.orig/configure.in	2019-03-26 08:02:18.921373543 -0400
++++ php-7.1.27/configure.in	2019-03-26 08:02:45.519476530 -0400
+@@ -1259,7 +1259,7 @@ EXPANDED_SYSCONFDIR=`eval echo $sysconfd
+ EXPANDED_DATADIR=$datadir
+ EXPANDED_PHP_CONFIG_FILE_PATH=`eval echo "$PHP_CONFIG_FILE_PATH"`
+ EXPANDED_PHP_CONFIG_FILE_SCAN_DIR=`eval echo "$PHP_CONFIG_FILE_SCAN_DIR"`
+-INCLUDE_PATH=.:$EXPANDED_PEAR_INSTALLDIR
++INCLUDE_PATH=.:$EXPANDED_PEAR_INSTALLDIR:${EXPANDED_DATADIR}/php
+ 
+ exec_prefix=$old_exec_prefix
+ libdir=$old_libdir

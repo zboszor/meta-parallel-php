@@ -1,0 +1,29 @@
+--- php-5.6.0/ext/fileinfo/config.m4~	2014-08-27 15:31:35.000000000 +0200
++++ php-5.6.0/ext/fileinfo/config.m4	2014-09-25 13:14:11.795687065 +0200
+@@ -3,6 +3,9 @@
+ 
+ PHP_ARG_ENABLE(fileinfo, for fileinfo support,
+ [  --disable-fileinfo      Disable fileinfo support], yes)
++PHP_ARG_WITH(strcasestr,for ZLIB support,
++[  --with-strcasestr={system|libmagic}
++                           Select strcasestr implementation for cross-compiling])
+ 
+ if test "$PHP_FILEINFO" != "no"; then
+ 
+@@ -46,6 +49,16 @@
+     AC_MSG_RESULT(no)
+     AC_MSG_NOTICE(using libmagic strcasestr implementation)
+     libmagic_sources="$libmagic_sources libmagic/strcasestr.c"
++  ],[
++    if test "$with_strcasestr" = "system"; then
++      AC_MSG_RESULT([yes (system)])
++    elif test "$" != "no"; then
++      AC_MSG_RESULT([yes (libmagic)])
++      AC_MSG_NOTICE(using libmagic strcasestr implementation)
++      libmagic_sources="$libmagic_sources libmagic/strcasestr.c"
++    else
++      AC_MSG_ERROR([invalid --with-strcasestr option])
++    fi
+   ])
+ 
+   PHP_NEW_EXTENSION(fileinfo, fileinfo.c $libmagic_sources, $ext_shared,,-I@ext_srcdir@/libmagic)
