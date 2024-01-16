@@ -1,5 +1,5 @@
 DESCRIPTION = "PHP POSIX realtime module"
-HOMEPAGE = "https://github.com/adrianguenter/php-posix-realtime/"
+HOMEPAGE = "https://github.com/treeleaf/php-nano/"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=8f87c7f34a7baa3b636ae13f69a27588"
 DEPENDS = "nanomsg"
