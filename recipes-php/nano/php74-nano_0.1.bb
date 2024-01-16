@@ -13,7 +13,7 @@ inherit parallel-php-module
 FILESEXTRAPATHS:prepend = "${FILE_DIRNAME}/php-nano:"
 
 SRCBRANCH = "master"
-SRCREV = "231dc43f57ecf7bf0edb8a6e99d77ef74a4719b1"
+SRCREV = "195ab371121ddeb5b8f2e3b38536d0c08b3746de"
 
 SRC_URI = " \
 			git://github.com/treeleaf/php-nano.git;protocol=https;branch=${SRCBRANCH} \
