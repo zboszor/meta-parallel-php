@@ -12,7 +12,7 @@ inherit parallel-php-module
 
 PHPVERSION ??= "70"
 
-FILESPATH = "${FILE_DIRNAME}/php-pecl-crack"
+FILESEXTRAPATHS:prepend = "${FILE_DIRNAME}/php-pecl-crack:"
 
 SRC_URI = " \
 	git://github.com/zboszor/php-pecl-crack.git;protocol=https;nobranch=1 \
