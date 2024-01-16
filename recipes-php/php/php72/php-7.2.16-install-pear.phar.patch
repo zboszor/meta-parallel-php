@@ -1,0 +1,12 @@
+diff -durpN php-7.2.16.orig/pear/Makefile.frag php-7.2.16/pear/Makefile.frag
+--- php-7.2.16.orig/pear/Makefile.frag	2019-03-26 08:55:05.489702114 -0400
++++ php-7.2.16/pear/Makefile.frag	2019-03-26 09:05:21.105202969 -0400
+@@ -12,7 +12,7 @@ PEAR_SUFFIX = -ds a$(program_suffix)
+ PEAR_INSTALLER_URL = https://pear.php.net/install-pear-nozlib.phar
+ 
+ install-pear-installer: $(SAPI_CLI_PATH)
+-	@$(PHP_NATIVE_DIR)/php$(program_suffix) $(PEAR_INSTALL_FLAGS) $(builddir)/install-pear-nozlib.phar -d "$(peardir)" -b "$(bindir)" ${PEAR_PREFIX} ${PEAR_SUFFIX}
++	@$(PHP_NATIVE_DIR)/php$(program_suffix) $(PEAR_INSTALL_FLAGS) $(builddir)/install-pear-nozlib.phar -d "$(INSTALL_ROOT)$(peardir)" -b "$(INSTALL_ROOT)$(bindir)" ${PEAR_PREFIX} ${PEAR_SUFFIX}
+ 
+ install-pear:
+ 	@echo "Installing PEAR environment:      $(INSTALL_ROOT)$(peardir)/"

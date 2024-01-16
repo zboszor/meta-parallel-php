@@ -1,0 +1,13 @@
+diff -up ./configure.ac.fixheader ./configure.ac
+--- ./configure.ac.fixheader	2020-07-06 16:04:56.069183751 +0200
++++ ./configure.ac	2020-07-06 16:05:52.044046238 +0200
+@@ -1303,7 +1303,8 @@ PHP_BUILD_DATE=`date -u +%Y-%m-%d`
+ fi
+ AC_DEFINE_UNQUOTED(PHP_BUILD_DATE,"$PHP_BUILD_DATE",[PHP build date])
+ 
+-PHP_UNAME=`uname -a | xargs`
++UNAME=`uname -a | xargs`
++PHP_UNAME=${PHP_UNAME:-$UNAME}
+ AC_DEFINE_UNQUOTED(PHP_UNAME,"$PHP_UNAME",[uname -a output])
+ PHP_OS=`uname | xargs`
+ AC_DEFINE_UNQUOTED(PHP_OS,"$PHP_OS",[uname output])

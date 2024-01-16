@@ -1,0 +1,25 @@
+diff -durpN php-7.2.16.orig/acinclude.m4 php-7.2.16/acinclude.m4
+--- php-7.2.16.orig/acinclude.m4	2019-03-26 08:50:01.706730749 -0400
++++ php-7.2.16/acinclude.m4	2019-03-26 08:50:36.052741209 -0400
+@@ -2482,7 +2482,8 @@ AC_DEFUN([PHP_SETUP_ICONV], [
+   dnl Check libc first if no path is provided in --with-iconv
+   dnl
+ 
+-  if test "$PHP_ICONV" = "yes"; then
++  dnl must check against no, not against yes as PHP_ICONV can also include a path, which implies yes
++  if test "$PHP_ICONV" != "no"; then
+     dnl Reset LIBS temporarily as it may have already been included
+     dnl -liconv in.
+     LIBS_save="$LIBS"
+diff -durpN php-7.2.16.orig/ext/iconv/config.m4 php-7.2.16/ext/iconv/config.m4
+--- php-7.2.16.orig/ext/iconv/config.m4	2019-03-26 08:50:01.706730749 -0400
++++ php-7.2.16/ext/iconv/config.m4	2019-03-26 08:50:36.052741209 -0400
+@@ -15,7 +15,7 @@ if test "$PHP_ICONV" != "no"; then
+ 
+   if test "$iconv_avail" != "no"; then
+     if test -z "$ICONV_DIR"; then
+-      for i in /usr/local /usr; do
++      for i in $PHP_ICONV /usr/local /usr; do
+         if test -f "$i/include/iconv.h" || test -f "$i/include/giconv.h"; then
+           PHP_ICONV_PREFIX="$i"
+           break

@@ -1,0 +1,30 @@
+diff -durpN php-7.2.16.orig/sapi/litespeed/lsapilib.c php-7.2.16/sapi/litespeed/lsapilib.c
+--- php-7.2.16.orig/sapi/litespeed/lsapilib.c	2019-03-05 06:05:59.000000000 -0500
++++ php-7.2.16/sapi/litespeed/lsapilib.c	2019-03-26 09:43:41.005979183 -0400
+@@ -767,7 +767,7 @@ static int (*fp_lve_leave)(struct liblve
+ static int (*fp_lve_jail)( struct passwd *, char *) = NULL;
+ static int lsapi_load_lve_lib(void)
+ {
+-    s_liblve = dlopen("liblve.so.0", RTLD_LAZY);
++    s_liblve = dlopen("liblve.so.0", RTLD_NOW);
+     if (s_liblve)
+     {
+         fp_lve_is_available = dlsym(s_liblve, "lve_is_available");
+diff -durpN php-7.2.16.orig/Zend/zend_portability.h php-7.2.16/Zend/zend_portability.h
+--- php-7.2.16.orig/Zend/zend_portability.h	2019-03-05 06:06:09.000000000 -0500
++++ php-7.2.16/Zend/zend_portability.h	2019-03-26 09:43:41.006979188 -0400
+@@ -144,11 +144,11 @@
+ # endif
+ 
+ # if defined(RTLD_GROUP) && defined(RTLD_WORLD) && defined(RTLD_PARENT)
+-#  define DL_LOAD(libname)			dlopen(libname, RTLD_LAZY | RTLD_GLOBAL | RTLD_GROUP | RTLD_WORLD | RTLD_PARENT)
++#  define DL_LOAD(libname)			dlopen(libname, RTLD_NOW  | RTLD_GLOBAL | RTLD_GROUP | RTLD_WORLD | RTLD_PARENT)
+ # elif defined(RTLD_DEEPBIND) && !defined(__SANITIZE_ADDRESS__)
+-#  define DL_LOAD(libname)			dlopen(libname, RTLD_LAZY | RTLD_GLOBAL | RTLD_DEEPBIND)
++#  define DL_LOAD(libname)			dlopen(libname, RTLD_NOW  | RTLD_GLOBAL | RTLD_DEEPBIND)
+ # else
+-#  define DL_LOAD(libname)			dlopen(libname, RTLD_LAZY | RTLD_GLOBAL)
++#  define DL_LOAD(libname)			dlopen(libname, RTLD_NOW  | RTLD_GLOBAL)
+ # endif
+ # define DL_UNLOAD					dlclose
+ # if defined(DLSYM_NEEDS_UNDERSCORE)

@@ -1,0 +1,57 @@
+diff -durpN php-5.3.29.orig/ext/xsl/config.m4 php-5.3.29/ext/xsl/config.m4
+--- php-7.1.25.orig/ext/xsl/config.m4	2017-03-27 07:15:09.131608446 -0400
++++ php-7.1.25/ext/xsl/config.m4	2017-03-27 07:47:23.580697766 -0400
+@@ -16,44 +16,16 @@
+     AC_MSG_ERROR([XSL extension requires DOM extension, add --enable-dom])
+   fi
+ 
+-  AC_PATH_PROG(XSLT_CONFIG, xslt-config)
+-
+-  if test -z "$XSLT_CONFIG"; then
+-    AC_MSG_ERROR([xslt-config not found. Please reinstall the libxslt >= 1.1.0 distribution])
+-  else
+-    libxslt_full_version=`$XSLT_CONFIG --version`
+-    ac_IFS=$IFS
+-    IFS="."
+-    set $libxslt_full_version
+-    IFS=$ac_IFS
+-    LIBXSLT_VERSION=`expr [$]1 \* 1000000 + [$]2 \* 1000 + [$]3`
+-    if test "$LIBXSLT_VERSION" -ge "1001000"; then
+-      XSL_LIBS=`$XSLT_CONFIG --libs`
+-      XSL_INCS=`$XSLT_CONFIG --cflags`
+-      PHP_EVAL_LIBLINE($XSL_LIBS, XSL_SHARED_LIBADD)
+-      PHP_EVAL_INCLINE($XSL_INCS)
+-
+-      AC_MSG_CHECKING([for EXSLT support])
+-      for i in $PHP_XSL /usr/local /usr; do
+-        if test -r "$i/include/libexslt/exslt.h"; then
+-          PHP_XSL_EXSL_DIR=$i
+-          break
+-        fi
+-      done
+-      if test -z "$PHP_XSL_EXSL_DIR"; then
+-        AC_MSG_RESULT(not found)
+-      else
+-        AC_MSG_RESULT(found)
+-        PHP_ADD_LIBRARY_WITH_PATH(exslt, $PHP_XSL_EXSL_DIR/$PHP_LIBDIR, XSL_SHARED_LIBADD)
+-        PHP_ADD_INCLUDE($PHP_XSL_EXSL_DIR/include)
++  PKG_CHECK_MODULES([XSL], [libxslt >= 1.1.29], [
++      PKG_CHECK_MODULES([EXSLT], [libexslt], [
++        PHP_EVAL_LIBLINE($EXSLT_LIBS, XSL_SHARED_LIBADD)
++        PHP_EVAL_INCLINE($EXSLT_CFLAGS)
+         AC_DEFINE(HAVE_XSL_EXSLT,1,[ ])
+-      fi
+-    else
+-      AC_MSG_ERROR([libxslt version 1.1.0 or greater required.])
+-    fi
+-
+-
+-  fi
++      ], [
++        PHP_EVAL_LIBLINE($XSL_LIBS, XSL_SHARED_LIBADD)
++        PHP_EVAL_INCLINE($XSL_CFLAGS)
++      ])
++  ])
+ 
+   AC_DEFINE(HAVE_XSL,1,[ ])
+   PHP_NEW_EXTENSION(xsl, php_xsl.c xsltprocessor.c, $ext_shared)

@@ -1,0 +1,292 @@
+diff -durpN php-7.2.16.orig/acinclude.m4 php-7.2.16/acinclude.m4
+--- php-7.2.16.orig/acinclude.m4	2019-03-26 08:52:06.055334900 -0400
++++ php-7.2.16/acinclude.m4	2019-03-26 09:03:38.298470660 -0400
+@@ -656,9 +656,18 @@ AC_DEFUN([PHP_SET_LIBTOOL_VARIABLE],[
+ ])
+ 
+ dnl -------------------------------------------------------------------------
+-dnl Wrapper macros for AC_ARG_WITH / AC_ARG_ENABLE
++dnl Wrapper macros for AC_ARG_WITH / AC_ARG_ENABLE / AC_TRY_RUN
+ dnl -------------------------------------------------------------------------
+ 
++dnl PHP_TRY_RUN
++AC_DEFUN([PHP_TRY_RUN],[
++  if test "x$PHP_CROSSCOMPILING" = "xyes" ; then
++    AC_LINK_IFELSE(AC_LANG_SOURCE($1),$2,$3)
++  else
++    AC_TRY_RUN([$1],$2,$3,$4)
++  fi
++])
++
+ dnl PHP_ARG_ANALYZE_EX
+ dnl internal
+ AC_DEFUN([PHP_ARG_ANALYZE_EX],[
+@@ -1207,7 +1216,7 @@ dnl
+ dnl PHP_DOES_PWRITE_WORK
+ dnl internal
+ AC_DEFUN([PHP_DOES_PWRITE_WORK],[
+-  AC_TRY_RUN([
++  PHP_TRY_RUN([
+ #include <sys/types.h>
+ #include <sys/stat.h>
+ #include <fcntl.h>
+@@ -1237,7 +1246,7 @@ dnl PHP_DOES_PREAD_WORK
+ dnl internal
+ AC_DEFUN([PHP_DOES_PREAD_WORK],[
+   echo test > conftest_in
+-  AC_TRY_RUN([
++  PHP_TRY_RUN([
+ #include <sys/types.h>
+ #include <sys/stat.h>
+ #include <fcntl.h>
+diff -durpN php-7.2.16.orig/configure.ac php-7.2.16/configure.ac
+--- php-7.2.16.orig/configure.ac	2019-03-05 06:05:59.000000000 -0500
++++ php-7.2.16/configure.ac	2019-03-26 09:03:38.299470667 -0400
+@@ -209,6 +209,9 @@ PHP_ARG_ENABLE(rpath, whether to enable
+ [  --disable-rpath         Disable passing additional runtime library
+                           search paths], yes, no)
+ 
++PHP_ARG_ENABLE(crosscompiling, whether to enable cross compiling,
++[  --enable-crosscompiling Enable cross compiling], yes, no)
++
+ dnl check for -R, etc. switch
+ PHP_RUNPATH_SWITCH
+ 
+diff -durpN php-7.2.16.orig/ext/curl/config.m4 php-7.2.16/ext/curl/config.m4
+--- php-7.2.16.orig/ext/curl/config.m4	2019-03-05 06:06:05.000000000 -0500
++++ php-7.2.16/ext/curl/config.m4	2019-03-26 09:03:38.302470688 -0400
+@@ -149,14 +149,18 @@ int main(int argc, char *argv[])
+   return 1;
+ }
+ ], [
+-      AC_MSG_RESULT([yes])
++      ext_curl_curl_gnutls=yes
++    ], [
++      ext_curl_curl_gnutls=no
++    ], [
++      dnl Default CURL build in Yocto 2.2
++      ext_curl_curl_gnutls=yes
++    ])
++    AC_MSG_RESULT([$ext_curl_curl_gnutls])
++    AS_IF([test x$ext_curl_curl_gnutls = xyes],[
+       AC_CHECK_HEADER([gcrypt.h], [
+         AC_DEFINE([HAVE_CURL_GNUTLS], [1], [Have cURL with GnuTLS support])
+       ])
+-    ], [
+-      AC_MSG_RESULT([no])
+-    ], [
+-      AC_MSG_RESULT([no])
+     ])
+ 
+     CFLAGS="$save_CFLAGS"
+diff -durpN php-7.2.16.orig/ext/iconv/config.m4 php-7.2.16/ext/iconv/config.m4
+--- php-7.2.16.orig/ext/iconv/config.m4	2019-03-26 08:50:36.052741209 -0400
++++ php-7.2.16/ext/iconv/config.m4	2019-03-26 09:03:38.299470667 -0400
+@@ -50,7 +50,7 @@ if test "$PHP_ICONV" != "no"; then
+       AC_MSG_CHECKING([if using GNU libiconv])
+       php_iconv_old_ld="$LDFLAGS"
+       LDFLAGS="-liconv $LDFLAGS"
+-      AC_TRY_RUN([
++      PHP_TRY_RUN([
+ #include <$PHP_ICONV_H_PATH>
+ int main() {
+   printf("%d", _libiconv_version);
+@@ -128,7 +128,7 @@ int main() {
+     esac
+ 
+     AC_MSG_CHECKING([if iconv supports errno])
+-    AC_TRY_RUN([
++    PHP_TRY_RUN([
+ #include <$PHP_ICONV_H_PATH>
+ #include <errno.h>
+ 
+diff -durpN php-7.2.16.orig/ext/opcache/config.m4 php-7.2.16/ext/opcache/config.m4
+--- php-7.2.16.orig/ext/opcache/config.m4	2019-03-05 06:06:04.000000000 -0500
++++ php-7.2.16/ext/opcache/config.m4	2019-03-26 09:03:38.300470674 -0400
+@@ -29,7 +29,7 @@ if test "$PHP_OPCACHE" != "no"; then
+   AC_CHECK_HEADERS([unistd.h sys/uio.h])
+ 
+   AC_MSG_CHECKING(for sysvipc shared memory support)
+-  AC_TRY_RUN([
++  PHP_TRY_RUN([
+ #include <sys/types.h>
+ #include <sys/wait.h>
+ #include <sys/ipc.h>
+@@ -99,7 +99,7 @@ int main() {
+   AC_MSG_RESULT([$msg])
+ 
+   AC_MSG_CHECKING(for mmap() using MAP_ANON shared memory support)
+-  AC_TRY_RUN([
++  PHP_TRY_RUN([
+ #include <sys/types.h>
+ #include <sys/wait.h>
+ #include <sys/mman.h>
+@@ -151,7 +151,7 @@ int main() {
+   AC_MSG_RESULT([$msg])
+ 
+   AC_MSG_CHECKING(for mmap() using /dev/zero shared memory support)
+-  AC_TRY_RUN([
++  PHP_TRY_RUN([
+ #include <sys/types.h>
+ #include <sys/wait.h>
+ #include <sys/mman.h>
+@@ -206,7 +206,7 @@ int main() {
+   AC_MSG_RESULT([$msg])
+ 
+   AC_MSG_CHECKING(for mmap() using shm_open() shared memory support)
+-  AC_TRY_RUN([
++  PHP_TRY_RUN([
+ #include <sys/types.h>
+ #include <sys/wait.h>
+ #include <sys/mman.h>
+@@ -275,7 +275,7 @@ int main() {
+   AC_MSG_RESULT([$msg])
+ 
+   AC_MSG_CHECKING(for mmap() using regular file shared memory support)
+-  AC_TRY_RUN([
++  PHP_TRY_RUN([
+ #include <sys/types.h>
+ #include <sys/wait.h>
+ #include <sys/mman.h>
+diff -durpN php-7.2.16.orig/ext/posix/config.m4 php-7.2.16/ext/posix/config.m4
+--- php-7.2.16.orig/ext/posix/config.m4	2019-03-05 06:06:04.000000000 -0500
++++ php-7.2.16/ext/posix/config.m4	2019-03-26 09:03:38.300470674 -0400
+@@ -29,7 +29,10 @@ int main(int argc, char *argv[])
+   ],[
+     AC_MSG_RESULT([no, posix_ttyname() will be thread-unsafe])
+   ], [
+-    AC_MSG_RESULT([no, cannot detect working ttyname_r() when cross compiling. posix_ttyname() will be thread-unsafe])
++    AC_CHECK_FUNCS(ttyname_r,
++      [AC_MSG_RESULT([yes])
++       AC_DEFINE(HAVE_TTYNAME_R, 1, [Whether you have a working ttyname_r])],
++      [AC_MSG_RESULT([no, cannot detect working ttyname_r() when cross compiling. posix_ttyname() will be thread-unsafe])])
+   ])
+ 
+   AC_CACHE_CHECK([for utsname.domainname], ac_cv_have_utsname_domainname, [
+diff -durpN php-7.2.16.orig/ext/standard/config.m4 php-7.2.16/ext/standard/config.m4
+--- php-7.2.16.orig/ext/standard/config.m4	2019-03-05 06:05:59.000000000 -0500
++++ php-7.2.16/ext/standard/config.m4	2019-03-26 09:03:38.301470681 -0400
+@@ -4,7 +4,7 @@ dnl
+ dnl Check if flush should be called explicitly after buffered io
+ dnl
+ AC_CACHE_CHECK([whether flush should be called explicitly after a buffered io], ac_cv_flush_io,[
+-AC_TRY_RUN( [
++PHP_TRY_RUN( [
+ #include <stdio.h>
+ #include <stdlib.h>
+ 
+@@ -60,7 +60,7 @@ if test "$ac_cv_func_crypt" = "no"; then
+ fi
+ 
+ AC_CACHE_CHECK(for standard DES crypt, ac_cv_crypt_des,[
+-  AC_TRY_RUN([
++  PHP_TRY_RUN([
+ #if HAVE_UNISTD_H
+ #include <unistd.h>
+ #endif
+@@ -85,7 +85,7 @@ int main() {
+ ])])
+ 
+ AC_CACHE_CHECK(for extended DES crypt, ac_cv_crypt_ext_des,[
+-  AC_TRY_RUN([
++  PHP_TRY_RUN([
+ #if HAVE_UNISTD_H
+ #include <unistd.h>
+ #endif
+@@ -110,7 +110,7 @@ int main() {
+ ])])
+ 
+ AC_CACHE_CHECK(for MD5 crypt, ac_cv_crypt_md5,[
+-AC_TRY_RUN([
++PHP_TRY_RUN([
+ #if HAVE_UNISTD_H
+ #include <unistd.h>
+ #endif
+@@ -145,7 +145,7 @@ int main() {
+ ])])
+ 
+ AC_CACHE_CHECK(for Blowfish crypt, ac_cv_crypt_blowfish,[
+-AC_TRY_RUN([
++PHP_TRY_RUN([
+ #if HAVE_UNISTD_H
+ #include <unistd.h>
+ #endif
+@@ -177,7 +177,7 @@ int main() {
+ ])])
+ 
+ AC_CACHE_CHECK(for SHA512 crypt, ac_cv_crypt_sha512,[
+-AC_TRY_RUN([
++PHP_TRY_RUN([
+ #if HAVE_UNISTD_H
+ #include <unistd.h>
+ #endif
+@@ -208,7 +208,7 @@ int main() {
+ ])])
+ 
+ AC_CACHE_CHECK(for SHA256 crypt, ac_cv_crypt_sha256,[
+-AC_TRY_RUN([
++PHP_TRY_RUN([
+ #if HAVE_UNISTD_H
+ #include <unistd.h>
+ #endif
+diff -durpN php-7.2.16.orig/sapi/fpm/config.m4 php-7.2.16/sapi/fpm/config.m4
+--- php-7.2.16.orig/sapi/fpm/config.m4	2019-03-05 06:05:59.000000000 -0500
++++ php-7.2.16/sapi/fpm/config.m4	2019-03-26 09:03:38.303470695 -0400
+@@ -68,7 +68,7 @@ AC_DEFUN([AC_FPM_CLOCK],
+   if test "$have_clock_gettime" = "no"; then
+     AC_MSG_CHECKING([for clock_get_time])
+ 
+-    AC_TRY_RUN([ #include <mach/mach.h>
++    PHP_TRY_RUN([ #include <mach/mach.h>
+       #include <mach/clock.h>
+       #include <mach/mach_error.h>
+ 
+@@ -120,7 +120,7 @@ AC_DEFUN([AC_FPM_TRACE],
+   if test "$have_ptrace" = "yes"; then
+     AC_MSG_CHECKING([whether ptrace works])
+ 
+-    AC_TRY_RUN([
++    PHP_TRY_RUN([
+       #include <unistd.h>
+       #include <signal.h>
+       #include <sys/wait.h>
+@@ -268,7 +268,8 @@ AC_DEFUN([AC_FPM_TRACE],
+       proc_mem_file=""
+       AC_MSG_RESULT([no])
+     ], [
+-      AC_MSG_RESULT([skipped (cross compiling)])
++      AC_MSG_RESULT([cross compiling for Linux, using 'mem'])
++      proc_mem_file="mem"
+     ])
+   fi
+ 
+diff -durpN php-7.2.16.orig/Zend/Zend.m4 php-7.2.16/Zend/Zend.m4
+--- php-7.2.16.orig/Zend/Zend.m4	2019-03-05 06:06:06.000000000 -0500
++++ php-7.2.16/Zend/Zend.m4	2019-03-26 09:03:38.302470688 -0400
+@@ -109,7 +109,7 @@ ZEND_CHECK_FLOAT_PRECISION
+ dnl test whether double cast to long preserves least significant bits
+ AC_MSG_CHECKING(whether double cast to long preserves least significant bits)
+ 
+-AC_TRY_RUN([
++PHP_TRY_RUN([
+ #include <limits.h>
+ 
+ int main()
+@@ -269,7 +269,7 @@ AC_MSG_RESULT(done)
+ dnl test for memory allocation using mmap(MAP_ANON)
+ AC_MSG_CHECKING(for memory allocation using mmap(MAP_ANON))
+ 
+-AC_TRY_RUN([
++PHP_TRY_RUN([
+ #include <sys/types.h>
+ #include <sys/stat.h>
+ #include <fcntl.h>
+@@ -314,7 +314,7 @@ int main()
+ dnl test for memory allocation using mmap("/dev/zero")
+ AC_MSG_CHECKING(for memory allocation using mmap("/dev/zero"))
+ 
+-AC_TRY_RUN([
++PHP_TRY_RUN([
+ #include <sys/types.h>
+ #include <sys/stat.h>
+ #include <fcntl.h>

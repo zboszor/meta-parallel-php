@@ -1,0 +1,58 @@
+diff -durpN php-7.2.16.orig/ext/opcache/config.m4 php-7.2.16/ext/opcache/config.m4
+--- php-7.2.16.orig/ext/opcache/config.m4	2019-03-26 09:03:38.300470674 -0400
++++ php-7.2.16/ext/opcache/config.m4	2019-03-26 09:13:49.868722895 -0400
+@@ -95,7 +95,9 @@ int main() {
+ }
+ ],dnl
+     AC_DEFINE(HAVE_SHM_IPC, 1, [Define if you have SysV IPC SHM support])
+-    msg=yes,msg=no,msg=no)
++    msg=yes,msg=no,
++    AC_DEFINE(HAVE_SHM_IPC, 1, [Define if you have SysV IPC SHM support])
++    msg=yes)
+   AC_MSG_RESULT([$msg])
+ 
+   AC_MSG_CHECKING(for mmap() using MAP_ANON shared memory support)
+@@ -147,7 +149,9 @@ int main() {
+ }
+ ],dnl
+     AC_DEFINE(HAVE_SHM_MMAP_ANON, 1, [Define if you have mmap(MAP_ANON) SHM support])
+-    msg=yes,msg=no,msg=no)
++    msg=yes,msg=no,
++    AC_DEFINE(HAVE_SHM_MMAP_ANON, 1, [Define if you have mmap(MAP_ANON) SHM support])
++    msg=yes)
+   AC_MSG_RESULT([$msg])
+ 
+   AC_MSG_CHECKING(for mmap() using /dev/zero shared memory support)
+@@ -202,7 +206,9 @@ int main() {
+ }
+ ],dnl
+     AC_DEFINE(HAVE_SHM_MMAP_ZERO, 1, [Define if you have mmap("/dev/zero") SHM support])
+-    msg=yes,msg=no,msg=no)
++    msg=yes,msg=no,
++    AC_DEFINE(HAVE_SHM_MMAP_ZERO, 1, [Define if you have mmap("/dev/zero") SHM support])
++    msg=yes)
+   AC_MSG_RESULT([$msg])
+ 
+   AC_MSG_CHECKING(for mmap() using shm_open() shared memory support)
+@@ -271,7 +277,9 @@ int main() {
+ }
+ ],dnl
+     AC_DEFINE(HAVE_SHM_MMAP_POSIX, 1, [Define if you have POSIX mmap() SHM support])
+-    msg=yes,msg=no,msg=no)
++    msg=yes,msg=no,
++    AC_DEFINE(HAVE_SHM_MMAP_POSIX, 1, [Define if you have POSIX mmap() SHM support])
++    msg=yes)
+   AC_MSG_RESULT([$msg])
+ 
+   AC_MSG_CHECKING(for mmap() using regular file shared memory support)
+@@ -340,7 +348,9 @@ int main() {
+ }
+ ],dnl
+     AC_DEFINE(HAVE_SHM_MMAP_FILE, 1, [Define if you have mmap() SHM support])
+-    msg=yes,msg=no,msg=no)
++    msg=yes,msg=no,
++    AC_DEFINE(HAVE_SHM_MMAP_FILE, 1, [Define if you have mmap() SHM support])
++    msg=yes)
+   AC_MSG_RESULT([$msg])
+ 
+   PHP_NEW_EXTENSION(opcache,
