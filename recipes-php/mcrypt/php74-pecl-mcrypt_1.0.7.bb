@@ -11,7 +11,7 @@ PHPVERSION = "74"
 
 inherit parallel-php-module
 
-FILESPATH = "${FILE_DIRNAME}/php-pecl-mcrypt"
+FILESEXTRAPATHS:prepend = "${FILE_DIRNAME}/php-pecl-mcrypt:"
 
 SRC_URI = " \
 			http://pecl.php.net/get/mcrypt-${PV}.tgz \
