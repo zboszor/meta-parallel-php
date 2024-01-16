@@ -13,7 +13,7 @@ PHPVERSION = "83"
 
 inherit parallel-php-module
 
-FILESPATH = "${FILE_DIRNAME}/php-posix-realtime"
+FILESEXTRAPATHS:prepend = "${FILE_DIRNAME}/php-posix-realtime:"
 
 SRCREV = "d214e3c4dc8597145512fa94d0f850e1d4547906"
 
