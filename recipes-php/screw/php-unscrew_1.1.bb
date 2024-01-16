@@ -6,7 +6,7 @@ DEPENDS += "zlib libphpscrew"
 
 #PR = "r1"
 
-FILESPATH = "${FILE_DIRNAME}/php-screw"
+FILESEXTRAPATHS:prepend = "${FILE_DIRNAME}/php-screw:"
 
 SRC_URI = " \
 			file://unscrew.c \
