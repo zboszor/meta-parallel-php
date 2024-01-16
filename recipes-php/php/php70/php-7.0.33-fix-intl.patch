@@ -1,0 +1,59 @@
+--- php-7.0.33/ext/intl/php_intl.h.orig	2018-12-04 17:22:53.000000000 +0000
++++ php-7.0.33/ext/intl/php_intl.h	2021-06-18 08:46:50.423800885 +0000
+@@ -22,6 +22,13 @@
+ 
+ #include <php.h>
+ 
++#ifndef TRUE
++# define TRUE 1
++#endif
++#ifndef FALSE
++# define FALSE 0
++#endif
++
+ /* Even if we're included from C++, don't introduce C++ definitions
+  * because we were included with extern "C". The effect would be that
+  * when the headers defined any method, they would do so with C linkage */
+--- php-7.0.33/ext/intl/breakiterator/codepointiterator_internal.cpp.orig	2021-06-18 08:51:02.000000000 +0000
++++ php-7.0.33/ext/intl/breakiterator/codepointiterator_internal.cpp	2021-06-18 09:00:50.273234690 +0000
+@@ -20,6 +20,13 @@
+ 
+ #include "php.h"
+ 
++#ifndef TRUE
++# define TRUE 1
++#endif
++#ifndef FALSE
++# define FALSE 0
++#endif
++
+ //copied from cmemory.h, which is not public
+ typedef union {
+     zend_long    t1;
+--- php-7.0.33/ext/intl/grapheme/grapheme_util.h.orig	2018-12-04 17:22:54.000000000 +0000
++++ php-7.0.33/ext/intl/grapheme/grapheme_util.h	2021-06-18 09:16:34.988648460 +0000
+@@ -34,8 +34,6 @@
+ 
+ int32_t grapheme_count_graphemes(UBreakIterator *bi, UChar *string, int32_t string_len);
+ 
+-inline void *grapheme_memrchr_grapheme(const void *s, int c, int32_t n);
+-
+ int32_t grapheme_get_haystack_offset(UBreakIterator* bi, int32_t offset);
+ 
+ UBreakIterator* grapheme_get_break_iterator(void *stack_buffer, UErrorCode *status );
+--- php-7.0.33/ext/intl/timezone/timezone_class.cpp.orig	2021-06-18 09:04:19.000000000 +0000
++++ php-7.0.33/ext/intl/timezone/timezone_class.cpp	2021-06-18 09:18:40.951566984 +0000
+@@ -35,6 +35,13 @@
+ #include <zend_exceptions.h>
+ #include <zend_interfaces.h>
+ #include <ext/date/php_date.h>
++
++#ifndef TRUE
++# define TRUE 1
++#endif
++#ifndef FALSE
++# define FALSE 0
++#endif
+ }
+ 
+ using icu::Calendar;

@@ -1,0 +1,39 @@
+diff -durpN php-5.4.31.old/acinclude.m4 php-5.4.31/acinclude.m4
+--- php-5.4.31.old/acinclude.m4	2014-08-21 09:39:14.355458436 +0200
++++ php-5.4.31/acinclude.m4	2014-08-21 09:36:59.426390224 +0200
+@@ -2357,7 +2357,7 @@ AC_DEFUN([PHP_SETUP_OPENSSL],[
+       PHP_OPENSSL_DIR="/usr/local/ssl /usr/local /usr /usr/local/openssl"
+     fi
+ 
+-    for i in $PHP_OPENSSL_DIR; do
++    for i in $PHP_OPENSSL_DIR $PHP_OPENSSL_DIR/usr; do
+       if test -r $i/include/openssl/evp.h; then
+         OPENSSL_INCDIR=$i/include
+       fi
+diff -durpN php-5.4.31.old/ext/imap/config.m4 php-5.4.31/ext/imap/config.m4
+--- php-5.4.31.old/ext/imap/config.m4	2014-07-23 02:59:30.000000000 +0200
++++ php-5.4.31/ext/imap/config.m4	2014-08-21 09:36:25.174374637 +0200
+@@ -109,7 +109,7 @@ if test "$PHP_IMAP" != "no"; then
+     PHP_NEW_EXTENSION(imap, php_imap.c, $ext_shared)
+     AC_DEFINE(HAVE_IMAP,1,[ ])
+ 
+-    for i in $PHP_IMAP /usr/local /usr; do
++    for i in $PHP_IMAP $PHP_IMAP/usr /usr/local /usr; do
+       IMAP_INC_CHK()
+       el[]IMAP_INC_CHK(/include/c-client)
+       el[]IMAP_INC_CHK(/include/imap)
+@@ -198,13 +198,7 @@ if test "$PHP_IMAP" != "no"; then
+       AC_MSG_ERROR(Cannot find rfc822.h. Please check your c-client installation.)
+     fi
+ 
+-    if test ! -r "$IMAP_DIR/c-client/libc-client.a" && test -r "$IMAP_DIR/c-client/c-client.a" ; then
+-      ln -s "$IMAP_DIR/c-client/c-client.a" "$IMAP_DIR/c-client/libc-client.a" >/dev/null 2>&1
+-    elif test ! -r "$IMAP_DIR/$PHP_LIBDIR/libc-client.a" && test -r "$IMAP_DIR/$PHP_LIBDIR/c-client.a"; then
+-      ln -s "$IMAP_DIR/$PHP_LIBDIR/c-client.a" "$IMAP_DIR/$PHP_LIBDIR/libc-client.a" >/dev/null 2>&1
+-    fi
+-
+-    for lib in c-client4 c-client imap; do
++    for lib in /usr/lib c-client4 c-client imap; do
+       IMAP_LIB=$lib
+       IMAP_LIB_CHK($PHP_LIBDIR)
+       IMAP_LIB_CHK(c-client)

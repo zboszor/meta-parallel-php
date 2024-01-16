@@ -1,0 +1,24 @@
+diff -durpN php-7.0.33.07/main/internal_functions_win32.c php-7.0.33/main/internal_functions_win32.c
+--- php-7.0.33.07/main/internal_functions_win32.c	2018-12-04 12:22:44.000000000 -0500
++++ php-7.0.33/main/internal_functions_win32.c	2019-12-05 02:52:03.332494528 -0500
+@@ -129,7 +129,7 @@ static zend_module_entry *php_builtin_ex
+ #if HAVE_FTP
+ 	,phpext_ftp_ptr
+ #endif
+-#if HAVE_HASH
++#if HAVE_HASH_EXT
+ 	,phpext_hash_ptr
+ #endif
+ #if HAVE_ICONV
+diff -durpN php-7.0.33.07/ext/phar/phar.c php-7.0.33/ext/phar/phar.c
+--- php-7.0.33.07/ext/phar/phar.c	2018-12-04 12:22:50.000000000 -0500
++++ php-7.0.33/ext/phar/phar.c	2019-12-05 02:52:03.333494537 -0500
+@@ -3616,7 +3616,7 @@ static const zend_module_dep phar_deps[]
+ 	ZEND_MOD_OPTIONAL("openssl")
+ 	ZEND_MOD_OPTIONAL("zlib")
+ 	ZEND_MOD_OPTIONAL("standard")
+-#if defined(HAVE_HASH) && !defined(COMPILE_DL_HASH)
++#if defined(HAVE_HASH_EXT) && !defined(COMPILE_DL_HASH)
+ 	ZEND_MOD_REQUIRED("hash")
+ #endif
+ #if HAVE_SPL
