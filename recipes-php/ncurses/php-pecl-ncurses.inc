@@ -10,7 +10,7 @@ PV = "1.0.4"
 
 inherit parallel-php-module
 
-FILESPATH = "${FILE_DIRNAME}/php-pecl-ncurses"
+FILESEXTRAPATHS:prepend = "${FILE_DIRNAME}/php-pecl-ncurses:"
 
 SRCREV = "9d41187a23fbd239262e4682fe1718e117a6bda1"
 
