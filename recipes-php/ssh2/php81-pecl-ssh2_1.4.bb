@@ -11,7 +11,7 @@ PHPVERSION = "81"
 
 inherit parallel-php-module
 
-FILESPATH = "${FILE_DIRNAME}/php-pecl-ssh2"
+FILESEXTRAPATHS:prepend = "${FILE_DIRNAME}/php-pecl-ssh2:"
 
 SRC_URI = " \
 			http://pecl.php.net/get/ssh2-${PV}.tgz \
