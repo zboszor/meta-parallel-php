@@ -1,0 +1,151 @@
+diff -durpN php-7.3.3.orig/ext/curl/config.m4 php-7.3.3/ext/curl/config.m4
+--- php-7.3.3.orig/ext/curl/config.m4	2019-03-05 08:50:40.000000000 -0500
++++ php-7.3.3/ext/curl/config.m4	2019-03-27 05:53:15.740499707 -0400
+@@ -148,13 +148,18 @@ int main(int argc, char *argv[])
+ }
+ ]])], [
+       AC_MSG_RESULT([yes])
++      ext_curl_curl_gnutls=yes
++    ], [
++      ext_curl_curl_gnutls=no
++    ], [
++      dnl Default CURL build in Yocto 2.5
++      ext_curl_curl_gnutls=yes
++    ])
++    AC_MSG_RESULT([$ext_curl_curl_gnutls])
++    AS_IF([test x$ext_curl_curl_gnutls = xyes],[
+       AC_CHECK_HEADER([gcrypt.h], [
+         AC_DEFINE([HAVE_CURL_GNUTLS], [1], [Have cURL with GnuTLS support])
+       ])
+-    ], [
+-      AC_MSG_RESULT([no])
+-    ], [
+-      AC_MSG_RESULT([no])
+     ])
+ 
+     CFLAGS="$save_CFLAGS"
+diff -durpN php-7.3.3.orig/ext/iconv/config.m4 php-7.3.3/ext/iconv/config.m4
+--- php-7.3.3.orig/ext/iconv/config.m4	2019-03-27 05:50:18.000786921 -0400
++++ php-7.3.3/ext/iconv/config.m4	2019-03-27 05:53:15.741499711 -0400
+@@ -149,9 +149,9 @@ int main() {
+       PHP_DEFINE([ICONV_SUPPORTS_ERRNO],0,[ext/iconv])
+       AC_DEFINE([ICONV_SUPPORTS_ERRNO],0,[Whether iconv supports error no or not])
+     ],[
+-      AC_MSG_RESULT(no, cross-compiling)
+-      PHP_DEFINE([ICONV_SUPPORTS_ERRNO],0,[ext/iconv])
+-      AC_DEFINE([ICONV_SUPPORTS_ERRNO],0,[Whether iconv supports error no or not])
++      AC_MSG_RESULT(yes)
++      PHP_DEFINE([ICONV_SUPPORTS_ERRNO],1,[ext/iconv])
++      AC_DEFINE([ICONV_SUPPORTS_ERRNO],1,[Whether iconv supports error no or not])
+     ])
+ 
+     AC_MSG_CHECKING([if iconv supports //IGNORE])
+diff -durpN php-7.3.3.orig/ext/opcache/config.m4 php-7.3.3/ext/opcache/config.m4
+--- php-7.3.3.orig/ext/opcache/config.m4	2019-03-05 08:50:40.000000000 -0500
++++ php-7.3.3/ext/opcache/config.m4	2019-03-27 05:54:45.233855988 -0400
+@@ -93,7 +93,9 @@ int main() {
+ }
+ ]])],[dnl
+     AC_DEFINE(HAVE_SHM_IPC, 1, [Define if you have SysV IPC SHM support])
+-    msg=yes],[msg=no],[msg=no])
++    msg=yes],[msg=no],[
++    AC_DEFINE(HAVE_SHM_IPC, 1, [Define if you have SysV IPC SHM support])
++    msg=yes])
+   AC_MSG_RESULT([$msg])
+ 
+   AC_MSG_CHECKING(for mmap() using MAP_ANON shared memory support)
+@@ -145,7 +147,9 @@ int main() {
+ }
+ ]])],[dnl
+     AC_DEFINE(HAVE_SHM_MMAP_ANON, 1, [Define if you have mmap(MAP_ANON) SHM support])
+-    msg=yes],[msg=no],[msg=no])
++    msg=yes],[msg=no],[
++    AC_DEFINE(HAVE_SHM_MMAP_ANON, 1, [Define if you have mmap(MAP_ANON) SHM support])
++    msg=yes])
+   AC_MSG_RESULT([$msg])
+ 
+   AC_MSG_CHECKING(for mmap() using /dev/zero shared memory support)
+@@ -200,7 +204,9 @@ int main() {
+ }
+ ]])],[dnl
+     AC_DEFINE(HAVE_SHM_MMAP_ZERO, 1, [Define if you have mmap("/dev/zero") SHM support])
+-    msg=yes],[msg=no],[msg=no])
++    msg=yes],[msg=no],[
++    AC_DEFINE(HAVE_SHM_MMAP_ZERO, 1, [Define if you have mmap("/dev/zero") SHM support])
++    msg=yes])
+   AC_MSG_RESULT([$msg])
+ 
+   AC_MSG_CHECKING(for mmap() using shm_open() shared memory support)
+@@ -269,7 +275,9 @@ int main() {
+ }
+ ]])],[dnl
+     AC_DEFINE(HAVE_SHM_MMAP_POSIX, 1, [Define if you have POSIX mmap() SHM support])
+-    msg=yes],[msg=no],[msg=no])
++    msg=yes],[msg=no],[
++    AC_DEFINE(HAVE_SHM_MMAP_POSIX, 1, [Define if you have POSIX mmap() SHM support])
++    msg=yes])
+   AC_MSG_RESULT([$msg])
+ 
+   AC_MSG_CHECKING(for mmap() using regular file shared memory support)
+@@ -338,7 +346,9 @@ int main() {
+ }
+ ]])],[dnl
+     AC_DEFINE(HAVE_SHM_MMAP_FILE, 1, [Define if you have mmap() SHM support])
+-    msg=yes],[msg=no],[msg=no])
++    msg=yes],[msg=no],[
++    AC_DEFINE(HAVE_SHM_MMAP_FILE, 1, [Define if you have mmap() SHM support])
++    msg=yes])
+   AC_MSG_RESULT([$msg])
+ 
+   PHP_NEW_EXTENSION(opcache,
+diff -durpN php-7.3.3.orig/ext/posix/config.m4 php-7.3.3/ext/posix/config.m4
+--- php-7.3.3.orig/ext/posix/config.m4	2019-03-05 08:50:46.000000000 -0500
++++ php-7.3.3/ext/posix/config.m4	2019-03-27 05:53:15.741499711 -0400
+@@ -27,7 +27,10 @@ int main(int argc, char *argv[])
+   ],[
+     AC_MSG_RESULT([no, posix_ttyname() will be thread-unsafe])
+   ], [
+-    AC_MSG_RESULT([no, cannot detect working ttyname_r() when cross compiling. posix_ttyname() will be thread-unsafe])
++    AC_CHECK_FUNCS(ttyname_r,
++      [AC_MSG_RESULT([yes])
++       AC_DEFINE(HAVE_TTYNAME_R, 1, [Whether you have a working ttyname_r])],
++      [AC_MSG_RESULT([no, cannot detect working ttyname_r() when cross compiling. posix_ttyname() will be thread-unsafe])])
+   ])
+ 
+   AC_CACHE_CHECK([for utsname.domainname], ac_cv_have_utsname_domainname, [
+diff -durpN php-7.3.3.orig/sapi/fpm/config.m4 php-7.3.3/sapi/fpm/config.m4
+--- php-7.3.3.orig/sapi/fpm/config.m4	2019-03-05 08:50:39.000000000 -0500
++++ php-7.3.3/sapi/fpm/config.m4	2019-03-27 05:53:15.742499715 -0400
+@@ -266,7 +266,8 @@ AC_DEFUN([AC_FPM_TRACE],
+       proc_mem_file=""
+       AC_MSG_RESULT([no])
+     ], [
+-      AC_MSG_RESULT([skipped (cross-compiling)])
++      AC_MSG_RESULT([cross compiling for Linux, using 'mem'])
++      proc_mem_file="mem"
+     ])
+   fi
+ 
+diff -durpN php-7.3.3.orig/Zend/Zend.m4 php-7.3.3/Zend/Zend.m4
+--- php-7.3.3.orig/Zend/Zend.m4	2019-03-05 08:50:47.000000000 -0500
++++ php-7.3.3/Zend/Zend.m4	2019-03-27 05:53:15.742499715 -0400
+@@ -305,7 +305,8 @@ int main()
+   AC_MSG_RESULT(no)
+ ], [
+   dnl cross-compile needs something here
+-  AC_MSG_RESULT(no)
++  AC_DEFINE([HAVE_MEM_MMAP_ANON], 1, [Define if the target system has support for memory allocation using mmap(MAP_ANON)])
++  AC_MSG_RESULT(yes)
+ ])
+ 
+ dnl test for memory allocation using mmap("/dev/zero")
+@@ -360,7 +361,8 @@ int main()
+   AC_MSG_RESULT(no)
+ ], [
+   dnl cross-compile needs something here
+-  AC_MSG_RESULT(no)
++  AC_DEFINE([HAVE_MEM_MMAP_ZERO], 1, [Define if the target system has support for memory allocation using mmap("/dev/zero")])
++  AC_MSG_RESULT(yes)
+ ])
+ 
+ AC_CHECK_FUNCS(mremap)

@@ -1,0 +1,21 @@
+diff -durpN php-7.3.3.orig/sapi/apache2handler/config.m4 php-7.3.3/sapi/apache2handler/config.m4
+--- php-7.3.3.orig/sapi/apache2handler/config.m4	2019-03-05 08:50:39.000000000 -0500
++++ php-7.3.3/sapi/apache2handler/config.m4	2019-03-27 06:11:07.945950060 -0400
+@@ -107,17 +107,6 @@ if test "$PHP_APXS2" != "no"; then
+     ;;
+   esac
+ 
+-  if test "$APACHE_VERSION" -lt 2004001; then
+-    APXS_MPM=`$APXS -q MPM_NAME`
+-    if test "$APXS_MPM" != "prefork" && test "$APXS_MPM" != "peruser" && test "$APXS_MPM" != "itk"; then
+-      PHP_BUILD_THREAD_SAFE
+-    fi
+-  else
+-    APACHE_THREADED_MPM=`$APXS_HTTPD -V | grep 'threaded:.*yes'`
+-    if test -n "$APACHE_THREADED_MPM"; then
+-      PHP_BUILD_THREAD_SAFE
+-    fi
+-  fi
+   AC_MSG_RESULT(yes)
+   PHP_SUBST(APXS)
+ else

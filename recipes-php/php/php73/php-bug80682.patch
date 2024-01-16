@@ -1,0 +1,30 @@
+From 067f7e4150d8f9bddf6b198c9c7826565ee549b0 Mon Sep 17 00:00:00 2001
+From: Remi Collet <remi@php.net>
+Date: Thu, 28 Jan 2021 16:24:39 +0100
+Subject: [PATCH] Fix #80682 opcache doesn't honour pcre.jit option
+
+---
+ ext/opcache/zend_accelerator_blacklist.c | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
+
+diff --git a/ext/opcache/zend_accelerator_blacklist.c b/ext/opcache/zend_accelerator_blacklist.c
+index 889fcabd7988..5c6bd76821a5 100644
+--- a/ext/opcache/zend_accelerator_blacklist.c
++++ b/ext/opcache/zend_accelerator_blacklist.c
+@@ -185,10 +185,12 @@ static void zend_accel_blacklist_update_regexp(zend_blacklist *blacklist)
+ 				return;
+ 			}
+ #ifdef HAVE_PCRE_JIT_SUPPORT
+-			if (0 > pcre2_jit_compile(it->re, PCRE2_JIT_COMPLETE)) {
+-				/* Don't return here, even JIT could fail to compile, the pattern is still usable. */
+-				pcre2_get_error_message(errnumber, pcre_error, sizeof(pcre_error));
+-				zend_accel_error(ACCEL_LOG_WARNING, "Blacklist JIT compilation failed, %s\n", pcre_error);
++			if (PCRE_G(jit)) {
++				if (0 > pcre2_jit_compile(it->re, PCRE2_JIT_COMPLETE)) {
++					/* Don't return here, even JIT could fail to compile, the pattern is still usable. */
++					pcre2_get_error_message(errnumber, pcre_error, sizeof(pcre_error));
++					zend_accel_error(ACCEL_LOG_WARNING, "Blacklist JIT compilation failed, %s\n", pcre_error);
++				}
+ 			}
+ #endif
+ 			/* prepare for the next iteration */

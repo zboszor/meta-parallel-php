@@ -1,0 +1,19 @@
+diff -durpN php-7.3.3.orig/acinclude.m4 php-7.3.3/acinclude.m4
+--- php-7.3.3.orig/acinclude.m4	2019-03-05 08:50:48.000000000 -0500
++++ php-7.3.3/acinclude.m4	2019-03-27 05:43:12.203049656 -0400
+@@ -2543,12 +2543,9 @@ AC_DEFUN([PHP_SETUP_LIBXML], [
+   dnl First try to find xml2-config
+   AC_CACHE_CHECK([for xml2-config path], ac_cv_php_xml2_config_path,
+   [
+-    for i in $PHP_LIBXML_DIR /usr/local /usr; do
+-      if test -x "$i/bin/xml2-config"; then
+-        ac_cv_php_xml2_config_path="$i/bin/xml2-config"
+-        break
+-      fi
+-    done
++
++	ac_cv_php_xml2_config_path="$PHP_LIBXML_DIR/xml2-config"
++
+   ])
+ 
+   if test -x "$ac_cv_php_xml2_config_path"; then

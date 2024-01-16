@@ -1,0 +1,12 @@
+diff -durpN php-7.3.0.1/sapi/cli/config.m4 php-7.3.0.2/sapi/cli/config.m4
+--- php-7.3.0.1/sapi/cli/config.m4	2018-12-04 11:12:21.000000000 -0500
++++ php-7.3.0.2/sapi/cli/config.m4	2019-01-04 05:58:31.092560285 -0500
+@@ -47,7 +47,7 @@ if test "$PHP_CLI" != "no"; then
+   esac
+ 
+   dnl Set executable for tests
+-  PHP_EXECUTABLE="\$(top_builddir)/\$(SAPI_CLI_PATH)"
++  PHP_EXECUTABLE="${PHP_NATIVE_DIR}/php${program_suffix}"
+   PHP_SUBST(PHP_EXECUTABLE)
+ 
+   dnl Expose to Makefile

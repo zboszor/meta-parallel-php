@@ -1,0 +1,12 @@
+diff -durpN php-7.3.3.orig/configure.ac php-7.3.3/configure.ac
+--- php-7.3.3.orig/configure.ac	2019-03-27 06:31:34.156068944 -0400
++++ php-7.3.3/configure.ac	2019-03-27 06:29:28.430459117 -0400
+@@ -1350,7 +1350,7 @@ PHP_BUILD_DATE=`date -u +%Y-%m-%d`
+ fi
+ AC_DEFINE_UNQUOTED(PHP_BUILD_DATE,"$PHP_BUILD_DATE",[PHP build date])
+ 
+-PHP_UNAME=`uname -a | xargs`
++PHP_UNAME=`uname | xargs`
+ AC_DEFINE_UNQUOTED(PHP_UNAME,"$PHP_UNAME",[uname -a output])
+ PHP_OS=`uname | xargs`
+ AC_DEFINE_UNQUOTED(PHP_OS,"$PHP_OS",[uname output])

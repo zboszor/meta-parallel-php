@@ -1,0 +1,11 @@
+diff -durpN php-7.3.3.orig/acinclude.m4 php-7.3.3/acinclude.m4
+--- php-7.3.3.orig/acinclude.m4	2019-03-27 06:41:46.511633715 -0400
++++ php-7.3.3/acinclude.m4	2019-03-27 06:42:23.734909246 -0400
+@@ -2231,7 +2231,6 @@ AC_DEFUN([PHP_SETUP_ICU],[
+       fi
+ 
+       ICU_VERSION=$icu_version
+-      ICU_INCS=`$ICU_CONFIG --cppflags-searchpath`
+       ICU_LIBS=`$ICU_CONFIG --ldflags --ldflags-icuio`
+       PHP_EVAL_INCLINE($ICU_INCS)
+       PHP_EVAL_LIBLINE($ICU_LIBS, $1)

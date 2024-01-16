@@ -1,0 +1,219 @@
+Fix for https://bugs.php.net/74083 master PHP-fpm is stopped on multiple reloads
+backported for 7.4 from
+
+From ae5154c6c6af7ba7c592f8af006b7cadd0d66d6e Mon Sep 17 00:00:00 2001
+From: Maksim Nikulin <mnikulin@plesk.com>
+Date: Wed, 24 Jul 2019 16:50:57 +0700
+Subject: [PATCH] Block signals during fpm master initialization
+ 
+From e37bd5dcc2e8f269c6031d86429311c8cf243060 Mon Sep 17 00:00:00 2001
+From: Maksim Nikulin <mnikulin@plesk.com>
+Date: Mon, 21 Oct 2019 14:23:29 +0700
+Subject: [PATCH] Do not let PHP-FPM children miss SIGTERM, SIGQUIT
+
+
+diff -up ./sapi/fpm/fpm/fpm_children.c.fpmsig ./sapi/fpm/fpm/fpm_children.c
+--- ./sapi/fpm/fpm/fpm_children.c.fpmsig	2020-10-23 10:36:31.423925856 +0200
++++ ./sapi/fpm/fpm/fpm_children.c	2020-10-23 10:36:38.872900642 +0200
+@@ -404,6 +404,11 @@ int fpm_children_make(struct fpm_worker_
+ 			return 2;
+ 		}
+ 
++		zlog(ZLOG_DEBUG, "blocking signals before child birth");
++		if (0 > fpm_signals_child_block()) {
++			zlog(ZLOG_WARNING, "child may miss signals");
++		}
++
+ 		pid = fork();
+ 
+ 		switch (pid) {
+@@ -415,12 +420,16 @@ int fpm_children_make(struct fpm_worker_
+ 				return 0;
+ 
+ 			case -1 :
++				zlog(ZLOG_DEBUG, "unblocking signals");
++				fpm_signals_unblock();
+ 				zlog(ZLOG_SYSERROR, "fork() failed");
+ 
+ 				fpm_resources_discard(child);
+ 				return 2;
+ 
+ 			default :
++				zlog(ZLOG_DEBUG, "unblocking signals, child born");
++				fpm_signals_unblock();
+ 				child->pid = pid;
+ 				fpm_clock_get(&child->started);
+ 				fpm_parent_resources_use(child);
+diff -up ./sapi/fpm/fpm/fpm_main.c.fpmsig ./sapi/fpm/fpm/fpm_main.c
+--- ./sapi/fpm/fpm/fpm_main.c.fpmsig	2020-10-13 11:27:02.000000000 +0200
++++ ./sapi/fpm/fpm/fpm_main.c	2020-10-23 10:36:38.873900639 +0200
+@@ -90,6 +90,7 @@ int __riscosify_control = __RISCOSIFY_ST
+ #include "fpm.h"
+ #include "fpm_request.h"
+ #include "fpm_status.h"
++#include "fpm_signals.h"
+ #include "fpm_conf.h"
+ #include "fpm_php.h"
+ #include "fpm_log.h"
+@@ -1584,6 +1585,11 @@ int main(int argc, char *argv[])
+ 								closes it.  in apache|apxs mode apache
+ 								does that for us!  thies@thieso.net
+ 								20000419 */
++
++	if (0 > fpm_signals_init_mask() || 0 > fpm_signals_block()) {
++		zlog(ZLOG_WARNING, "Could die in the case of too early reload signal");
++	}
++	zlog(ZLOG_DEBUG, "Blocked some signals");
+ #endif
+ #endif
+ 
+diff -up ./sapi/fpm/fpm/fpm_process_ctl.c.fpmsig ./sapi/fpm/fpm/fpm_process_ctl.c
+--- ./sapi/fpm/fpm/fpm_process_ctl.c.fpmsig	2020-10-13 11:27:02.000000000 +0200
++++ ./sapi/fpm/fpm/fpm_process_ctl.c	2020-10-23 10:36:11.921991864 +0200
+@@ -77,6 +77,10 @@ static void fpm_pctl_exit() /* {{{ */
+ 
+ static void fpm_pctl_exec() /* {{{ */
+ {
++	zlog(ZLOG_DEBUG, "Blocking some signals before reexec");
++	if (0 > fpm_signals_block()) {
++		zlog(ZLOG_WARNING, "concurrent reloads may be unstable");
++	}
+ 
+ 	zlog(ZLOG_NOTICE, "reloading: execvp(\"%s\", {\"%s\""
+ 			"%s%s%s" "%s%s%s" "%s%s%s" "%s%s%s" "%s%s%s"
+diff -up ./sapi/fpm/fpm/fpm_signals.c.fpmsig ./sapi/fpm/fpm/fpm_signals.c
+--- ./sapi/fpm/fpm/fpm_signals.c.fpmsig	2020-10-13 11:27:02.000000000 +0200
++++ ./sapi/fpm/fpm/fpm_signals.c	2020-10-23 10:36:38.873900639 +0200
+@@ -19,6 +19,8 @@
+ #include "zlog.h"
+ 
+ static int sp[2];
++static sigset_t block_sigset;
++static sigset_t child_block_sigset;
+ 
+ const char *fpm_signal_names[NSIG + 1] = {
+ #ifdef SIGHUP
+@@ -165,8 +167,11 @@ static void sig_handler(int signo) /* {{
+ 	int saved_errno;
+ 
+ 	if (fpm_globals.parent_pid != getpid()) {
+-		/* prevent a signal race condition when child process
+-			have not set up it's own signal handler yet */
++		/* Avoid using of signal handlers from the master process in a worker
++			before the child sets up its own signal handlers.
++			Normally it is prevented by the sigprocmask() calls
++			around fork(). This execution branch is a last resort trap
++			that has no protection against #76601. */
+ 		return;
+ 	}
+ 
+@@ -210,6 +215,11 @@ int fpm_signals_init_main() /* {{{ */
+ 		zlog(ZLOG_SYSERROR, "failed to init signals: sigaction()");
+ 		return -1;
+ 	}
++
++	zlog(ZLOG_DEBUG, "Unblocking all signals");
++	if (0 > fpm_signals_unblock()) {
++		return -1;
++	}
+ 	return 0;
+ }
+ /* }}} */
+@@ -241,6 +251,10 @@ int fpm_signals_init_child() /* {{{ */
+ 	}
+ 
+ 	zend_signal_init();
++
++	if (0 > fpm_signals_unblock()) {
++		return -1;
++	}
+ 	return 0;
+ }
+ /* }}} */
+@@ -250,3 +264,72 @@ int fpm_signals_get_fd() /* {{{ */
+ 	return sp[0];
+ }
+ /* }}} */
++
++int fpm_signals_init_mask() /* {{{ */
++{
++	/* Subset of signals from fpm_signals_init_main() and fpm_got_signal()
++		blocked to avoid unexpected death during early init
++		or during reload just after execvp() or fork */
++	int init_signal_array[] = { SIGUSR1, SIGUSR2, SIGCHLD };
++	size_t size = sizeof(init_signal_array)/sizeof(init_signal_array[0]);
++	size_t i = 0;
++	if (0 > sigemptyset(&block_sigset) ||
++	    0 > sigemptyset(&child_block_sigset)) {
++		zlog(ZLOG_SYSERROR, "failed to prepare signal block mask: sigemptyset()");
++		return -1;
++	}
++	for (i = 0; i < size; ++i) {
++		int sig_i = init_signal_array[i];
++		if (0 > sigaddset(&block_sigset, sig_i) ||
++		    0 > sigaddset(&child_block_sigset, sig_i)) {
++			if (sig_i <= NSIG && fpm_signal_names[sig_i] != NULL) {
++				zlog(ZLOG_SYSERROR, "failed to prepare signal block mask: sigaddset(%s)",
++						fpm_signal_names[sig_i]);
++			} else {
++				zlog(ZLOG_SYSERROR, "failed to prepare signal block mask: sigaddset(%d)", sig_i);
++			}
++			return -1;
++		}
++	}
++	if (0 > sigaddset(&child_block_sigset, SIGTERM) ||
++	    0 > sigaddset(&child_block_sigset, SIGQUIT)) {
++		zlog(ZLOG_SYSERROR, "failed to prepare child signal block mask: sigaddset()");
++		return -1;
++	}
++	return 0;
++}
++/* }}} */
++
++int fpm_signals_block() /* {{{ */
++{
++	if (0 > sigprocmask(SIG_BLOCK, &block_sigset, NULL)) {
++		zlog(ZLOG_SYSERROR, "failed to block signals");
++		return -1;
++	}
++	return 0;
++}
++/* }}} */
++
++int fpm_signals_child_block() /* {{{ */
++{
++	if (0 > sigprocmask(SIG_BLOCK, &child_block_sigset, NULL)) {
++		zlog(ZLOG_SYSERROR, "failed to block child signals");
++		return -1;
++	}
++	return 0;
++}
++/* }}} */
++
++int fpm_signals_unblock() /* {{{ */
++{
++	/* Ensure that during reload after upgrade all signals are unblocked.
++		block_sigset could have different value before execve() */
++	sigset_t all_signals;
++	sigfillset(&all_signals);
++	if (0 > sigprocmask(SIG_UNBLOCK, &all_signals, NULL)) {
++		zlog(ZLOG_SYSERROR, "failed to unblock signals");
++		return -1;
++	}
++	return 0;
++}
++/* }}} */
+diff -up ./sapi/fpm/fpm/fpm_signals.h.fpmsig ./sapi/fpm/fpm/fpm_signals.h
+--- ./sapi/fpm/fpm/fpm_signals.h.fpmsig	2020-10-13 11:27:02.000000000 +0200
++++ ./sapi/fpm/fpm/fpm_signals.h	2020-10-23 10:36:38.873900639 +0200
+@@ -8,6 +8,10 @@
+ int fpm_signals_init_main();
+ int fpm_signals_init_child();
+ int fpm_signals_get_fd();
++int fpm_signals_init_mask();
++int fpm_signals_block();
++int fpm_signals_child_block();
++int fpm_signals_unblock();
+ 
+ extern const char *fpm_signal_names[NSIG + 1];
+ 
