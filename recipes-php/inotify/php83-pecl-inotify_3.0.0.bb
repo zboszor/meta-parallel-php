@@ -11,7 +11,7 @@ PHPVERSION = "83"
 
 inherit parallel-php-module
 
-FILESPATH = "${FILE_DIRNAME}/php-pecl-inotify"
+FILESEXTRAPATHS:prepend = "${FILE_DIRNAME}/php-pecl-inotify:"
 
 SRC_URI = " \
 			http://pecl.php.net/get/inotify-${PV}.tgz \
