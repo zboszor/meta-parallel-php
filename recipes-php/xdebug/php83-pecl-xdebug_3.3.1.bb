@@ -30,7 +30,7 @@ PHPVERSION = "83"
 
 inherit parallel-php-module
 
-FILESPATH = "${FILE_DIRNAME}/php-pecl-xdebug"
+FILESEXTRAPATHS:prepend = "${FILE_DIRNAME}/php-pecl-xdebug:"
 
 SRC_URI = " \
 			http://pecl.php.net/get/xdebug-${PV}${BETALEVEL}.tgz \
