@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=c4870178db33f108e37cf55f70465f88"
 
 PHPVERSION ??= "74"
 
-FILESPATH = "${FILE_DIRNAME}/php-symlinks"
+FILESEXTRAPATHS:prepend = "${FILE_DIRNAME}/php-symlinks:"
 
 SRC_URI = "file://LICENSE"
 
