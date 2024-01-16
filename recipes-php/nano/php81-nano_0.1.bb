@@ -10,7 +10,7 @@ PHPVERSION = "81"
 
 inherit parallel-php-module
 
-FILESPATH = "${FILE_DIRNAME}/php-nano"
+FILESEXTRAPATHS:prepend = "${FILE_DIRNAME}/php-nano:"
 
 SRCBRANCH = "master"
 SRCREV = "231dc43f57ecf7bf0edb8a6e99d77ef74a4719b1"
