@@ -11,7 +11,7 @@ PHPVERSION = "81"
 
 inherit parallel-php-module
 
-FILESPATH = "${FILE_DIRNAME}/php-pecl-pam"
+FILESEXTRAPATHS:prepend = "${FILE_DIRNAME}/php-pecl-pam:"
 
 SRC_URI = " \
 			http://pecl.php.net/get/pam-${PV}.tgz \
