@@ -10,7 +10,7 @@ PHPVERSION = "74"
 
 inherit parallel-php-module
 
-FILESPATH = "${FILE_DIRNAME}/php-pecl-timezonedb"
+FILESEXTRAPATHS:prepend = "${FILE_DIRNAME}/php-pecl-timezonedb:"
 
 SRC_URI = " \
 			http://pecl.php.net/get/timezonedb-${PV}.tgz \
