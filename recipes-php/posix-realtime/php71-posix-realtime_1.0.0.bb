@@ -3,7 +3,7 @@ HOMEPAGE = "https://github.com/adrianguenter/php-posix-realtime/"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://LICENSE.md;md5=730589c4d9e9ebcd342f99bfe073dd41"
 
-#PR = "r1"
+PR = "r1"
 
 PHPVERSION = "71"
 
