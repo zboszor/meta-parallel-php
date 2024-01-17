@@ -33,6 +33,10 @@ TARGET_CC_ARCH += "${LDFLAGS}"
 EXTRA_OECONF = "--with-x --without-athena"
 EXTRA_OEMAKE = "without_doc"
 
+do_compile:prepend () {
+	ln -s ${HOST_SYS}-libtool ${S}/libtool
+}
+
 FILES:${PN} += " ${datadir}/t1lib/t1lib.config"
 FILES:${PN}-doc = "${datadir}/t1lib/doc/t1lib_doc.pdf"
 
