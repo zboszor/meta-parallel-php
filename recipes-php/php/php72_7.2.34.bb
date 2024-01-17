@@ -15,7 +15,7 @@ EXTRA_OECONF:append:class-target = " \
 			--with-png-dir=${STAGING_LIBDIR}/.. \
 			--with-jpeg-dir=${STAGING_LIBDIR}/.. \
 			--with-xpm-dir=${STAGING_LIBDIR}/.. \
-			--with-gd=${DEPSETTING1} \
+			--with-gd=shared \
 			--with-xmlrpc${DEPSETTING3} \
 			--enable-wddx${DEPSETTING3} \
 			--enable-zip \
