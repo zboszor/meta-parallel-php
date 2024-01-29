@@ -1,7 +1,7 @@
 diff -up php-7.2.0alpha0/ext/dba/config.m4.libdb php-7.2.0alpha0/ext/dba/config.m4
 --- php-7.2.0alpha0/ext/dba/config.m4.libdb	2017-05-29 08:56:06.000000000 +0200
 +++ php-7.2.0alpha0/ext/dba/config.m4	2017-05-29 09:13:52.014823282 +0200
-@@ -346,61 +346,13 @@ if test "$PHP_DB4" != "no"; then
+@@ -375,61 +375,13 @@ if test "$PHP_DB4" != "no"; then
    dbdp4="/usr/local/BerkeleyDB.4."
    dbdp5="/usr/local/BerkeleyDB.5."
    for i in $PHP_DB4 ${dbdp5}1 ${dbdp5}0 ${dbdp4}8 ${dbdp4}7 ${dbdp4}6 ${dbdp4}5 ${dbdp4}4 ${dbdp4}3 ${dbdp4}2 ${dbdp4}1 ${dbdp}0 /usr/local /usr; do
@@ -68,7 +68,7 @@ diff -up php-7.2.0alpha0/ext/dba/config.m4.libdb php-7.2.0alpha0/ext/dba/config.
 diff -up php-7.2.0alpha0/ext/dba/dba.c.libdb php-7.2.0alpha0/ext/dba/dba.c
 --- php-7.2.0alpha0/ext/dba/dba.c.libdb	2017-05-29 09:16:15.736628202 +0200
 +++ php-7.2.0alpha0/ext/dba/dba.c	2017-05-29 09:16:20.494654746 +0200
-@@ -53,6 +53,10 @@
+@@ -51,6 +51,10 @@
  #include "php_tcadb.h"
  #include "php_lmdb.h"
  
