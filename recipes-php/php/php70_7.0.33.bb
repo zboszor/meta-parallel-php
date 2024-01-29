@@ -54,7 +54,7 @@ SRC_URI:append:class-target = " \
 	file://php-5.3.0-recode.patch \
 	file://php-7.0.2-libdb.patch \
 	file://php-7.0.17-dlopen.patch \
-	file://php-7.0.0-systzdata-v13.patch \
+	file://php-7.0.0-systzdata-v14.patch \
 	file://php-5.4.0-phpize.patch \
 	file://php-5.6.3-ldap_r.patch \
 	file://php-7.0.0-fixheader.patch \
