@@ -5,7 +5,7 @@ DEPENDS:append:class-native = " libpcre2-native "
 
 LIC_FILES_CHKSUM = "file://LICENSE;md5=fb07bfc51f6d5e0c30b65d9701233b2e"
 
-#PR = "r1"
+PR = "r1"
 
 EXTRA_OECONF:append:class-target = " \
 	--enable-fpm=shared \
@@ -57,11 +57,25 @@ SRC_URI:append:class-target = " \
 	file://php-7.3.3-ldap_r.patch \
 	file://php-7.3.3-fixheader.patch \
 	file://php-7.3.3-phpinfo.patch \
+	file://php-7.3.3-pdooci.patch \
 	file://php-7.3.3-oci8conf.patch \
 	file://php-7.0.10-datetests.patch \
 	file://php-5.6.3-PHP_CHECK_FUNC_LIB-no-run.patch \
 	file://php-bug80682.patch \
 	file://php-bug80783.patch \
+	file://php-pcre1038.patch \
+	file://php-bug81719.patch \
+	file://php-bug81720.patch \
+	file://php-bug81727.patch \
+	file://php-bug81726.patch \
+	file://php-bug81738.patch \
+	file://php-bug81740.patch \
+	file://php-bug81744.patch \
+	file://php-bug81746.patch \
+	file://php-cve-2023-0662.patch \
+	file://php-cve-2023-3247.patch \
+	file://php-cve-2023-3823.patch \
+	file://php-cve-2023-3824.patch \
 	file://php-7.3.3-icu-includes.patch \
 	file://php-7.2.13-fnmatch-standard-check.patch \
 	file://php-7.3.24-fpm.patch \
