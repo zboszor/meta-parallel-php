@@ -410,7 +410,7 @@ diff -up php-7.2.16RC1/ext/date/lib/parse_tz.c.systzdata php-7.2.16RC1/ext/date/
 +        size_t n;
 +        char *data, *p;
 +        
-+        data = malloc(3 * sysdb->index_size + 7);
++        data = malloc(3 * sysdb->index_size + sizeof(FAKE_HEADER) - 1);
 +
 +        p = mempcpy(data, FAKE_HEADER, sizeof(FAKE_HEADER) - 1);
 +
