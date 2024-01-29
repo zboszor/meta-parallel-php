@@ -15,7 +15,7 @@ diff --git a/ext/sockets/sockaddr_conv.c b/ext/sockets/sockaddr_conv.c
 index 57996612d2d7e..65c8418fb3a6f 100644
 --- a/ext/sockets/sockaddr_conv.c
 +++ b/ext/sockets/sockaddr_conv.c
-@@ -87,7 +87,11 @@ int php_set_inet_addr(struct sockaddr_in *sin, char *string, php_socket *php_soc
+@@ -89,7 +89,11 @@ int php_set_inet_addr(struct sockaddr_in *sin, char *string, php_socket *php_soc
  	struct in_addr tmp;
  	struct hostent *host_entry;
  
@@ -42,7 +42,7 @@ index 16ad3e8013a4c..85c938d1b97b1 100644
  
  static int php_open_listen_sock(php_socket *sock, int port, int backlog) /* {{{ */
  {
-@@ -1082,10 +1084,12 @@ PHP_FUNCTION(socket_getsockname)
+@@ -1086,10 +1088,12 @@ PHP_FUNCTION(socket_getsockname)
  	struct sockaddr_in		*sin;
  #if HAVE_IPV6
  	struct sockaddr_in6		*sin6;
@@ -57,7 +57,7 @@ index 16ad3e8013a4c..85c938d1b97b1 100644
  	socklen_t				salen = sizeof(php_sockaddr_storage);
  
  	if (zend_parse_parameters(ZEND_NUM_ARGS(), "Oz|z", &arg1, socket_ce, &addr, &port) == FAILURE) {
-@@ -1106,8 +1110,8 @@ PHP_FUNCTION(socket_getsockname)
+@@ -1110,8 +1114,8 @@ PHP_FUNCTION(socket_getsockname)
  #if HAVE_IPV6
  		case AF_INET6:
  			sin6 = (struct sockaddr_in6 *) sa;
@@ -68,7 +68,7 @@ index 16ad3e8013a4c..85c938d1b97b1 100644
  
  			if (port != NULL) {
  				ZEND_TRY_ASSIGN_REF_LONG(port, htons(sin6->sin6_port));
-@@ -1117,11 +1121,14 @@ PHP_FUNCTION(socket_getsockname)
+@@ -1121,11 +1125,14 @@ PHP_FUNCTION(socket_getsockname)
  #endif
  		case AF_INET:
  			sin = (struct sockaddr_in *) sa;
@@ -84,7 +84,7 @@ index 16ad3e8013a4c..85c938d1b97b1 100644
  			ZEND_TRY_ASSIGN_REF_STRING(addr, addr_string);
  
  			if (port != NULL) {
-@@ -1154,10 +1161,12 @@ PHP_FUNCTION(socket_getpeername)
+@@ -1158,10 +1165,12 @@ PHP_FUNCTION(socket_getpeername)
  	struct sockaddr_in		*sin;
  #if HAVE_IPV6
  	struct sockaddr_in6		*sin6;
@@ -99,7 +99,7 @@ index 16ad3e8013a4c..85c938d1b97b1 100644
  	socklen_t				salen = sizeof(php_sockaddr_storage);
  
  	if (zend_parse_parameters(ZEND_NUM_ARGS(), "Oz|z", &arg1, socket_ce, &arg2, &arg3) == FAILURE) {
-@@ -1178,9 +1187,9 @@ PHP_FUNCTION(socket_getpeername)
+@@ -1182,9 +1191,9 @@ PHP_FUNCTION(socket_getpeername)
  #if HAVE_IPV6
  		case AF_INET6:
  			sin6 = (struct sockaddr_in6 *) sa;
@@ -111,7 +111,7 @@ index 16ad3e8013a4c..85c938d1b97b1 100644
  
  			if (arg3 != NULL) {
  				ZEND_TRY_ASSIGN_REF_LONG(arg3, htons(sin6->sin6_port));
-@@ -1191,11 +1200,14 @@ PHP_FUNCTION(socket_getpeername)
+@@ -1195,11 +1204,14 @@ PHP_FUNCTION(socket_getpeername)
  #endif
  		case AF_INET:
  			sin = (struct sockaddr_in *) sa;
@@ -127,7 +127,7 @@ index 16ad3e8013a4c..85c938d1b97b1 100644
  			ZEND_TRY_ASSIGN_REF_STRING(arg2, addr_string);
  
  			if (arg3 != NULL) {
-@@ -1527,12 +1539,14 @@ PHP_FUNCTION(socket_recvfrom)
+@@ -1531,12 +1543,14 @@ PHP_FUNCTION(socket_recvfrom)
  	struct sockaddr_in	sin;
  #if HAVE_IPV6
  	struct sockaddr_in6	sin6;
@@ -144,7 +144,7 @@ index 16ad3e8013a4c..85c938d1b97b1 100644
  	zend_string			*recv_buf;
  
  	if (zend_parse_parameters(ZEND_NUM_ARGS(), "Ozllz|z", &arg1, socket_ce, &arg2, &arg3, &arg4, &arg5, &arg6) == FAILURE) {
-@@ -1590,7 +1604,11 @@ PHP_FUNCTION(socket_recvfrom)
+@@ -1594,7 +1608,11 @@ PHP_FUNCTION(socket_recvfrom)
  			ZSTR_LEN(recv_buf) = retval;
  			ZSTR_VAL(recv_buf)[ZSTR_LEN(recv_buf)] = '\0';
  
@@ -156,7 +156,7 @@ index 16ad3e8013a4c..85c938d1b97b1 100644
  
  			ZEND_TRY_ASSIGN_REF_NEW_STR(arg2, recv_buf);
  			ZEND_TRY_ASSIGN_REF_STRING(arg5, address ? address : "0.0.0.0");
-@@ -1617,11 +1635,11 @@ PHP_FUNCTION(socket_recvfrom)
+@@ -1621,11 +1639,11 @@ PHP_FUNCTION(socket_recvfrom)
  			ZSTR_LEN(recv_buf) = retval;
  			ZSTR_VAL(recv_buf)[ZSTR_LEN(recv_buf)] = '\0';
  
@@ -315,7 +315,7 @@ diff --git a/sapi/litespeed/lsapilib.c b/sapi/litespeed/lsapilib.c
 index a72b5dc1b988..305f3326a682 100644
 --- a/sapi/litespeed/lsapilib.c
 +++ b/sapi/litespeed/lsapilib.c
-@@ -2672,8 +2672,12 @@ int LSAPI_ParseSockAddr( const char * pBind, struct sockaddr * pAddr )
+@@ -2673,8 +2673,12 @@ int LSAPI_ParseSockAddr( const char * pBind, struct sockaddr * pAddr )
              ((struct sockaddr_in *)pAddr)->sin_addr.s_addr = htonl( INADDR_LOOPBACK );
          else
          {

@@ -79,7 +79,7 @@ diff -up ./ext/dba/dba.c.libdb ./ext/dba/dba.c
  PHP_MINIT_FUNCTION(dba);
  PHP_MSHUTDOWN_FUNCTION(dba);
  PHP_MINFO_FUNCTION(dba);
-@@ -459,6 +463,10 @@ PHP_MINFO_FUNCTION(dba)
+@@ -452,6 +456,10 @@ PHP_MINFO_FUNCTION(dba)
  
  	php_info_print_table_start();
   	php_info_print_table_row(2, "DBA support", "enabled");
