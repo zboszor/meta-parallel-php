@@ -53,7 +53,7 @@ SRC_URI:append:class-target = " \
 			file://php-7.3.3-curl.patch \
 			file://php-net-snmp.patch \
 			file://php-7.3.3-dlopen.patch \
-			file://php-7.3.3-systzdata-v18.patch \
+			file://php-7.3.3-systzdata-v19.patch \
 			file://php-7.3.0-phpize.patch \
 			file://php-7.3.3-ldap_r.patch \
 			file://php-7.3.3-fixheader.patch \
