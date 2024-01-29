@@ -1,0 +1,96 @@
+From 2701c18b3f5edcff2b08839c9e18b93b77ec7a81 Mon Sep 17 00:00:00 2001
+From: Anatol Belski <ab@php.net>
+Date: Thu, 7 Mar 2019 16:30:16 +0100
+Subject: [PATCH] Update NEWS
+
+---
+ NEWS | 46 ++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 46 insertions(+)
+
+diff --git a/NEWS b/NEWS
+index 5b0aeb597b..bdefc0ede2 100644
+--- a/NEWS
++++ b/NEWS
+@@ -1,5 +1,51 @@
+ PHP                                                                        NEWS
+ |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
++
++Backported from 7.2.27
++
++- Core:
++  . Fixed bug #77630 (rename() across the device may allow unwanted access during
++    processing). (Stas)
++
++- EXIF:
++  . Fixed bug #77509 (Uninitialized read in exif_process_IFD_in_TIFF). (Stas)
++  . Fixed bug #77540 (Invalid Read on exif_process_SOFn). (Stas)
++  . Fixed bug #77563 (Uninitialized read in exif_process_IFD_in_MAKERNOTE). (Stas)
++  . Fixed bug #77659 (Uninitialized read in exif_process_IFD_in_MAKERNOTE). (Stas)
++
++- PHAR:
++  . Fixed bug #77396 (Null Pointer Dereference in phar_create_or_parse_filename).
++    (bishop)
++  . Fixed bug #77586 (phar_tar_writeheaders_int() buffer overflow). (bishop)
++
++- SPL:
++  . Fixed bug #77431 (openFile() silently truncates after a null byte). (cmb)
++
++Backported from 7.2.26
++
++- GD:
++  . Fixed bug #77269 (efree() on uninitialized Heap data in imagescale leads to
++    use-after-free). (cmb)
++  . Fixed bug #77270 (imagecolormatch Out Of Bounds Write on Heap). (cmb)
++
++- Mbstring:
++  . Fixed bug #77370 (Buffer overflow on mb regex functions - fetch_token). (Stas)
++  . Fixed bug #77371 (heap buffer overflow in mb regex functions
++    - compile_string_node). (Stas)
++  . Fixed bug #77381 (heap buffer overflow in multibyte match_at). (Stas)
++  . Fixed bug #77382 (heap buffer overflow due to incorrect length in
++    expand_case_fold_string). (Stas)
++  . Fixed bug #77385 (buffer overflow in fetch_token). (Stas)
++  . Fixed bug #77394 (Buffer overflow in multibyte case folding - unicode). (Stas)
++  . Fixed bug #77418 (Heap overflow in utf32be_mbc_to_code). (Stas)
++
++- Phar:
++  . Fixed bug #77247 (heap buffer overflow in phar_detect_phar_fname_ext). (Stas)
++
++- Xmlrpc:
++  . Fixed bug #77242 (heap out of bounds read in xmlrpc_decode()). (cmb)
++  . Fixed bug #77380 (Global out of bounds read in xmlrpc base64 code). (Stas)
++
+ 06 Dec 2018 PHP 7.0.33
+ 
+ - Core:
+From bffa56dcaafe01686d2b975f7a2e9f740d25e0bb Mon Sep 17 00:00:00 2001
+From: Anatol Belski <ab@php.net>
+Date: Thu, 7 Mar 2019 16:31:43 +0100
+Subject: [PATCH] Fix version in NEWS
+
+---
+ NEWS | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/NEWS b/NEWS
+index bdefc0ede2..d21699c54b 100644
+--- a/NEWS
++++ b/NEWS
+@@ -1,7 +1,7 @@
+ PHP                                                                        NEWS
+ |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+ 
+-Backported from 7.2.27
++Backported from 7.1.27
+ 
+ - Core:
+   . Fixed bug #77630 (rename() across the device may allow unwanted access during
+@@ -21,7 +21,7 @@ Backported from 7.2.27
+ - SPL:
+   . Fixed bug #77431 (openFile() silently truncates after a null byte). (cmb)
+ 
+-Backported from 7.2.26
++Backported from 7.1.26
+ 
+ - GD:
+   . Fixed bug #77269 (efree() on uninitialized Heap data in imagescale leads to
