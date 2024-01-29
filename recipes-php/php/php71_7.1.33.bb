@@ -11,93 +11,93 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=fb07bfc51f6d5e0c30b65d9701233b2e"
 PACKAGECONFIG[valgrind] = ""
 
 EXTRA_OECONF:append:class-target = " \
-			--enable-crosscompiling \
-			--with-flock-type=linux \
-			--with-pcre-regex=${STAGING_LIBDIR}/.. \
-			--with-libxml-dir=${STAGING_BINDIR_CROSS} \
-			--with-png-dir=${STAGING_LIBDIR}/.. \
-			--with-jpeg-dir=${STAGING_LIBDIR}/.. \
-			--with-xpm-dir=${STAGING_LIBDIR}/.. \
-			--with-gd=shared \
-			--with-xmlrpc${DEPSETTING3} \
-			--enable-wddx${DEPSETTING3} \
-			--enable-zip \
-			--with-mcrypt=${DEPSETTING2} \
-			--enable-fpm=shared \
-			--enable-intl=shared \
-		"
+	--enable-crosscompiling \
+	--with-flock-type=linux \
+	--with-pcre-regex=${STAGING_LIBDIR}/.. \
+	--with-libxml-dir=${STAGING_BINDIR_CROSS} \
+	--with-png-dir=${STAGING_LIBDIR}/.. \
+	--with-jpeg-dir=${STAGING_LIBDIR}/.. \
+	--with-xpm-dir=${STAGING_LIBDIR}/.. \
+	--with-gd=shared \
+	--with-xmlrpc${DEPSETTING3} \
+	--enable-wddx${DEPSETTING3} \
+	--enable-zip \
+	--with-mcrypt=${DEPSETTING2} \
+	--enable-fpm=shared \
+	--enable-intl=shared \
+"
 
 EXTRA_OECONF:append:class-native = " \
-			--with-pcre-regex=${STAGING_LIBDIR}/.. \
-			--with-libxml-dir=${STAGING_BINDIR_NATIVE} \
-			--with-xmlrpc${DEPSETTING3} \
-		"
+	--with-pcre-regex=${STAGING_LIBDIR}/.. \
+	--with-libxml-dir=${STAGING_BINDIR_NATIVE} \
+	--with-xmlrpc${DEPSETTING3} \
+"
 
 SRC_URI += " \
-			file://php-7.0.0-fix-phpize-for-parallel-installation.patch \
-			file://php-7.1.27-fix-phar-build.patch \
-			file://php.ini.native \
-			file://mod.ini \
-			file://20-openssl.ini \
-			file://20-snmp.ini \
-			file://50-date.ini \
-		"
+	file://php-7.0.0-fix-phpize-for-parallel-installation.patch \
+	file://php-7.1.27-fix-phar-build.patch \
+	file://php.ini.native \
+	file://mod.ini \
+	file://20-openssl.ini \
+	file://20-snmp.ini \
+	file://50-date.ini \
+"
 
 SRC_URI:append:class-target = " \
-			file://php-7.1.27-crosscompile.patch \
-			file://php-7.1.27-install-pear.phar.patch \
-			file://flock-type-crosscompile.patch \
-			file://strcasestr-crosscompile.patch \
-			file://php-7.1.7-httpd.patch \
-			file://php-7.1.27-includedir.patch \
-			file://php-5.6.3-embed.patch \
-			file://php-5.3.0-recode.patch \
-			file://php-7.0.2-libdb.patch \
-			file://php-7.0.7-curl.patch \
-			file://php-net-snmp.patch \
-			file://php-7.1.27-dlopen.patch \
-			file://php-7.1.0-systzdata-v14.patch \
-			file://php-7.1.27-phpize.patch \
-			file://php-7.1.15-ldap_r.patch \
-			file://php-7.1.16-fixheader.patch \
-			file://php-7.1.27-phpinfo.patch \
-			file://php-7.1.9-openssl-load-config.patch \
-			file://php-7.1.24-getallheaders.patch \
-			file://php-5.6.3-oci8conf.patch \
-			file://php-bug78878.patch \
-			file://php-bug78862.patch \
-			file://php-bug78863.patch \
-			file://php-bug78793.patch \
-			file://php-bug78910.patch \
-			file://php-bug79091.patch \
-			file://php-bug79099.patch \
-			file://php-bug79037.patch \
-			file://php-bug77569.patch \
-			file://php-bug79221.patch \
-			file://php-bug79082.patch \
-			file://php-bug79282.patch \
-			file://php-bug79329.patch \
-			file://php-bug79330.patch \
-			file://php-bug79465.patch \
-			file://php-bug78875.patch \
-			file://php-bug78876.patch \
-			file://php-bug79797.patch \
-			file://php-bug79877.patch \
-			file://php-bug79601.patch \
-			file://php-bug79699.patch \
-			file://php-bug77423.patch \
-			file://php-bug80672.patch \
-			file://php-bug80710.patch \
-			file://php-bug81122.patch \
-			file://php-bug76450.patch \
-			file://php-bug81211.patch \
-			file://php-5.6.3-datetests.patch \
-			file://php-7.0.0-oldpcre.patch \
-			file://php-openssl-cert.patch \
-			file://php-7.1.27-PHP_CHECK_FUNC_LIB-no-run.patch \
-			file://php-7.1.27-icu-includes.patch \
-			file://php-7.1.25-fnmatch-standard-check.patch \
-			file://php-7.1.33-fix-intl.patch \
+	file://php-7.1.27-crosscompile.patch \
+	file://php-7.1.27-install-pear.phar.patch \
+	file://flock-type-crosscompile.patch \
+	file://strcasestr-crosscompile.patch \
+	file://php-7.1.7-httpd.patch \
+	file://php-7.1.27-includedir.patch \
+	file://php-5.6.3-embed.patch \
+	file://php-5.3.0-recode.patch \
+	file://php-7.0.2-libdb.patch \
+	file://php-7.0.7-curl.patch \
+	file://php-net-snmp.patch \
+	file://php-7.1.27-dlopen.patch \
+	file://php-7.1.0-systzdata-v14.patch \
+	file://php-7.1.27-phpize.patch \
+	file://php-7.1.15-ldap_r.patch \
+	file://php-7.1.16-fixheader.patch \
+	file://php-7.1.27-phpinfo.patch \
+	file://php-7.1.9-openssl-load-config.patch \
+	file://php-7.1.24-getallheaders.patch \
+	file://php-5.6.3-oci8conf.patch \
+	file://php-bug78878.patch \
+	file://php-bug78862.patch \
+	file://php-bug78863.patch \
+	file://php-bug78793.patch \
+	file://php-bug78910.patch \
+	file://php-bug79091.patch \
+	file://php-bug79099.patch \
+	file://php-bug79037.patch \
+	file://php-bug77569.patch \
+	file://php-bug79221.patch \
+	file://php-bug79082.patch \
+	file://php-bug79282.patch \
+	file://php-bug79329.patch \
+	file://php-bug79330.patch \
+	file://php-bug79465.patch \
+	file://php-bug78875.patch \
+	file://php-bug78876.patch \
+	file://php-bug79797.patch \
+	file://php-bug79877.patch \
+	file://php-bug79601.patch \
+	file://php-bug79699.patch \
+	file://php-bug77423.patch \
+	file://php-bug80672.patch \
+	file://php-bug80710.patch \
+	file://php-bug81122.patch \
+	file://php-bug76450.patch \
+	file://php-bug81211.patch \
+	file://php-5.6.3-datetests.patch \
+	file://php-7.0.0-oldpcre.patch \
+	file://php-openssl-cert.patch \
+	file://php-7.1.27-PHP_CHECK_FUNC_LIB-no-run.patch \
+	file://php-7.1.27-icu-includes.patch \
+	file://php-7.1.25-fnmatch-standard-check.patch \
+	file://php-7.1.33-fix-intl.patch \
 "
 
 SRC_URI[md5sum] = "01974aa2076c56d4c2730f2c2ec6d8aa"
