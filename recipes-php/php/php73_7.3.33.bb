@@ -8,66 +8,64 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=fb07bfc51f6d5e0c30b65d9701233b2e"
 #PR = "r1"
 
 EXTRA_OECONF:append:class-target = " \
-			--enable-fpm=shared \
-			--enable-intl=shared \
-			--with-pcre-regex=${STAGING_LIBDIR}/.. \
-			--with-libxml-dir=${STAGING_BINDIR_CROSS} \
-			--with-png-dir=${STAGING_LIBDIR}/.. \
-			--with-jpeg-dir=${STAGING_LIBDIR}/.. \
-			--with-xpm-dir=${STAGING_LIBDIR}/.. \
-			--with-gd${DEPSETTING3} \
-			--with-xmlrpc${DEPSETTING3} \
-			--enable-wddx${DEPSETTING3} \
-			--enable-zip \
-			--with-sodium=shared,${STAGING_LIBDIR}/.. \
-		"
+	--enable-fpm=shared \
+	--enable-intl=shared \
+	--with-pcre-regex=${STAGING_LIBDIR}/.. \
+	--with-libxml-dir=${STAGING_BINDIR_CROSS} \
+	--with-png-dir=${STAGING_LIBDIR}/.. \
+	--with-jpeg-dir=${STAGING_LIBDIR}/.. \
+	--with-xpm-dir=${STAGING_LIBDIR}/.. \
+	--with-gd${DEPSETTING3} \
+	--with-xmlrpc${DEPSETTING3} \
+	--enable-wddx${DEPSETTING3} \
+	--enable-zip \
+	--with-sodium=shared,${STAGING_LIBDIR}/.. \
+"
 
 EXTRA_OECONF:append:class-native = " \
-			--with-pcre-regex=${STAGING_LIBDIR}/.. \
-			--with-libxml-dir=${STAGING_BINDIR_NATIVE} \
-			--with-xmlrpc${DEPSETTING3} \
-		"
+	--with-pcre-regex=${STAGING_LIBDIR}/.. \
+	--with-libxml-dir=${STAGING_BINDIR_NATIVE} \
+	--with-xmlrpc${DEPSETTING3} \
+"
 
 SRC_URI += " \
-			file://php-7.3.9-pcre2-use-pkgconfig.patch \
-			file://php-7.2.0-fix-phpize-for-parallel-installation.patch \
-			file://php-7.3.3-fix-phar-build.patch \
-			file://php.ini.native \
-			file://mod.ini \
-			file://20-openssl.ini \
-			file://20-snmp.ini \
-			file://50-date.ini \
-			file://opcache-default.blacklist \
-		"
+	file://php-7.3.9-pcre2-use-pkgconfig.patch \
+	file://php-7.2.0-fix-phpize-for-parallel-installation.patch \
+	file://php-7.3.3-fix-phar-build.patch \
+	file://php.ini.native \
+	file://mod.ini \
+	file://20-openssl.ini \
+	file://20-snmp.ini \
+	file://50-date.ini \
+	file://opcache-default.blacklist \
+"
 
 SRC_URI:append:class-target = " \
-			file://php-7.3.3-crosscompile.patch \
-			file://php-5.6.9-install-pear.phar.patch \
-			file://strcasestr-crosscompile.patch \
-		\
-			file://php-7.3.3-httpd.patch \
-			file://php-7.3.3-includedir.patch \
-			file://php-7.3.3-embed.patch \
-			file://php-7.3.3-recode.patch \
-			file://php-7.3.3-libdb.patch \
-			file://php-7.3.3-curl.patch \
-			file://php-net-snmp.patch \
-			file://php-7.3.3-dlopen.patch \
-			file://php-7.3.3-systzdata-v19.patch \
-			file://php-7.3.0-phpize.patch \
-			file://php-7.3.3-ldap_r.patch \
-			file://php-7.3.3-fixheader.patch \
-			file://php-7.3.3-phpinfo.patch \
-			file://php-7.3.3-oci8conf.patch \
-			file://php-7.0.10-datetests.patch \
-			file://php-5.6.3-PHP_CHECK_FUNC_LIB-no-run.patch \
-			file://php-bug80682.patch \
-			file://php-bug80783.patch \
-			file://php-7.3.3-icu-includes.patch \
-			file://php-7.2.13-fnmatch-standard-check.patch \
-			file://php-7.3.24-fpm.patch \
-		\
-			file://php-7.3.3-reproducible-build.patch \
+	file://php-7.3.3-crosscompile.patch \
+	file://php-5.6.9-install-pear.phar.patch \
+	file://strcasestr-crosscompile.patch \
+	file://php-7.3.3-httpd.patch \
+	file://php-7.3.3-includedir.patch \
+	file://php-7.3.3-embed.patch \
+	file://php-7.3.3-recode.patch \
+	file://php-7.3.3-libdb.patch \
+	file://php-7.3.3-curl.patch \
+	file://php-net-snmp.patch \
+	file://php-7.3.3-dlopen.patch \
+	file://php-7.3.3-systzdata-v19.patch \
+	file://php-7.3.0-phpize.patch \
+	file://php-7.3.3-ldap_r.patch \
+	file://php-7.3.3-fixheader.patch \
+	file://php-7.3.3-phpinfo.patch \
+	file://php-7.3.3-oci8conf.patch \
+	file://php-7.0.10-datetests.patch \
+	file://php-5.6.3-PHP_CHECK_FUNC_LIB-no-run.patch \
+	file://php-bug80682.patch \
+	file://php-bug80783.patch \
+	file://php-7.3.3-icu-includes.patch \
+	file://php-7.2.13-fnmatch-standard-check.patch \
+	file://php-7.3.24-fpm.patch \
+	file://php-7.3.3-reproducible-build.patch \
 "
 
 SRC_URI[sha256sum] = "f412487d7d953437e7978a0d7b6ec99bf4a85cf3378014438a8577b89535451a"
@@ -83,7 +81,7 @@ RPROVIDES:php${PHPVER}-json = "php${PHPVER}-pecl-json php${PHPVER}-pecl-jsonc"
 ALLOW_EMPTY:php${PHPVER}-json = "1"
 
 FILES:php${PHPVER}-sodium = " \
-			${libdir}/php${PHPVER}/modules/sodium.so \
-			${sysconfdir}/php${PHPVER}/php.d/20-sodium.ini \
-		"
+	${libdir}/php${PHPVER}/modules/sodium.so \
+	${sysconfdir}/php${PHPVER}/php.d/20-sodium.ini \
+"
 RPROVIDES:php${PHPVER}-sodium = "php${PHPVER}-pecl-sodium"
