@@ -91,6 +91,19 @@ SRC_URI:append:class-target = " \
 	file://php-bug81122.patch \
 	file://php-bug76450.patch \
 	file://php-bug81211.patch \
+	file://php-bug81026.patch \
+	file://php-bug79971.patch \
+	file://php-bug81719.patch \
+	file://php-bug81720.patch \
+	file://php-bug81727.patch \
+	file://php-bug81726.patch \
+	file://php-bug81740.patch \
+	file://php-bug81744.patch \
+	file://php-bug81746.patch \
+	file://php-cve-2023-0662.patch \
+	file://php-cve-2023-3247.patch \
+	file://php-cve-2023-3823.patch \
+	file://php-cve-2023-3824.patch \
 	file://php-5.6.3-datetests.patch \
 	file://php-7.0.0-oldpcre.patch \
 	file://php-openssl-cert.patch \
