@@ -52,7 +52,7 @@ SRC_URI:append:class-target = " \
 			file://php-8.0.0-embed.patch \
 			file://php-8.1.0-libdb.patch \
 			file://php-8.2.0-curl.patch \
-			file://php-8.3.0-parser.patch \
+			file://php-8.3.3-parser.patch \
 			file://php-8.3.0-systzdata-v24.patch \
 			file://php-7.4.0-phpize.patch \
 			file://php-7.4.0-ldap_r.patch \
@@ -62,7 +62,7 @@ SRC_URI:append:class-target = " \
 			file://php-7.4.0-datetests.patch \
 "
 
-SRC_URI[sha256sum] = "4ffa3e44afc9c590e28dc0d2d31fc61f0139f8b335f11880a121b9f9b9f0634e"
+SRC_URI[sha256sum] = "b0a996276fe21fe9ca8f993314c8bc02750f464c7b0343f056fb0894a8dfa9d1"
 
 LIBS:append:class-target = ""
 LIBS:append:class-native = " -lpthread"
