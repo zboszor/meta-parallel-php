@@ -11,7 +11,7 @@ ARCHIVE_COMPRESSION = "xz"
 DEPENDS:append:class-target = " libpcre2 libzip libsodium onig "
 DEPENDS:append:class-native = " libpcre2-native onig-native "
 
-LIC_FILES_CHKSUM = "file://LICENSE;md5=5ebd5be8e2a89f634486445bd164bef0"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=fd469cce1a919f0cc95bab7afb28d19d"
 
 #PR = "r1"
 
