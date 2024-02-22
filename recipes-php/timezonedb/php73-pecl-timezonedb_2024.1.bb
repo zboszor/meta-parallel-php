@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=423954b31818fc34cb3064236e2e44ce"
 
 #PR = "r1"
 
-PHPVERSION = "74"
+PHPVERSION = "73"
 
 inherit parallel-php-module
 
@@ -18,6 +18,6 @@ SRC_URI = " \
 			file://40-timezonedb.ini \
 		"
 
-SRC_URI[sha256sum] = "66cdd06d70842a37a7502175a17999fa8b5efe186f1a9c37cd132f7c563b5774"
+SRC_URI[sha256sum] = "6031d5c4fe7daba91e5b6cf46a58b0df89d8e1a963d28f38b3df091843c39c46"
 
 S = "${WORKDIR}/timezonedb-${PV}"
