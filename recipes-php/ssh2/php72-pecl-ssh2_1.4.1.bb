@@ -19,6 +19,6 @@ SRC_URI = " \
 			file://40-ssh2.ini \
 		"
 
-SRC_URI[sha256sum] = "988b52e0315bb5ed725050cb02de89b541034b7be6b94623dcb2baa33f811d87"
+SRC_URI[sha256sum] = "7bca5b23f731db9d8ed0aea5db9bb15da8ff133b0fbba96102b82e95da4d8764"
 
 S = "${WORKDIR}/ssh2-${PV}"
