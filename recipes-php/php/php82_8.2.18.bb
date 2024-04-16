@@ -13,7 +13,7 @@ DEPENDS:append:class-native = " libpcre2-native onig-native "
 
 LIC_FILES_CHKSUM = "file://LICENSE;md5=fd469cce1a919f0cc95bab7afb28d19d"
 
-PR = "r1"
+#PR = "r1"
 
 EXTRA_OECONF:append:class-target = " \
 			ac_cv_func_fnmatch_works=yes \
@@ -63,7 +63,7 @@ SRC_URI:append:class-target = " \
 			file://php-7.4.0-datetests.patch \
 "
 
-SRC_URI[sha256sum] = "1cc4ef733ba58f6557db648012471f1916e5bac316303aa165535bedab08ee35"
+SRC_URI[sha256sum] = "44b306fc021e56441f691da6c3108788bd9e450f293b3bc70fcd64b08dd41a50"
 
 do_install:append:class-target() {
 	install -m 644 ${WORKDIR}/opcache-default.blacklist ${D}${sysconfdir}/php${PHPVER}/php.d/
