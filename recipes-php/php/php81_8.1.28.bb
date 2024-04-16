@@ -13,7 +13,7 @@ DEPENDS:append:class-native = " libpcre2-native onig-native "
 
 LIC_FILES_CHKSUM = "file://LICENSE;md5=99532e0f6620bc9bca34f12fadaee33c"
 
-PR = "r1"
+#PR = "r1"
 
 EXTRA_OECONF:append:class-target = " \
 			ac_cv_func_fnmatch_works=yes \
@@ -64,7 +64,7 @@ SRC_URI:append:class-target = " \
 			file://php-8.1.27-libxml212.patch \
 "
 
-SRC_URI[sha256sum] = "479e65c3f05714d4aace1370e617d78e49e996ec7a7579a5be47535be61f0658"
+SRC_URI[sha256sum] = "95d0b2e9466108fd750dab5c30a09e5c67f5ad2cb3b1ffb3625a038a755ad080"
 
 do_install:append:class-target() {
 	install -m 644 ${WORKDIR}/opcache-default.blacklist ${D}${sysconfdir}/php${PHPVER}/php.d/
