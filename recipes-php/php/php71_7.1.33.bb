@@ -5,7 +5,7 @@ DEPENDS:append:class-native = " libmcrypt-native "
 
 LIC_FILES_CHKSUM = "file://LICENSE;md5=fb07bfc51f6d5e0c30b65d9701233b2e"
 
-#PR = "r1"
+PR = "r1"
 
 # PHP 7.1 doesn't have --with-valgrind
 PACKAGECONFIG[valgrind] = ""
@@ -111,6 +111,8 @@ SRC_URI:append:class-target = " \
 	file://php-7.1.27-icu-includes.patch \
 	file://php-7.1.25-fnmatch-standard-check.patch \
 	file://php-7.1.33-fix-intl.patch \
+	file://php-cve-2024-2756.patch \
+	file://php-cve-2024-3096.patch \
 "
 
 SRC_URI[md5sum] = "01974aa2076c56d4c2730f2c2ec6d8aa"
