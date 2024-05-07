@@ -7,7 +7,7 @@ DEPENDS = "gnutls libgcrypt"
 
 BBCLASSEXTEND = "native"
 
-SRC_URI = "ftp://ftp.freetds.org/pub/freetds/stable/freetds-${PV}.tar.bz2"
+SRC_URI = "http://ftp.freetds.org/pub/freetds/stable/freetds-${PV}.tar.bz2"
 
 #PR = "r1"
 
@@ -25,4 +25,4 @@ EXTRA_OECONF = " \
 	--with-gnutls \
 "
 
-SRC_URI[sha256sum] = "c7eaf226bdcb1cdc1b221696532ccd25f4e4e7754265a29777a3400084bde698"
+SRC_URI[sha256sum] = "a2cb8993a46417e0503e7b8488463d91b8c5d9a4601d6ee2484d28f56d3a7075"
