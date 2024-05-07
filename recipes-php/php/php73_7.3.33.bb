@@ -5,7 +5,7 @@ DEPENDS:append:class-native = " libpcre2-native "
 
 LIC_FILES_CHKSUM = "file://LICENSE;md5=fb07bfc51f6d5e0c30b65d9701233b2e"
 
-PR = "r2"
+PR = "r3"
 
 EXTRA_OECONF:append:class-target = " \
 	--enable-fpm=shared \
@@ -38,6 +38,10 @@ SRC_URI += " \
 	file://20-snmp.ini \
 	file://50-date.ini \
 	file://opcache-default.blacklist \
+"
+
+SRC_URI:append:class-native = " \
+	file://readdir.patch \
 "
 
 SRC_URI:append:class-target = " \

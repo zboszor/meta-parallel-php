@@ -1,0 +1,229 @@
+commit 2b28f7189144a21e753dbc09efadd571121a82b9
+Author: Nikita Popov <nikita.ppv@gmail.com>
+Date:   Thu Apr 11 14:25:40 2019 +0200
+
+    Use readdir() instead of readdir_r()
+    
+    readdir_r() is deprecated in modern glibc versions. readdir() is
+    thread safe in practice, as long as there are no concurrent accesses
+    on the *same* directory stream.
+
+diff --git a/ext/session/mod_files.c b/ext/session/mod_files.c
+index 552d990fe3..cb8138e60a 100644
+--- a/ext/session/mod_files.c
++++ b/ext/session/mod_files.c
+@@ -284,8 +284,7 @@ static int ps_files_write(ps_files *data, zend_string *key, zend_string *val)
+ static int ps_files_cleanup_dir(const char *dirname, zend_long maxlifetime)
+ {
+ 	DIR *dir;
+-	char dentry[sizeof(struct dirent) + MAXPATHLEN];
+-	struct dirent *entry = (struct dirent *) &dentry;
++	struct dirent *entry;
+ 	zend_stat_t sbuf;
+ 	char buf[MAXPATHLEN];
+ 	time_t now;
+@@ -312,7 +311,7 @@ static int ps_files_cleanup_dir(const char *dirname, zend_long maxlifetime)
+ 	memcpy(buf, dirname, dirname_len);
+ 	buf[dirname_len] = PHP_DIR_SEPARATOR;
+ 
+-	while (php_readdir_r(dir, (struct dirent *) dentry, &entry) == 0 && entry) {
++	while ((entry = readdir(dir))) {
+ 		/* does the file start with our prefix? */
+ 		if (!strncmp(entry->d_name, FILE_PREFIX, sizeof(FILE_PREFIX) - 1)) {
+ 			size_t entry_len = strlen(entry->d_name);
+diff --git a/main/php_reentrancy.h b/main/php_reentrancy.h
+index 7ff35418bc..bbc772b5db 100644
+--- a/main/php_reentrancy.h
++++ b/main/php_reentrancy.h
+@@ -49,13 +49,6 @@
+ 
+ BEGIN_EXTERN_C()
+ 
+-#if defined(HAVE_POSIX_READDIR_R)
+-#define php_readdir_r readdir_r
+-#else
+-PHPAPI int php_readdir_r(DIR *dirp, struct dirent *entry,
+-		struct dirent **result);
+-#endif
+-
+ #if !defined(HAVE_LOCALTIME_R) && defined(HAVE_LOCALTIME)
+ #define PHP_NEED_REENTRANCY 1
+ PHPAPI struct tm *php_localtime_r(const time_t *const timep, struct tm *p_tm);
+diff --git a/main/php_scandir.c b/main/php_scandir.c
+index 94f5ef899d..7fdb49b77a 100644
+--- a/main/php_scandir.c
++++ b/main/php_scandir.c
+@@ -57,8 +57,7 @@ PHPAPI int php_scandir(const char *dirname, struct dirent **namelist[], int (*se
+ 	struct dirent **vector = NULL;
+ 	int vector_size = 0;
+ 	int nfiles = 0;
+-	char entry[sizeof(struct dirent)+MAXPATHLEN];
+-	struct dirent *dp = (struct dirent *)&entry;
++	struct dirent *dp;
+ 
+ 	if (namelist == NULL) {
+ 		return -1;
+@@ -68,7 +67,7 @@ PHPAPI int php_scandir(const char *dirname, struct dirent **namelist[], int (*se
+ 		return -1;
+ 	}
+ 
+-	while (!php_readdir_r(dirp, (struct dirent *)entry, &dp) && dp) {
++	while ((dp = readdir(dirp))) {
+ 		size_t dsize = 0;
+ 		struct dirent *newdp = NULL;
+ 
+diff --git a/main/reentrancy.c b/main/reentrancy.c
+index 12e2548666..08f03e76dd 100644
+--- a/main/reentrancy.c
++++ b/main/reentrancy.c
+@@ -109,54 +109,6 @@ PHPAPI struct tm *php_gmtime_r(const time_t *const timep, struct tm *p_tm)
+ 
+ #endif
+ 
+-#if !defined(HAVE_POSIX_READDIR_R)
+-
+-PHPAPI int php_readdir_r(DIR *dirp, struct dirent *entry,
+-		struct dirent **result)
+-{
+-#if defined(HAVE_OLD_READDIR_R)
+-	int ret = 0;
+-
+-	/* We cannot rely on the return value of readdir_r
+-	   as it differs between various platforms
+-	   (HPUX returns 0 on success whereas Solaris returns non-zero)
+-	 */
+-	entry->d_name[0] = '\0';
+-	readdir_r(dirp, entry);
+-
+-	if (entry->d_name[0] == '\0') {
+-		*result = NULL;
+-		ret = errno;
+-	} else {
+-		*result = entry;
+-	}
+-	return ret;
+-#else
+-	struct dirent *ptr;
+-	int ret = 0;
+-
+-	local_lock(READDIR_R);
+-
+-	errno = 0;
+-
+-	ptr = readdir(dirp);
+-
+-	if (!ptr && errno != 0)
+-		ret = errno;
+-
+-	if (ptr)
+-		memcpy(entry, ptr, sizeof(*ptr));
+-
+-	*result = ptr;
+-
+-	local_unlock(READDIR_R);
+-
+-	return ret;
+-#endif
+-}
+-
+-#endif
+-
+ #if !defined(HAVE_LOCALTIME_R) && defined(HAVE_LOCALTIME)
+ 
+ PHPAPI struct tm *php_localtime_r(const time_t *const timep, struct tm *p_tm)
+diff --git a/main/streams/plain_wrapper.c b/main/streams/plain_wrapper.c
+index dc74bfccc1..1bfb2129dc 100644
+--- a/main/streams/plain_wrapper.c
++++ b/main/streams/plain_wrapper.c
+@@ -926,16 +926,15 @@ PHPAPI php_stream_ops	php_stream_stdio_ops = {
+ static size_t php_plain_files_dirstream_read(php_stream *stream, char *buf, size_t count)
+ {
+ 	DIR *dir = (DIR*)stream->abstract;
+-	/* avoid libc5 readdir problems */
+-	char entry[sizeof(struct dirent)+MAXPATHLEN];
+-	struct dirent *result = (struct dirent *)&entry;
++	struct dirent *result;
+ 	php_stream_dirent *ent = (php_stream_dirent*)buf;
+ 
+ 	/* avoid problems if someone mis-uses the stream */
+ 	if (count != sizeof(php_stream_dirent))
+ 		return 0;
+ 
+-	if (php_readdir_r(dir, (struct dirent *)entry, &result) == 0 && result) {
++	result = readdir(dir);
++	if (result) {
+ 		PHP_STRLCPY(ent->d_name, result->d_name, sizeof(ent->d_name), strlen(result->d_name));
+ 		return sizeof(php_stream_dirent);
+ 	}
+diff --git a/win32/readdir.c b/win32/readdir.c
+index b4d5e3afae..c172f16fc2 100644
+--- a/win32/readdir.c
++++ b/win32/readdir.c
+@@ -127,46 +127,6 @@ struct dirent *readdir(DIR *dp)
+ 	return &(dp->dent);
+ }/*}}}*/
+ 
+-int readdir_r(DIR *dp, struct dirent *entry, struct dirent **result)
+-{/*{{{*/
+-	char *_tmp;
+-	size_t reclen;
+-
+-	if (!dp || dp->finished) {
+-		*result = NULL;
+-		return 0;
+-	}
+-
+-	if (dp->offset != 0) {
+-		if (FindNextFileW(dp->handle, &(dp->fileinfo)) == 0) {
+-			dp->finished = 1;
+-			*result = NULL;
+-			return 0;
+-		}
+-	}
+-
+-	_tmp = php_win32_cp_conv_w_to_any(dp->fileinfo.cFileName, PHP_WIN32_CP_IGNORE_LEN, &reclen);
+-	if (!_tmp) {
+-		/* wide to utf8 failed, should never happen. */
+-		result = NULL;
+-		return 0;
+-	}
+-	memmove(dp->dent.d_name, _tmp, reclen + 1);
+-	free(_tmp);
+-	dp->dent.d_reclen = (unsigned short)reclen;
+-
+-	dp->offset++;
+-
+-	dp->dent.d_ino = 1;
+-	dp->dent.d_off = dp->offset;
+-
+-	memcpy(entry, &dp->dent, sizeof(*entry));
+-
+-	*result = &dp->dent;
+-
+-	return 0;
+-}/*}}}*/
+-
+ int closedir(DIR *dp)
+ {/*{{{*/
+ 	if (!dp)
+diff --git a/win32/readdir.h b/win32/readdir.h
+index a39b6d4865..61876f3dc1 100644
+--- a/win32/readdir.h
++++ b/win32/readdir.h
+@@ -15,8 +15,6 @@ extern "C" {
+ 
+ #include "ioutil.h"
+ 
+-#define php_readdir_r readdir_r
+-
+ /* struct dirent - same as Unix */
+ struct dirent {
+ 	long d_ino;					/* inode (always 1 in WIN32) */
+@@ -39,7 +37,6 @@ typedef struct DIR_W32 DIR;
+ /* Function prototypes */
+ DIR *opendir(const char *);
+ struct dirent *readdir(DIR *);
+-int readdir_r(DIR *, struct dirent *, struct dirent **);
+ int closedir(DIR *);
+ int rewinddir(DIR *);
+ 
