@@ -5,7 +5,7 @@ DEPENDS:append:class-native = " libpcre2-native "
 
 LIC_FILES_CHKSUM = "file://LICENSE;md5=fb07bfc51f6d5e0c30b65d9701233b2e"
 
-PR = "r3"
+PR = "r4"
 
 EXTRA_OECONF:append:class-target = " \
 	--enable-fpm=shared \
