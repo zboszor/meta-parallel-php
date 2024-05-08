@@ -5,7 +5,7 @@ DEPENDS:append:class-native = " libmcrypt-native "
 
 LIC_FILES_CHKSUM = "file://LICENSE;md5=fb07bfc51f6d5e0c30b65d9701233b2e"
 
-PR = "r1"
+PR = "r2"
 
 # PHP 7.1 doesn't have --with-valgrind
 PACKAGECONFIG[valgrind] = ""
