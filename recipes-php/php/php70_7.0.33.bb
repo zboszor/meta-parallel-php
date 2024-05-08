@@ -8,7 +8,7 @@ DEPENDS:append:class-native = " libmcrypt-native "
 
 LIC_FILES_CHKSUM = "file://LICENSE;md5=c0af599f66d0461c5837c695fcbc5c1e"
 
-PR = "r13"
+PR = "r14"
 
 EXTRA_OECONF:append:class-target = " \
 	--enable-crosscompiling \
