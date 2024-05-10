@@ -37,6 +37,7 @@ SRC_URI += " \
 	file://php-8.0.0-fix-phpize-for-parallel-installation.patch \
 	file://php-8.0.21-openssl3.patch \
 	file://php-8.0.13-crypt.patch \
+	file://php-8.0.30-libxml212.patch \
 	file://php.ini.native \
 	file://mod.ini \
 	file://20-openssl.ini \
@@ -56,7 +57,6 @@ SRC_URI:append:class-target = " \
 	file://php-8.0.6-deprecated.patch \
 	file://php-7.0.7-curl.patch \
 	file://php-8.0.0-parser.patch \
-	file://php-8.0.30-libxml212.patch \
 	file://php-8.0.10-systzdata-v21.patch \
 	file://php-7.4.0-phpize.patch \
 	file://php-7.4.0-ldap_r.patch \
