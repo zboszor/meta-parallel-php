@@ -13,7 +13,7 @@ DEPENDS:append:class-native = " libpcre2-native onig-native "
 
 LIC_FILES_CHKSUM = "file://LICENSE;md5=fd469cce1a919f0cc95bab7afb28d19d"
 
-PR = "r1"
+#PR = "r1"
 
 EXTRA_OECONF:append:class-target = " \
 			ac_cv_func_fnmatch_works=yes \
@@ -63,7 +63,7 @@ SRC_URI:append:class-target = " \
 			file://php-7.4.0-datetests.patch \
 "
 
-SRC_URI[sha256sum] = "53c8386b2123af97626d3438b3e4058e0c5914cb74b048a6676c57ac647f5eae"
+SRC_URI[sha256sum] = "d53433c1ca6b2c8741afa7c524272e6806c1e895e5912a058494fea89988570a"
 
 LIBS:append:class-target = ""
 LIBS:append:class-native = " -lpthread"
