@@ -42,6 +42,7 @@ SRC_URI += " \
 	file://php-7.4.11-fix-phpize-for-parallel-installation.patch \
 	file://php-7.4.26-openssl3.patch \
 	file://php-7.4.26-openssl3-fixup.patch \
+	file://php-7.4.33-libxml212.patch \
 	file://php.ini.native \
 	file://mod.ini \
 	file://20-openssl.ini \
@@ -61,7 +62,6 @@ SRC_URI:append:class-target = " \
 	file://php-7.2.0-libdb.patch \
 	file://php-7.0.7-curl.patch \
 	file://php-net-snmp.patch \
-	file://php-7.4.33-libxml212.patch \
 	file://php-7.3.3-systzdata-v19.patch \
 	file://php-7.4.0-phpize.patch \
 	file://php-7.4.0-ldap_r.patch \
