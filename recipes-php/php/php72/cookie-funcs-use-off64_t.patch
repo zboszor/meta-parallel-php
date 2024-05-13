@@ -1,0 +1,24 @@
+diff -durpN php-7.2.34.orig/acinclude.m4 php-7.2.34/acinclude.m4
+--- php-7.2.34.orig/acinclude.m4	2024-05-13 11:56:41.371934692 +0200
++++ php-7.2.34/acinclude.m4	2024-05-13 12:17:45.110431298 +0200
+@@ -1795,7 +1795,7 @@ main() {
+ ], [
+   cookie_io_functions_use_off64_t=no
+ ], [
+-  cookie_io_functions_use_off64_t=no
++  cookie_io_functions_use_off64_t=yes
+ ])
+ 
+     else
+diff -durpN php-7.2.34.orig/main/streams/cast.c php-7.2.34/main/streams/cast.c
+--- php-7.2.34.orig/main/streams/cast.c	2020-09-30 07:15:50.000000000 +0200
++++ php-7.2.34/main/streams/cast.c	2024-05-13 12:12:50.408480089 +0200
+@@ -104,7 +104,7 @@ static ssize_t stream_cookie_writer(void
+ }
+ 
+ # ifdef COOKIE_SEEKER_USES_OFF64_T
+-static int stream_cookie_seeker(void *cookie, __off64_t *position, int whence)
++static int stream_cookie_seeker(void *cookie, off64_t *position, int whence)
+ {
+ 
+ 	*position = php_stream_seek((php_stream *)cookie, (zend_off_t)*position, whence);
