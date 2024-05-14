@@ -36,17 +36,14 @@ EXTRA_OECONF:append:class-native = " \
 SRC_URI += " \
 	file://php-7.0.0-fix-phpize-for-parallel-installation.patch \
 	file://php-7.1.27-fix-phar-build.patch \
+	file://readdir.patch \
+	file://cookie-funcs-use-off64_t.patch \
+	file://fix-func-prototypes-in-m4.patch \
 	file://php.ini.native \
 	file://mod.ini \
 	file://20-openssl.ini \
 	file://20-snmp.ini \
 	file://50-date.ini \
-"
-
-SRC_URI:append:class-native = " \
-	file://readdir.patch \
-	file://cookie-funcs-use-off64_t.patch \
-	file://fix-func-prototypes-in-m4.patch \
 "
 
 SRC_URI:append:class-target = " \
@@ -113,7 +110,6 @@ SRC_URI:append:class-target = " \
 	file://php-5.6.3-datetests.patch \
 	file://php-7.0.0-oldpcre.patch \
 	file://php-openssl-cert.patch \
-	file://php-7.1.27-PHP_CHECK_FUNC_LIB-no-run.patch \
 	file://php-7.1.27-icu-includes.patch \
 	file://php-7.1.25-fnmatch-standard-check.patch \
 	file://php-7.1.33-fix-intl.patch \

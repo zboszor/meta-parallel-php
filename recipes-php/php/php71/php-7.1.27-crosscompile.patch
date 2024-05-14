@@ -1,6 +1,6 @@
-diff -durpN php-7.1.27.orig/acinclude.m4 php-7.1.27/acinclude.m4
---- php-7.1.27.orig/acinclude.m4	2019-03-26 06:52:00.157448062 -0400
-+++ php-7.1.27/acinclude.m4	2019-03-26 07:37:30.106299603 -0400
+diff -durpN php-7.1.33.orig/acinclude.m4 php-7.1.33/acinclude.m4
+--- php-7.1.33.orig/acinclude.m4	2024-05-14 11:26:24.531618561 +0200
++++ php-7.1.33/acinclude.m4	2024-05-14 11:27:36.987536000 +0200
 @@ -656,9 +656,18 @@ AC_DEFUN([PHP_SET_LIBTOOL_VARIABLE],[
  ])
  
@@ -27,21 +27,21 @@ diff -durpN php-7.1.27.orig/acinclude.m4 php-7.1.27/acinclude.m4
  AC_DEFUN([PHP_DOES_PWRITE_WORK],[
 -  AC_TRY_RUN([
 +  PHP_TRY_RUN([
+ #include <stdlib.h>
  #include <sys/types.h>
  #include <sys/stat.h>
- #include <fcntl.h>
-@@ -1248,7 +1257,7 @@ dnl PHP_DOES_PREAD_WORK
+@@ -1249,7 +1258,7 @@ dnl PHP_DOES_PREAD_WORK
  dnl internal
  AC_DEFUN([PHP_DOES_PREAD_WORK],[
    echo test > conftest_in
 -  AC_TRY_RUN([
 +  PHP_TRY_RUN([
+ #include <stdlib.h>
  #include <sys/types.h>
  #include <sys/stat.h>
- #include <fcntl.h>
-diff -durpN php-7.1.27.orig/configure.in php-7.1.27/configure.in
---- php-7.1.27.orig/configure.in	2019-03-05 14:28:38.000000000 -0500
-+++ php-7.1.27/configure.in	2019-03-26 07:37:30.107299604 -0400
+diff -durpN php-7.1.33.orig/configure.in php-7.1.33/configure.in
+--- php-7.1.33.orig/configure.in	2024-05-14 11:26:24.531618561 +0200
++++ php-7.1.33/configure.in	2024-05-14 11:27:02.665192127 +0200
 @@ -221,6 +221,9 @@ PHP_ARG_ENABLE(rpath, whether to enable
  [  --disable-rpath         Disable passing additional runtime library
                            search paths], yes, no)
@@ -52,9 +52,9 @@ diff -durpN php-7.1.27.orig/configure.in php-7.1.27/configure.in
  dnl check for -R, etc. switch
  PHP_RUNPATH_SWITCH
  
-diff -durpN php-7.1.27.orig/ext/curl/config.m4 php-7.1.27/ext/curl/config.m4
---- php-7.1.27.orig/ext/curl/config.m4	2019-03-05 14:28:47.000000000 -0500
-+++ php-7.1.27/ext/curl/config.m4	2019-03-26 07:37:30.107299604 -0400
+diff -durpN php-7.1.33.orig/ext/curl/config.m4 php-7.1.33/ext/curl/config.m4
+--- php-7.1.33.orig/ext/curl/config.m4	2024-05-14 11:26:24.531618561 +0200
++++ php-7.1.33/ext/curl/config.m4	2024-05-14 11:27:02.665192127 +0200
 @@ -78,7 +78,7 @@ if test "$PHP_CURL" != "no"; then
  
      AC_PROG_CPP
@@ -62,9 +62,9 @@ diff -durpN php-7.1.27.orig/ext/curl/config.m4 php-7.1.27/ext/curl/config.m4
 -    AC_TRY_RUN([
 +    PHP_TRY_RUN([
  #include <curl/curl.h>
+ #include <strings.h>
  
- int main(int argc, char *argv[])
-@@ -105,7 +105,8 @@ int main(int argc, char *argv[])
+@@ -106,7 +106,8 @@ int main(int argc, char *argv[])
      ])
  
      AC_MSG_CHECKING([for gnutls support in libcurl])
@@ -72,11 +72,11 @@ diff -durpN php-7.1.27.orig/ext/curl/config.m4 php-7.1.27/ext/curl/config.m4
 +    
 +    PHP_TRY_RUN([
  #include <curl/curl.h>
+ #include <strings.h>
  
- int main(int argc, char *argv[])
-diff -durpN php-7.1.27.orig/ext/iconv/config.m4 php-7.1.27/ext/iconv/config.m4
---- php-7.1.27.orig/ext/iconv/config.m4	2019-03-26 06:49:23.827517107 -0400
-+++ php-7.1.27/ext/iconv/config.m4	2019-03-26 07:37:30.107299604 -0400
+diff -durpN php-7.1.33.orig/ext/iconv/config.m4 php-7.1.33/ext/iconv/config.m4
+--- php-7.1.33.orig/ext/iconv/config.m4	2024-05-14 11:26:24.532618577 +0200
++++ php-7.1.33/ext/iconv/config.m4	2024-05-14 11:27:02.666192137 +0200
 @@ -50,7 +50,7 @@ if test "$PHP_ICONV" != "no"; then
        AC_MSG_CHECKING([if using GNU libiconv])
        php_iconv_old_ld="$LDFLAGS"
@@ -95,9 +95,9 @@ diff -durpN php-7.1.27.orig/ext/iconv/config.m4 php-7.1.27/ext/iconv/config.m4
  #include <$PHP_ICONV_H_PATH>
  #include <errno.h>
  
-diff -durpN php-7.1.27.orig/ext/opcache/config.m4 php-7.1.27/ext/opcache/config.m4
---- php-7.1.27.orig/ext/opcache/config.m4	2019-03-05 14:28:43.000000000 -0500
-+++ php-7.1.27/ext/opcache/config.m4	2019-03-26 07:37:30.108299604 -0400
+diff -durpN php-7.1.33.orig/ext/opcache/config.m4 php-7.1.33/ext/opcache/config.m4
+--- php-7.1.33.orig/ext/opcache/config.m4	2024-05-14 11:26:24.532618577 +0200
++++ php-7.1.33/ext/opcache/config.m4	2024-05-14 11:27:02.666192137 +0200
 @@ -29,7 +29,7 @@ if test "$PHP_OPCACHE" != "no"; then
    AC_CHECK_HEADERS([unistd.h sys/uio.h])
  
@@ -143,9 +143,9 @@ diff -durpN php-7.1.27.orig/ext/opcache/config.m4 php-7.1.27/ext/opcache/config.
  #include <sys/types.h>
  #include <sys/wait.h>
  #include <sys/mman.h>
-diff -durpN php-7.1.27.orig/ext/posix/config.m4 php-7.1.27/ext/posix/config.m4
---- php-7.1.27.orig/ext/posix/config.m4	2019-03-05 14:28:43.000000000 -0500
-+++ php-7.1.27/ext/posix/config.m4	2019-03-26 07:37:30.108299604 -0400
+diff -durpN php-7.1.33.orig/ext/posix/config.m4 php-7.1.33/ext/posix/config.m4
+--- php-7.1.33.orig/ext/posix/config.m4	2024-05-14 11:26:24.532618577 +0200
++++ php-7.1.33/ext/posix/config.m4	2024-05-14 11:27:02.666192137 +0200
 @@ -29,7 +29,10 @@ int main(int argc, char *argv[])
    ],[
      AC_MSG_RESULT([no, posix_ttyname() will be thread-unsafe])
@@ -158,9 +158,9 @@ diff -durpN php-7.1.27.orig/ext/posix/config.m4 php-7.1.27/ext/posix/config.m4
    ])
  
    AC_CACHE_CHECK([for utsname.domainname], ac_cv_have_utsname_domainname, [
-diff -durpN php-7.1.27.orig/ext/standard/config.m4 php-7.1.27/ext/standard/config.m4
---- php-7.1.27.orig/ext/standard/config.m4	2019-03-05 14:28:56.000000000 -0500
-+++ php-7.1.27/ext/standard/config.m4	2019-03-26 07:37:30.109299605 -0400
+diff -durpN php-7.1.33.orig/ext/standard/config.m4 php-7.1.33/ext/standard/config.m4
+--- php-7.1.33.orig/ext/standard/config.m4	2024-05-14 11:26:24.532618577 +0200
++++ php-7.1.33/ext/standard/config.m4	2024-05-14 11:30:05.334914731 +0200
 @@ -4,7 +4,7 @@ dnl
  dnl Check if flush should be called explicitly after buffered io
  dnl
@@ -169,62 +169,62 @@ diff -durpN php-7.1.27.orig/ext/standard/config.m4 php-7.1.27/ext/standard/confi
 +PHP_TRY_RUN( [
  #include <stdio.h>
  #include <stdlib.h>
- 
-@@ -60,7 +60,7 @@ if test "$ac_cv_func_crypt" = "no"; then
+ #include <unistd.h>
+@@ -62,7 +62,7 @@ if test "$ac_cv_func_crypt" = "no"; then
  fi
  
  AC_CACHE_CHECK(for standard DES crypt, ac_cv_crypt_des,[
 -  AC_TRY_RUN([
 +  PHP_TRY_RUN([
- #if HAVE_UNISTD_H
- #include <unistd.h>
- #endif
-@@ -85,7 +85,7 @@ int main() {
+ #include <stdlib.h>
+ #include <string.h>
+ 
+@@ -90,7 +90,7 @@ int main() {
  ])])
  
  AC_CACHE_CHECK(for extended DES crypt, ac_cv_crypt_ext_des,[
 -  AC_TRY_RUN([
 +  PHP_TRY_RUN([
- #if HAVE_UNISTD_H
- #include <unistd.h>
- #endif
-@@ -110,7 +110,7 @@ int main() {
+ #include <stdlib.h>
+ #include <string.h>
+ 
+@@ -118,7 +118,7 @@ int main() {
  ])])
  
  AC_CACHE_CHECK(for MD5 crypt, ac_cv_crypt_md5,[
 -AC_TRY_RUN([
 +PHP_TRY_RUN([
- #if HAVE_UNISTD_H
- #include <unistd.h>
- #endif
-@@ -145,7 +145,7 @@ int main() {
+ #include <stdlib.h>
+ #include <string.h>
+ 
+@@ -156,7 +156,7 @@ int main() {
  ])])
  
  AC_CACHE_CHECK(for Blowfish crypt, ac_cv_crypt_blowfish,[
 -AC_TRY_RUN([
 +PHP_TRY_RUN([
- #if HAVE_UNISTD_H
- #include <unistd.h>
- #endif
-@@ -177,7 +177,7 @@ int main() {
+ #include <stdlib.h>
+ #include <string.h>
+ 
+@@ -191,7 +191,7 @@ int main() {
  ])])
  
  AC_CACHE_CHECK(for SHA512 crypt, ac_cv_crypt_sha512,[
 -AC_TRY_RUN([
 +PHP_TRY_RUN([
- #if HAVE_UNISTD_H
- #include <unistd.h>
- #endif
-@@ -208,7 +208,7 @@ int main() {
+ #include <stdlib.h>
+ #include <string.h>
+ 
+@@ -225,7 +225,7 @@ int main() {
  ])])
  
  AC_CACHE_CHECK(for SHA256 crypt, ac_cv_crypt_sha256,[
 -AC_TRY_RUN([
 +PHP_TRY_RUN([
- #if HAVE_UNISTD_H
- #include <unistd.h>
- #endif
-@@ -356,7 +356,7 @@ dnl
+ #include <stdlib.h>
+ #include <string.h>
+ 
+@@ -376,7 +376,7 @@ dnl
  dnl Check if atof() accepts NAN
  dnl
  AC_CACHE_CHECK(whether atof() accepts NAN, ac_cv_atof_accept_nan,[
@@ -233,7 +233,7 @@ diff -durpN php-7.1.27.orig/ext/standard/config.m4 php-7.1.27/ext/standard/confi
  #include <math.h>
  #include <stdlib.h>
  
-@@ -387,7 +387,7 @@ dnl
+@@ -407,7 +407,7 @@ dnl
  dnl Check if atof() accepts INF
  dnl
  AC_CACHE_CHECK(whether atof() accepts INF, ac_cv_atof_accept_inf,[
@@ -242,7 +242,7 @@ diff -durpN php-7.1.27.orig/ext/standard/config.m4 php-7.1.27/ext/standard/confi
  #include <math.h>
  #include <stdlib.h>
  
-@@ -421,7 +421,7 @@ dnl
+@@ -441,7 +441,7 @@ dnl
  dnl Check if HUGE_VAL == INF
  dnl
  AC_CACHE_CHECK(whether HUGE_VAL == INF, ac_cv_huge_val_inf,[
@@ -251,7 +251,7 @@ diff -durpN php-7.1.27.orig/ext/standard/config.m4 php-7.1.27/ext/standard/confi
  #include <math.h>
  #include <stdlib.h>
  
-@@ -456,7 +456,7 @@ dnl
+@@ -476,7 +476,7 @@ dnl
  dnl Check if HUGE_VAL + -HUGEVAL == NAN
  dnl
  AC_CACHE_CHECK(whether HUGE_VAL + -HUGEVAL == NAN, ac_cv_huge_val_nan,[
@@ -260,9 +260,9 @@ diff -durpN php-7.1.27.orig/ext/standard/config.m4 php-7.1.27/ext/standard/confi
  #include <math.h>
  #include <stdlib.h>
  
-diff -durpN php-7.1.27.orig/sapi/fpm/config.m4 php-7.1.27/sapi/fpm/config.m4
---- php-7.1.27.orig/sapi/fpm/config.m4	2019-03-05 14:29:02.000000000 -0500
-+++ php-7.1.27/sapi/fpm/config.m4	2019-03-26 07:37:30.109299605 -0400
+diff -durpN php-7.1.33.orig/sapi/fpm/config.m4 php-7.1.33/sapi/fpm/config.m4
+--- php-7.1.33.orig/sapi/fpm/config.m4	2024-05-14 11:26:24.533618592 +0200
++++ php-7.1.33/sapi/fpm/config.m4	2024-05-14 11:27:02.666192137 +0200
 @@ -68,7 +68,7 @@ AC_DEFUN([AC_FPM_CLOCK],
    if test "$have_clock_gettime" = "no"; then
      AC_MSG_CHECKING([for clock_get_time])
@@ -281,19 +281,19 @@ diff -durpN php-7.1.27.orig/sapi/fpm/config.m4 php-7.1.27/sapi/fpm/config.m4
        #include <unistd.h>
        #include <signal.h>
        #include <sys/wait.h>
-diff -durpN php-7.1.27.orig/Zend/Zend.m4 php-7.1.27/Zend/Zend.m4
---- php-7.1.27.orig/Zend/Zend.m4	2019-03-05 14:28:42.000000000 -0500
-+++ php-7.1.27/Zend/Zend.m4	2019-03-26 07:37:30.109299605 -0400
+diff -durpN php-7.1.33.orig/Zend/Zend.m4 php-7.1.33/Zend/Zend.m4
+--- php-7.1.33.orig/Zend/Zend.m4	2024-05-14 11:26:24.533618592 +0200
++++ php-7.1.33/Zend/Zend.m4	2024-05-14 11:28:29.988577712 +0200
 @@ -109,7 +109,7 @@ ZEND_CHECK_FLOAT_PRECISION
  dnl test whether double cast to long preserves least significant bits
  AC_MSG_CHECKING(whether double cast to long preserves least significant bits)
  
 -AC_TRY_RUN([
 +PHP_TRY_RUN([
+ #include <stdlib.h>
  #include <limits.h>
  
- int main()
-@@ -269,7 +269,7 @@ AC_MSG_RESULT(done)
+@@ -272,7 +272,7 @@ AC_MSG_RESULT(done)
  dnl test for memory allocation using mmap(MAP_ANON)
  AC_MSG_CHECKING(for memory allocation using mmap(MAP_ANON))
  
@@ -302,7 +302,7 @@ diff -durpN php-7.1.27.orig/Zend/Zend.m4 php-7.1.27/Zend/Zend.m4
  #include <sys/types.h>
  #include <sys/stat.h>
  #include <fcntl.h>
-@@ -314,7 +314,7 @@ int main()
+@@ -317,7 +317,7 @@ int main()
  dnl test for memory allocation using mmap("/dev/zero")
  AC_MSG_CHECKING(for memory allocation using mmap("/dev/zero"))
  
