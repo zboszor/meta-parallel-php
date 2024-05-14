@@ -1,0 +1,353 @@
+diff -durpN php-7.0.33.orig/acinclude.m4 php-7.0.33/acinclude.m4
+--- php-7.0.33.orig/acinclude.m4	2024-05-14 10:35:40.786016511 +0200
++++ php-7.0.33/acinclude.m4	2024-05-14 10:39:08.893920616 +0200
+@@ -1171,7 +1171,7 @@ AC_CACHE_CHECK(for type of reentrant tim
+ AC_TRY_RUN([
+ #include <time.h>
+ 
+-main() {
++int main(void) {
+ char buf[27];
+ struct tm t;
+ time_t old = 0;
+@@ -1187,7 +1187,7 @@ return (1);
+ ],[
+   AC_TRY_RUN([
+ #include <time.h>
+-main() {
++int main(void) {
+   struct tm t, *s;
+   time_t old = 0;
+   char buf[27], *p;
+@@ -1219,13 +1219,14 @@ dnl PHP_DOES_PWRITE_WORK
+ dnl internal
+ AC_DEFUN([PHP_DOES_PWRITE_WORK],[
+   AC_TRY_RUN([
++#include <stdlib.h>
+ #include <sys/types.h>
+ #include <sys/stat.h>
+ #include <fcntl.h>
+ #include <unistd.h>
+ #include <errno.h>
+ $1
+-    main() {
++    int main(void) {
+     int fd = open("conftest_in", O_WRONLY|O_CREAT, 0600);
+ 
+     if (fd < 0) exit(1);
+@@ -1249,13 +1250,14 @@ dnl internal
+ AC_DEFUN([PHP_DOES_PREAD_WORK],[
+   echo test > conftest_in
+   AC_TRY_RUN([
++#include <stdlib.h>
+ #include <sys/types.h>
+ #include <sys/stat.h>
+ #include <fcntl.h>
+ #include <unistd.h>
+ #include <errno.h>
+ $1
+-    main() {
++    int main(void) {
+     char buf[3]; 
+     int fd = open("conftest_in", O_RDONLY);
+     if (fd < 0) exit(1);
+@@ -1361,6 +1363,7 @@ AC_DEFUN([PHP_READDIR_R_TYPE],[
+   AC_CACHE_CHECK(for type of readdir_r, ac_cv_what_readdir_r,[
+     AC_TRY_RUN([
+ #define _REENTRANT
++#include <stdlib.h>
+ #include <sys/types.h>
+ #include <dirent.h>
+ 
+@@ -1368,7 +1371,7 @@ AC_DEFUN([PHP_READDIR_R_TYPE],[
+ #define PATH_MAX 1024
+ #endif
+ 
+-main() {
++int main(void) {
+   DIR *dir;
+   char entry[sizeof(struct dirent)+PATH_MAX];
+   struct dirent *pentry = (struct dirent *) &entry;
+@@ -1377,10 +1380,10 @@ main() {
+   if (!dir) 
+     exit(1);
+   if (readdir_r(dir, (struct dirent *) entry, &pentry) == 0) {
+-    close(dir);
++    closedir(dir);
+     exit(0);
+   }
+-  close(dir);
++  closedir(dir);
+   exit(1);
+ }
+     ],[
+@@ -1487,7 +1490,12 @@ dnl Check for broken sprintf(), C99 conf
+ dnl
+ AC_DEFUN([PHP_AC_BROKEN_SPRINTF],[
+   AC_CACHE_CHECK(whether sprintf is broken, ac_cv_broken_sprintf,[
+-    AC_TRY_RUN([main() {char buf[20];exit(sprintf(buf,"testing 123")!=11); }],[
++    AC_TRY_RUN([
++#include <stdio.h>
++#include <stdlib.h>
++#include <unistd.h>
++int main(void) {char buf[20];exit(sprintf(buf,"testing 123")!=11); }
++    ],[
+       ac_cv_broken_sprintf=no
+     ],[
+       ac_cv_broken_sprintf=yes
+@@ -1510,8 +1518,9 @@ dnl
+ AC_DEFUN([PHP_AC_BROKEN_SNPRINTF],[
+   AC_CACHE_CHECK(whether snprintf is broken, ac_cv_broken_snprintf,[
+     AC_TRY_RUN([
++#include <stdlib.h>
+ #define NULL (0L)
+-main() {
++int main(void) {
+   char buf[20];
+   int res = 0;
+   res = res || (snprintf(buf, 2, "marcus") != 6); 
+@@ -1711,6 +1720,8 @@ AC_DEFUN([PHP_BROKEN_GLIBC_FOPEN_APPEND]
+   AC_CACHE_VAL(_cv_have_broken_glibc_fopen_append,[
+   AC_TRY_RUN([
+ #include <stdio.h>
++#include <stdlib.h>
++#include <unistd.h>
+ int main(int argc, char *argv[])
+ {
+   FILE *fp;
+@@ -1778,6 +1789,7 @@ dnl even newer glibcs have a different s
+ AC_TRY_RUN([
+ #define _GNU_SOURCE
+ #include <stdio.h>
++#include <stdlib.h>
+ 
+ struct cookiedata {
+   __off64_t pos;
+@@ -1794,7 +1806,7 @@ int seeker(void *cookie, __off64_t *posi
+ 
+ cookie_io_functions_t funcs = {reader, writer, seeker, closer};
+ 
+-main() {
++int main(void) {
+   struct cookiedata g = { 0 };
+   FILE *fp = fopencookie(&g, "r", funcs);
+ 
+@@ -1911,7 +1923,7 @@ AC_DEFUN([PHP_CHECK_FUNC_LIB],[
+   if test "$found" = "yes"; then
+     ac_libs=$LIBS
+     LIBS="$LIBS -l$2"
+-    AC_TRY_RUN([main() { return (0); }],[found=yes],[found=no],[found=no])
++    AC_TRY_RUN([int main(void) { return (0); }],[found=yes],[found=no],[found=no])
+     LIBS=$ac_libs
+   fi
+ 
+@@ -2627,7 +2639,8 @@ uname -a:   `uname -a`
+ 
+ X
+     cat >conftest.$ac_ext <<X
+-main()
++#include <stdlib.h>
++int main(void)
+ {
+   exit(0);
+ }
+@@ -2872,7 +2885,7 @@ AC_DEFUN([PHP_TEST_WRITE_STDOUT],[
+ 
+ #define TEXT "This is the test message -- "
+ 
+-main()
++int main(void)
+ {
+   int n;
+ 
+@@ -2884,7 +2897,7 @@ main()
+     ],[
+       ac_cv_write_stdout=no
+     ],[
+-      ac_cv_write_stdout=no
++      ac_cv_write_stdout=yes
+     ])
+   ])
+   if test "$ac_cv_write_stdout" = "yes"; then
+diff -durpN php-7.0.33.orig/ext/curl/config.m4 php-7.0.33/ext/curl/config.m4
+--- php-7.0.33.orig/ext/curl/config.m4	2024-05-14 10:35:41.220020344 +0200
++++ php-7.0.33/ext/curl/config.m4	2024-05-14 10:38:06.448348624 +0200
+@@ -80,6 +80,7 @@ if test "$PHP_CURL" != "no"; then
+     AC_MSG_CHECKING([for openssl support in libcurl])
+     AC_TRY_RUN([
+ #include <curl/curl.h>
++#include <strings.h>
+ 
+ int main(int argc, char *argv[])
+ {
+@@ -107,6 +108,7 @@ int main(int argc, char *argv[])
+     AC_MSG_CHECKING([for gnutls support in libcurl])
+     AC_TRY_RUN([
+ #include <curl/curl.h>
++#include <strings.h>
+ 
+ int main(int argc, char *argv[])
+ {
+diff -durpN php-7.0.33.orig/ext/opcache/config.m4 php-7.0.33/ext/opcache/config.m4
+--- php-7.0.33.orig/ext/opcache/config.m4	2024-05-14 10:35:41.120019461 +0200
++++ php-7.0.33/ext/opcache/config.m4	2024-05-14 10:38:06.449348633 +0200
+@@ -285,6 +285,7 @@ int main() {
+ #include <string.h>
+ #include <stdlib.h>
+ #include <stdio.h>
++#include <unistd.h>
+ 
+ #ifndef MAP_FAILED
+ # define MAP_FAILED ((void*)-1)
+diff -durpN php-7.0.33.orig/ext/standard/config.m4 php-7.0.33/ext/standard/config.m4
+--- php-7.0.33.orig/ext/standard/config.m4	2024-05-14 10:35:41.087019170 +0200
++++ php-7.0.33/ext/standard/config.m4	2024-05-14 10:38:06.450348642 +0200
+@@ -7,6 +7,8 @@ AC_CACHE_CHECK([whether flush should be
+ AC_TRY_RUN( [
+ #include <stdio.h>
+ #include <stdlib.h>
++#include <unistd.h>
++#include <string.h>
+ 
+ int main(int argc, char **argv)
+ {
+@@ -61,6 +63,9 @@ fi
+   
+ AC_CACHE_CHECK(for standard DES crypt, ac_cv_crypt_des,[
+   AC_TRY_RUN([
++#include <stdlib.h>
++#include <string.h>
++
+ #if HAVE_UNISTD_H
+ #include <unistd.h>
+ #endif
+@@ -86,6 +91,9 @@ int main() {
+ 
+ AC_CACHE_CHECK(for extended DES crypt, ac_cv_crypt_ext_des,[
+   AC_TRY_RUN([
++#include <stdlib.h>
++#include <string.h>
++
+ #if HAVE_UNISTD_H
+ #include <unistd.h>
+ #endif
+@@ -111,6 +119,9 @@ int main() {
+ 
+ AC_CACHE_CHECK(for MD5 crypt, ac_cv_crypt_md5,[
+ AC_TRY_RUN([
++#include <stdlib.h>
++#include <string.h>
++
+ #if HAVE_UNISTD_H
+ #include <unistd.h>
+ #endif
+@@ -141,11 +152,14 @@ int main() {
+ ],[
+   ac_cv_crypt_md5=no
+ ],[
+-  ac_cv_crypt_md5=no
++  ac_cv_crypt_md5=yes
+ ])])
+ 
+ AC_CACHE_CHECK(for Blowfish crypt, ac_cv_crypt_blowfish,[
+ AC_TRY_RUN([
++#include <stdlib.h>
++#include <string.h>
++
+ #if HAVE_UNISTD_H
+ #include <unistd.h>
+ #endif
+@@ -173,11 +187,14 @@ int main() {
+ ],[
+   ac_cv_crypt_blowfish=no
+ ],[
+-  ac_cv_crypt_blowfish=no
++  ac_cv_crypt_blowfish=yes
+ ])])
+ 
+ AC_CACHE_CHECK(for SHA512 crypt, ac_cv_crypt_sha512,[
+ AC_TRY_RUN([
++#include <stdlib.h>
++#include <string.h>
++
+ #if HAVE_UNISTD_H
+ #include <unistd.h>
+ #endif
+@@ -204,11 +221,14 @@ int main() {
+ ],[
+   ac_cv_crypt_sha512=no
+ ],[
+-  ac_cv_crypt_sha512=no
++  ac_cv_crypt_sha512=yes
+ ])])
+ 
+ AC_CACHE_CHECK(for SHA256 crypt, ac_cv_crypt_sha256,[
+ AC_TRY_RUN([
++#include <stdlib.h>
++#include <string.h>
++
+ #if HAVE_UNISTD_H
+ #include <unistd.h>
+ #endif
+@@ -235,7 +255,7 @@ int main() {
+ ],[
+   ac_cv_crypt_sha256=no
+ ],[
+-  ac_cv_crypt_sha256=no
++  ac_cv_crypt_sha256=yes
+ ])])
+ 
+ 
+diff -durpN php-7.0.33.orig/Zend/acinclude.m4 php-7.0.33/Zend/acinclude.m4
+--- php-7.0.33.orig/Zend/acinclude.m4	2018-12-04 18:23:03.000000000 +0100
++++ php-7.0.33/Zend/acinclude.m4	2024-05-14 10:38:06.450348642 +0200
+@@ -67,7 +67,11 @@ dnl Check for broken sprintf()
+ dnl
+ AC_DEFUN([AC_ZEND_BROKEN_SPRINTF],[
+   AC_CACHE_CHECK(whether sprintf is broken, ac_cv_broken_sprintf,[
+-    AC_TRY_RUN([main() {char buf[20];exit(sprintf(buf,"testing 123")!=11); }],[
++    AC_TRY_RUN([
++#include <stdio.h>
++#include <stdlib.h>
++#include <unistd.h>
++int main(void) {char buf[20];exit(sprintf(buf,"testing 123")!=11); }],[
+       ac_cv_broken_sprintf=no
+     ],[
+       ac_cv_broken_sprintf=yes
+diff -durpN php-7.0.33.orig/Zend/Zend.m4 php-7.0.33/Zend/Zend.m4
+--- php-7.0.33.orig/Zend/Zend.m4	2018-12-04 18:23:03.000000000 +0100
++++ php-7.0.33/Zend/Zend.m4	2024-05-14 10:38:06.451348652 +0200
+@@ -17,7 +17,7 @@ AC_TRY_COMPILE([
+ #endif],
+ [if (($1 *) 0)
+   return 0;
+-if (sizeof ($1))
++if (sizeof $1)
+   return 0;
+ ],[
+   AC_DEFINE_UNQUOTED([HAVE_]translit($1,a-z_-,A-Z__), 1,[Define if $1 type is present. ])
+@@ -110,6 +110,7 @@ dnl test whether double cast to long pre
+ AC_MSG_CHECKING(whether double cast to long preserves least significant bits)
+ 
+ AC_TRY_RUN([
++#include <stdlib.h>
+ #include <limits.h>
+ 
+ int main()
+@@ -224,6 +225,8 @@ AC_MSG_CHECKING(for MM alignment and log
+ 
+ AC_TRY_RUN([
+ #include <stdio.h>
++#include <stdlib.h>
++#include <unistd.h>
+ 
+ typedef union _mm_align_test {
+   void *ptr;
+@@ -321,6 +324,7 @@ AC_TRY_RUN([
+ #include <sys/mman.h>
+ #include <stdlib.h>
+ #include <stdio.h>
++#include <unistd.h>
+ #ifndef MAP_ANON
+ # ifdef MAP_ANONYMOUS
+ #  define MAP_ANON MAP_ANONYMOUS

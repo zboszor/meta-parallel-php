@@ -8,7 +8,7 @@ DEPENDS:append:class-native = " libmcrypt-native "
 
 LIC_FILES_CHKSUM = "file://LICENSE;md5=c0af599f66d0461c5837c695fcbc5c1e"
 
-PR = "r14"
+PR = "r15"
 
 EXTRA_OECONF:append:class-target = " \
 	--enable-crosscompiling \
@@ -36,6 +36,10 @@ EXTRA_OECONF:append:class-native = " \
 SRC_URI += " \
 	file://php-7.0.0-fix-phpize-for-parallel-installation.patch \
 	file://php-7.0.0-fix-phar-build.patch \
+	file://0001-Sync-callback-signature-with-libxml2-2.9.8.patch \
+	file://readdir.patch \
+	file://cookie-funcs-use-off64_t.patch \
+	file://fix-func-prototypes-in-m4.patch \
 	file://php.ini.native \
 	file://mod.ini \
 	file://20-openssl.ini \
@@ -60,7 +64,6 @@ SRC_URI:append:class-target = " \
 	file://php-7.0.0-fixheader.patch \
 	file://php-5.6.3-phpinfo.patch \
 	file://php-5.6.3-datetests.patch \
-	file://php-5.6.3-PHP_CHECK_FUNC_LIB-no-run.patch \
 	file://php-5.6.3-icu-includes.patch \
 	file://php-7.0.17-fnmatch-standard-check.patch \
 	file://1100-Utilize-the-recommended-way-to-handle-the-icu-namesp.patch \
