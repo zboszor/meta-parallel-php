@@ -1,7 +1,7 @@
-diff -durpN php-7.2.16.orig/acinclude.m4 php-7.2.16/acinclude.m4
---- php-7.2.16.orig/acinclude.m4	2019-03-26 08:52:06.055334900 -0400
-+++ php-7.2.16/acinclude.m4	2019-03-26 09:03:38.298470660 -0400
-@@ -656,9 +656,18 @@ AC_DEFUN([PHP_SET_LIBTOOL_VARIABLE],[
+diff -durpN php-7.2.34.orig/acinclude.m4 php-7.2.34/acinclude.m4
+--- php-7.2.34.orig/acinclude.m4	2024-05-14 11:43:45.643455212 +0200
++++ php-7.2.34/acinclude.m4	2024-05-14 11:44:58.179210403 +0200
+@@ -658,9 +658,18 @@ AC_DEFUN([PHP_SET_LIBTOOL_VARIABLE],[
  ])
  
  dnl -------------------------------------------------------------------------
@@ -21,27 +21,27 @@ diff -durpN php-7.2.16.orig/acinclude.m4 php-7.2.16/acinclude.m4
  dnl PHP_ARG_ANALYZE_EX
  dnl internal
  AC_DEFUN([PHP_ARG_ANALYZE_EX],[
-@@ -1207,7 +1216,7 @@ dnl
+@@ -1205,7 +1214,7 @@ dnl
  dnl PHP_DOES_PWRITE_WORK
  dnl internal
  AC_DEFUN([PHP_DOES_PWRITE_WORK],[
 -  AC_TRY_RUN([
 +  PHP_TRY_RUN([
+ #include <stdlib.h>
  #include <sys/types.h>
  #include <sys/stat.h>
- #include <fcntl.h>
-@@ -1237,7 +1246,7 @@ dnl PHP_DOES_PREAD_WORK
+@@ -1236,7 +1245,7 @@ dnl PHP_DOES_PREAD_WORK
  dnl internal
  AC_DEFUN([PHP_DOES_PREAD_WORK],[
    echo test > conftest_in
 -  AC_TRY_RUN([
 +  PHP_TRY_RUN([
+ #include <stdlib.h>
  #include <sys/types.h>
  #include <sys/stat.h>
- #include <fcntl.h>
-diff -durpN php-7.2.16.orig/configure.ac php-7.2.16/configure.ac
---- php-7.2.16.orig/configure.ac	2019-03-05 06:05:59.000000000 -0500
-+++ php-7.2.16/configure.ac	2019-03-26 09:03:38.299470667 -0400
+diff -durpN php-7.2.34.orig/configure.ac php-7.2.34/configure.ac
+--- php-7.2.34.orig/configure.ac	2024-05-14 11:43:45.643455212 +0200
++++ php-7.2.34/configure.ac	2024-05-14 11:44:29.800914948 +0200
 @@ -209,6 +209,9 @@ PHP_ARG_ENABLE(rpath, whether to enable
  [  --disable-rpath         Disable passing additional runtime library
                            search paths], yes, no)
@@ -52,9 +52,9 @@ diff -durpN php-7.2.16.orig/configure.ac php-7.2.16/configure.ac
  dnl check for -R, etc. switch
  PHP_RUNPATH_SWITCH
  
-diff -durpN php-7.2.16.orig/ext/curl/config.m4 php-7.2.16/ext/curl/config.m4
---- php-7.2.16.orig/ext/curl/config.m4	2019-03-05 06:06:05.000000000 -0500
-+++ php-7.2.16/ext/curl/config.m4	2019-03-26 09:03:38.302470688 -0400
+diff -durpN php-7.2.34.orig/ext/curl/config.m4 php-7.2.34/ext/curl/config.m4
+--- php-7.2.34.orig/ext/curl/config.m4	2024-05-14 11:43:45.644455222 +0200
++++ php-7.2.34/ext/curl/config.m4	2024-05-14 11:44:29.801914959 +0200
 @@ -149,14 +149,18 @@ int main(int argc, char *argv[])
    return 1;
  }
@@ -79,9 +79,9 @@ diff -durpN php-7.2.16.orig/ext/curl/config.m4 php-7.2.16/ext/curl/config.m4
      ])
  
      CFLAGS="$save_CFLAGS"
-diff -durpN php-7.2.16.orig/ext/iconv/config.m4 php-7.2.16/ext/iconv/config.m4
---- php-7.2.16.orig/ext/iconv/config.m4	2019-03-26 08:50:36.052741209 -0400
-+++ php-7.2.16/ext/iconv/config.m4	2019-03-26 09:03:38.299470667 -0400
+diff -durpN php-7.2.34.orig/ext/iconv/config.m4 php-7.2.34/ext/iconv/config.m4
+--- php-7.2.34.orig/ext/iconv/config.m4	2024-05-14 11:43:45.644455222 +0200
++++ php-7.2.34/ext/iconv/config.m4	2024-05-14 11:44:29.801914959 +0200
 @@ -50,7 +50,7 @@ if test "$PHP_ICONV" != "no"; then
        AC_MSG_CHECKING([if using GNU libiconv])
        php_iconv_old_ld="$LDFLAGS"
@@ -100,9 +100,9 @@ diff -durpN php-7.2.16.orig/ext/iconv/config.m4 php-7.2.16/ext/iconv/config.m4
  #include <$PHP_ICONV_H_PATH>
  #include <errno.h>
  
-diff -durpN php-7.2.16.orig/ext/opcache/config.m4 php-7.2.16/ext/opcache/config.m4
---- php-7.2.16.orig/ext/opcache/config.m4	2019-03-05 06:06:04.000000000 -0500
-+++ php-7.2.16/ext/opcache/config.m4	2019-03-26 09:03:38.300470674 -0400
+diff -durpN php-7.2.34.orig/ext/opcache/config.m4 php-7.2.34/ext/opcache/config.m4
+--- php-7.2.34.orig/ext/opcache/config.m4	2024-05-14 11:43:45.644455222 +0200
++++ php-7.2.34/ext/opcache/config.m4	2024-05-14 11:44:29.802914969 +0200
 @@ -29,7 +29,7 @@ if test "$PHP_OPCACHE" != "no"; then
    AC_CHECK_HEADERS([unistd.h sys/uio.h])
  
@@ -112,7 +112,7 @@ diff -durpN php-7.2.16.orig/ext/opcache/config.m4 php-7.2.16/ext/opcache/config.
  #include <sys/types.h>
  #include <sys/wait.h>
  #include <sys/ipc.h>
-@@ -99,7 +99,7 @@ int main() {
+@@ -101,7 +101,7 @@ int main() {
    AC_MSG_RESULT([$msg])
  
    AC_MSG_CHECKING(for mmap() using MAP_ANON shared memory support)
@@ -121,7 +121,7 @@ diff -durpN php-7.2.16.orig/ext/opcache/config.m4 php-7.2.16/ext/opcache/config.
  #include <sys/types.h>
  #include <sys/wait.h>
  #include <sys/mman.h>
-@@ -151,7 +151,7 @@ int main() {
+@@ -155,7 +155,7 @@ int main() {
    AC_MSG_RESULT([$msg])
  
    AC_MSG_CHECKING(for mmap() using /dev/zero shared memory support)
@@ -130,7 +130,7 @@ diff -durpN php-7.2.16.orig/ext/opcache/config.m4 php-7.2.16/ext/opcache/config.
  #include <sys/types.h>
  #include <sys/wait.h>
  #include <sys/mman.h>
-@@ -206,7 +206,7 @@ int main() {
+@@ -212,7 +212,7 @@ int main() {
    AC_MSG_RESULT([$msg])
  
    AC_MSG_CHECKING(for mmap() using shm_open() shared memory support)
@@ -139,7 +139,7 @@ diff -durpN php-7.2.16.orig/ext/opcache/config.m4 php-7.2.16/ext/opcache/config.
  #include <sys/types.h>
  #include <sys/wait.h>
  #include <sys/mman.h>
-@@ -275,7 +275,7 @@ int main() {
+@@ -283,7 +283,7 @@ int main() {
    AC_MSG_RESULT([$msg])
  
    AC_MSG_CHECKING(for mmap() using regular file shared memory support)
@@ -148,9 +148,9 @@ diff -durpN php-7.2.16.orig/ext/opcache/config.m4 php-7.2.16/ext/opcache/config.
  #include <sys/types.h>
  #include <sys/wait.h>
  #include <sys/mman.h>
-diff -durpN php-7.2.16.orig/ext/posix/config.m4 php-7.2.16/ext/posix/config.m4
---- php-7.2.16.orig/ext/posix/config.m4	2019-03-05 06:06:04.000000000 -0500
-+++ php-7.2.16/ext/posix/config.m4	2019-03-26 09:03:38.300470674 -0400
+diff -durpN php-7.2.34.orig/ext/posix/config.m4 php-7.2.34/ext/posix/config.m4
+--- php-7.2.34.orig/ext/posix/config.m4	2024-05-14 11:43:45.644455222 +0200
++++ php-7.2.34/ext/posix/config.m4	2024-05-14 11:44:29.802914969 +0200
 @@ -29,7 +29,10 @@ int main(int argc, char *argv[])
    ],[
      AC_MSG_RESULT([no, posix_ttyname() will be thread-unsafe])
@@ -163,9 +163,9 @@ diff -durpN php-7.2.16.orig/ext/posix/config.m4 php-7.2.16/ext/posix/config.m4
    ])
  
    AC_CACHE_CHECK([for utsname.domainname], ac_cv_have_utsname_domainname, [
-diff -durpN php-7.2.16.orig/ext/standard/config.m4 php-7.2.16/ext/standard/config.m4
---- php-7.2.16.orig/ext/standard/config.m4	2019-03-05 06:05:59.000000000 -0500
-+++ php-7.2.16/ext/standard/config.m4	2019-03-26 09:03:38.301470681 -0400
+diff -durpN php-7.2.34.orig/ext/standard/config.m4 php-7.2.34/ext/standard/config.m4
+--- php-7.2.34.orig/ext/standard/config.m4	2024-05-14 11:43:45.645455233 +0200
++++ php-7.2.34/ext/standard/config.m4	2024-05-14 12:21:33.822272941 +0200
 @@ -4,7 +4,7 @@ dnl
  dnl Check if flush should be called explicitly after buffered io
  dnl
@@ -174,64 +174,64 @@ diff -durpN php-7.2.16.orig/ext/standard/config.m4 php-7.2.16/ext/standard/confi
 +PHP_TRY_RUN( [
  #include <stdio.h>
  #include <stdlib.h>
- 
-@@ -60,7 +60,7 @@ if test "$ac_cv_func_crypt" = "no"; then
+ #include <unistd.h>
+@@ -62,7 +62,7 @@ if test "$ac_cv_func_crypt" = "no"; then
  fi
  
  AC_CACHE_CHECK(for standard DES crypt, ac_cv_crypt_des,[
 -  AC_TRY_RUN([
 +  PHP_TRY_RUN([
- #if HAVE_UNISTD_H
- #include <unistd.h>
- #endif
-@@ -85,7 +85,7 @@ int main() {
+ #include <stdlib.h>
+ #include <string.h>
+ 
+@@ -90,7 +90,7 @@ int main() {
  ])])
  
  AC_CACHE_CHECK(for extended DES crypt, ac_cv_crypt_ext_des,[
 -  AC_TRY_RUN([
 +  PHP_TRY_RUN([
- #if HAVE_UNISTD_H
- #include <unistd.h>
- #endif
-@@ -110,7 +110,7 @@ int main() {
+ #include <stdlib.h>
+ #include <string.h>
+ 
+@@ -118,7 +118,7 @@ int main() {
  ])])
  
  AC_CACHE_CHECK(for MD5 crypt, ac_cv_crypt_md5,[
 -AC_TRY_RUN([
 +PHP_TRY_RUN([
- #if HAVE_UNISTD_H
- #include <unistd.h>
- #endif
-@@ -145,7 +145,7 @@ int main() {
+ #include <stdlib.h>
+ #include <string.h>
+ 
+@@ -156,7 +156,7 @@ int main() {
  ])])
  
  AC_CACHE_CHECK(for Blowfish crypt, ac_cv_crypt_blowfish,[
 -AC_TRY_RUN([
 +PHP_TRY_RUN([
- #if HAVE_UNISTD_H
- #include <unistd.h>
- #endif
-@@ -177,7 +177,7 @@ int main() {
+ #include <stdlib.h>
+ #include <string.h>
+ 
+@@ -191,7 +191,7 @@ int main() {
  ])])
  
  AC_CACHE_CHECK(for SHA512 crypt, ac_cv_crypt_sha512,[
 -AC_TRY_RUN([
 +PHP_TRY_RUN([
- #if HAVE_UNISTD_H
- #include <unistd.h>
- #endif
-@@ -208,7 +208,7 @@ int main() {
+ #include <stdlib.h>
+ #include <string.h>
+ 
+@@ -225,7 +225,7 @@ int main() {
  ])])
  
  AC_CACHE_CHECK(for SHA256 crypt, ac_cv_crypt_sha256,[
 -AC_TRY_RUN([
 +PHP_TRY_RUN([
- #if HAVE_UNISTD_H
- #include <unistd.h>
- #endif
-diff -durpN php-7.2.16.orig/sapi/fpm/config.m4 php-7.2.16/sapi/fpm/config.m4
---- php-7.2.16.orig/sapi/fpm/config.m4	2019-03-05 06:05:59.000000000 -0500
-+++ php-7.2.16/sapi/fpm/config.m4	2019-03-26 09:03:38.303470695 -0400
+ #include <stdlib.h>
+ #include <string.h>
+ 
+diff -durpN php-7.2.34.orig/sapi/fpm/config.m4 php-7.2.34/sapi/fpm/config.m4
+--- php-7.2.34.orig/sapi/fpm/config.m4	2024-05-14 11:43:45.645455233 +0200
++++ php-7.2.34/sapi/fpm/config.m4	2024-05-14 11:44:29.804914990 +0200
 @@ -68,7 +68,7 @@ AC_DEFUN([AC_FPM_CLOCK],
    if test "$have_clock_gettime" = "no"; then
      AC_MSG_CHECKING([for clock_get_time])
@@ -260,19 +260,19 @@ diff -durpN php-7.2.16.orig/sapi/fpm/config.m4 php-7.2.16/sapi/fpm/config.m4
      ])
    fi
  
-diff -durpN php-7.2.16.orig/Zend/Zend.m4 php-7.2.16/Zend/Zend.m4
---- php-7.2.16.orig/Zend/Zend.m4	2019-03-05 06:06:06.000000000 -0500
-+++ php-7.2.16/Zend/Zend.m4	2019-03-26 09:03:38.302470688 -0400
+diff -durpN php-7.2.34.orig/Zend/Zend.m4 php-7.2.34/Zend/Zend.m4
+--- php-7.2.34.orig/Zend/Zend.m4	2024-05-14 11:43:45.645455233 +0200
++++ php-7.2.34/Zend/Zend.m4	2024-05-14 12:19:59.868412961 +0200
 @@ -109,7 +109,7 @@ ZEND_CHECK_FLOAT_PRECISION
  dnl test whether double cast to long preserves least significant bits
  AC_MSG_CHECKING(whether double cast to long preserves least significant bits)
  
 -AC_TRY_RUN([
 +PHP_TRY_RUN([
+ #include <stdlib.h>
  #include <limits.h>
  
- int main()
-@@ -269,7 +269,7 @@ AC_MSG_RESULT(done)
+@@ -272,7 +272,7 @@ AC_MSG_RESULT(done)
  dnl test for memory allocation using mmap(MAP_ANON)
  AC_MSG_CHECKING(for memory allocation using mmap(MAP_ANON))
  
@@ -281,7 +281,7 @@ diff -durpN php-7.2.16.orig/Zend/Zend.m4 php-7.2.16/Zend/Zend.m4
  #include <sys/types.h>
  #include <sys/stat.h>
  #include <fcntl.h>
-@@ -314,7 +314,7 @@ int main()
+@@ -317,7 +317,7 @@ int main()
  dnl test for memory allocation using mmap("/dev/zero")
  AC_MSG_CHECKING(for memory allocation using mmap("/dev/zero"))
  
