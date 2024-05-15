@@ -14,15 +14,16 @@ PHPVER = "${PHP_MAJVER}${PHP_MINVER}"
 export PHPVER
 
 DEPENDS:class-target = " \
-		zlib bzip2 libxml2 libxslt virtual/libiconv php${PHPVER}-native lemon-native \
-		uw-imap openssl mariadb curl icu systemd libpcre libgcrypt \
-		gd jpeg libpng libxpm freetype t1lib libpcre net-snmp freetds \
-		rsync-native \
-	"
+	zlib bzip2 libxml2 libxslt virtual/libiconv php${PHPVER}-native lemon-native \
+	uw-imap openssl mariadb curl icu systemd libpcre libgcrypt \
+	gd jpeg libpng libxpm freetype libpcre net-snmp freetds \
+	rsync-native \
+"
+
 DEPENDS:class-native = " \
-		zlib-native bzip2-native libxml2-native libxslt-native openssl-native curl-native \
-		gmp-native gettext-native libpcre-native \
-	"
+	zlib-native bzip2-native libxml2-native libxslt-native openssl-native curl-native \
+	gmp-native gettext-native libpcre-native \
+"
 
 BETALEVEL ??= ""
 BETAURL ??= ""
@@ -46,24 +47,25 @@ def is_target_pkg(d):
     return 1
 
 SRC_URI = " \
-			${@phpfile_url(d)} \
-			file://php-config-fix-include_dir.patch \
-			file://acinclude-xml2-config.patch \
-			file://0001-php-don-t-use-broken-wrapper-for-mkdir.patch \
-			file://0001-acinclude-use-pkgconfig-for-libxml2-config.patch \
-			file://php-5.6.5-xslt-config.patch \
-			file://0001-ext-xsl-use-pkgconfig-for-xslt-config.patch \
-			file://phar-makefile.patch \
-		"
+	${@phpfile_url(d)} \
+	file://php-config-fix-include_dir.patch \
+	file://acinclude-xml2-config.patch \
+	file://0001-php-don-t-use-broken-wrapper-for-mkdir.patch \
+	file://0001-acinclude-use-pkgconfig-for-libxml2-config.patch \
+	file://php-5.6.5-xslt-config.patch \
+	file://0001-ext-xsl-use-pkgconfig-for-xslt-config.patch \
+	file://phar-makefile.patch \
+"
 
 SRC_URI:append:class-target = " \
-			file://iconv.patch \
-			file://imap-fix-autofoo.patch \
-			file://pear-makefile.patch \
-			file://php_exec_native.patch \
-			file://php-fpm.service \
-			file://php-fpm.sysconfig \
-		  "
+	file://iconv.patch \
+	file://imap-fix-autofoo.patch \
+	file://pear-makefile.patch \
+	file://php_exec_native.patch \
+	file://php-fpm.service \
+	file://php-fpm.sysconfig \
+"
+
 S = "${WORKDIR}/php-${PV}${BETALEVEL}"
 
 inherit autotools-brokensep pkgconfig python3native gettext systemd
@@ -88,114 +90,118 @@ DEPSETTING3 = "${@ '=shared' if is_target_pkg(d) else ''}"
 
 # Common EXTRA_OECONF
 COMMON_EXTRA_OECONF = " \
-		--disable-rpath \
-		--sysconfdir=${sysconfdir}/php${PHPVER} \
-		--libdir=${PHP_LIBDIR} \
-		--datadir=${datadir}/php${PHPVER} \
-		--program-suffix=${PHPVER} \
-		--with-config-file-path=${sysconfdir}/php${PHPVER} \
-		--with-config-file-scan-dir=${sysconfdir}/php${PHPVER}/php.d \
-		--with-pear=${PEAR_INSTALLDIR} \
-		--enable-mbstring${DEPSETTING3} \
-		--enable-mbregex \
-		--with-gmp=${DEPSETTING1} \
-		--enable-calendar${DEPSETTING3} \
-		--enable-bcmath${DEPSETTING3} \
-		--with-bz2=${DEPSETTING2} \
-		--enable-ctype${DEPSETTING3} \
-		--enable-exif${DEPSETTING3} \
-		--enable-ftp${DEPSETTING3} \
-		--with-gettext=${DEPSETTING1} \
-		--enable-tokenizer${DEPSETTING3} \
-		--with-openssl=${DEPSETTING1} \
-		--with-curl=${DEPSETTING1} \
-		--with-system-ciphers \
-		--with-mhash${DEPSETTING3} \
-		--enable-simplexml${DEPSETTING3} \
-		--enable-xml${DEPSETTING3} \
-		--with-zlib=${DEPSETTING1} \
-		--with-zlib-dir=${STAGING_LIBDIR}/.. \
-		--with-xsl=${DEPSETTING1} \
-		--enable-xmlreader${DEPSETTING3} \
-		--enable-xmlwriter${DEPSETTING3} \
-		--enable-phar${DEPSETTING3} \
-		--enable-sockets${DEPSETTING3} \
-		--enable-pcntl \
-		--with-pic"
+	--disable-rpath \
+	--sysconfdir=${sysconfdir}/php${PHPVER} \
+	--libdir=${PHP_LIBDIR} \
+	--datadir=${datadir}/php${PHPVER} \
+	--program-suffix=${PHPVER} \
+	--with-config-file-path=${sysconfdir}/php${PHPVER} \
+	--with-config-file-scan-dir=${sysconfdir}/php${PHPVER}/php.d \
+	--with-pear=${PEAR_INSTALLDIR} \
+	--enable-mbstring${DEPSETTING3} \
+	--enable-mbregex \
+	--with-gmp=${DEPSETTING1} \
+	--enable-calendar${DEPSETTING3} \
+	--enable-bcmath${DEPSETTING3} \
+	--with-bz2=${DEPSETTING2} \
+	--enable-ctype${DEPSETTING3} \
+	--enable-exif${DEPSETTING3} \
+	--enable-ftp${DEPSETTING3} \
+	--with-gettext=${DEPSETTING1} \
+	--enable-tokenizer${DEPSETTING3} \
+	--with-openssl=${DEPSETTING1} \
+	--with-curl=${DEPSETTING1} \
+	--with-system-ciphers \
+	--with-mhash${DEPSETTING3} \
+	--enable-simplexml${DEPSETTING3} \
+	--enable-xml${DEPSETTING3} \
+	--with-zlib=${DEPSETTING1} \
+	--with-zlib-dir=${STAGING_LIBDIR}/.. \
+	--with-xsl=${DEPSETTING1} \
+	--enable-xmlreader${DEPSETTING3} \
+	--enable-xmlwriter${DEPSETTING3} \
+	--enable-phar${DEPSETTING3} \
+	--enable-sockets${DEPSETTING3} \
+	--enable-pcntl \
+	--with-pic \
+"
 
 EXTRA_OECONF:class-target = " \
-		--enable-opcache \
-		--enable-phpdbg \
-		--with-imap=${@ '%s,%s' % ('shared' if is_target_pkg(d) else '', d.getVar('STAGING_DIR_HOST'))} \
-		--with-imap-ssl=${@ '%s,%s' % ('shared' if is_target_pkg(d) else '', d.getVar('STAGING_DIR_HOST'))} \
-		--with-iconv=${DEPSETTING1} \
-		--enable-dom${DEPSETTING3} \
-		--with-fpm-systemd \
-		--with-strcasestr=system \
-		--with-snmp${DEPSETTING3} \
-		--enable-soap${DEPSETTING3} \
-		--enable-pdo${DEPSETTING3} \
-		--with-pdo-dblib=${DEPSETTING1} \
-		--without-readline \
-		--enable-sysvmsg${DEPSETTING3} \
-		--enable-sysvshm${DEPSETTING3} \
-		--enable-sysvsem${DEPSETTING3} \
-		--enable-shmop${DEPSETTING3} \
-		--enable-posix${DEPSETTING3} \
-		--enable-fileinfo${DEPSETTING3} \
-		--with-libdir=${baselib} \
-		${@oe.utils.conditional('SITEINFO_ENDIANNESS', 'le', 'ac_cv_c_bigendian_php=no', 'ac_cv_c_bigendian_php=yes', d)} \
-		${@bb.utils.contains('PACKAGECONFIG', 'pam', '', 'ac_cv_lib_pam_pam_start=no', d)} \
-		ac_cv_pwrite=yes \
-		ac_cv_pread=yes \
-		ac_cv_flush_io=yes \
-		ac_cv_crypt_des=yes \
-		ac_cv_crypt_ext_des=yes \
-		ac_cv_crypt_md5=yes \
-		ac_cv_crypt_blowfish=yes \
-		ac_cv_crypt_sha512=yes \
-		ac_cv_crypt_sha256=yes \
-		--enable-shared \
-		${COMMON_EXTRA_OECONF} \
-		--with-system-tzdata \
+	--enable-opcache \
+	--enable-phpdbg \
+	--with-imap=${@ '%s,%s' % ('shared' if is_target_pkg(d) else '', d.getVar('STAGING_DIR_HOST'))} \
+	--with-imap-ssl=${@ '%s,%s' % ('shared' if is_target_pkg(d) else '', d.getVar('STAGING_DIR_HOST'))} \
+	--with-iconv=${DEPSETTING1} \
+	--enable-dom${DEPSETTING3} \
+	--with-fpm-systemd \
+	--with-strcasestr=system \
+	--with-snmp${DEPSETTING3} \
+	--enable-soap${DEPSETTING3} \
+	--enable-pdo${DEPSETTING3} \
+	--with-pdo-dblib=${DEPSETTING1} \
+	--without-readline \
+	--enable-sysvmsg${DEPSETTING3} \
+	--enable-sysvshm${DEPSETTING3} \
+	--enable-sysvsem${DEPSETTING3} \
+	--enable-shmop${DEPSETTING3} \
+	--enable-posix${DEPSETTING3} \
+	--enable-fileinfo${DEPSETTING3} \
+	--with-libdir=${baselib} \
+	${@oe.utils.conditional('SITEINFO_ENDIANNESS', 'le', 'ac_cv_c_bigendian_php=no', 'ac_cv_c_bigendian_php=yes', d)} \
+	${@bb.utils.contains('PACKAGECONFIG', 'pam', '', 'ac_cv_lib_pam_pam_start=no', d)} \
+	ac_cv_pwrite=yes \
+	ac_cv_pread=yes \
+	ac_cv_flush_io=yes \
+	ac_cv_crypt_des=yes \
+	ac_cv_crypt_ext_des=yes \
+	ac_cv_crypt_md5=yes \
+	ac_cv_crypt_blowfish=yes \
+	ac_cv_crypt_sha512=yes \
+	ac_cv_crypt_sha256=yes \
+	--enable-shared \
+	${COMMON_EXTRA_OECONF} \
+	--with-system-tzdata \
 "
 
 EXTRA_OECONF:class-native = " \
-		--with-zlib=${STAGING_LIBDIR_NATIVE}/.. \
-		--without-iconv \
-		--disable-shared \
-		${COMMON_EXTRA_OECONF} \
+	--with-zlib=${STAGING_LIBDIR_NATIVE}/.. \
+	--without-iconv \
+	--disable-shared \
+	${COMMON_EXTRA_OECONF} \
 "
 
-PACKAGECONFIG ??= "mysql sqlite3 imap \
-				   ${@bb.utils.contains('DISTRO_FEATURES', 'pam', 'pam', '', d)} \
-				   ${@bb.utils.contains('DISTRO_FEATURES', 'ipv6', 'ipv6', '', d)} \
+PACKAGECONFIG ??= " \
+	mysql sqlite3 imap \
+	${@bb.utils.contains('DISTRO_FEATURES', 'pam', 'pam', '', d)} \
+	${@bb.utils.contains('DISTRO_FEATURES', 'ipv6', 'ipv6', '', d)} \
 "
 PACKAGECONFIG:class-native = ""
 
 MYSQLND = "${@ '=shared,mysqlnd' if is_target_pkg(d) else '=mysqlnd'}"
 
 PACKAGECONFIG[mysql] = " \
-			--enable-mysqlnd${DEPSETTING3}  \
-			--with-mysqli${MYSQLND} \
-			--with-mysql-sock=/run/mariadb/mysql.sock \
-			--with-pdo-mysql${MYSQLND} \
-			,--disable-mysqlnd --without-mysqli --without-pdo-mysql \
-			,mysql5"
+	--enable-mysqlnd${DEPSETTING3}  \
+	--with-mysqli${MYSQLND} \
+	--with-mysql-sock=/run/mariadb/mysql.sock \
+	--with-pdo-mysql${MYSQLND} \
+	,--disable-mysqlnd --without-mysqli --without-pdo-mysql \
+	,mysql5"
 
-PACKAGECONFIG[sqlite3] = '--with-sqlite3=${DEPSETTING1} \
-			  --with-pdo-sqlite=${DEPSETTING1} \
-			  , \
-			  ,sqlite3'
+PACKAGECONFIG[sqlite3] = " \
+	--with-sqlite3=${DEPSETTING1} \
+	--with-pdo-sqlite=${DEPSETTING1} \
+	, \
+	,sqlite3"
 PGSQL = "=${DEPSETTING2}"
 PACKAGECONFIG[pgsql] = "--with-pgsql${PGSQL},--without-pgsql,postgresql"
 PACKAGECONFIG[soap] = "--enable-libxml --enable-soap, --disable-soap, libxml2"
 PACKAGECONFIG[apache2] = "--with-apxs2=${STAGING_BINDIR_CROSS}/apxs,,apache2-native apache2"
 PACKAGECONFIG[pam] = ",,libpam"
-PACKAGECONFIG[imap] = "--with-imap=${STAGING_DIR_HOST} \
-					   --with-imap-ssl=${STAGING_DIR_HOST} \
-					   ,--without-imap --without-imap-ssl \
-					   ,uw-imap"
+PACKAGECONFIG[imap] = " \
+	--with-imap=${STAGING_DIR_HOST} \
+	--with-imap-ssl=${STAGING_DIR_HOST} \
+	,--without-imap --without-imap-ssl \
+	,uw-imap"
 PACKAGECONFIG[ipv6] = "--enable-ipv6,--disable-ipv6,"
 PACKAGECONFIG[valgrind] = "--with-valgrind=${STAGING_DIR_TARGET}/usr,--with-valgrind=no,valgrind"
 
@@ -431,48 +437,48 @@ FILES:${PN}-cli = "${bindir}/php${PHPVER}"
 FILES:${PN}-phar = "${bindir}/phar*"
 FILES:${PN}-cgi = "${bindir}/php-cgi${PHPVER}"
 FILES:${PN}-fpm = " \
-				${sbindir}/php-fpm${PHPVER} \
-				${datadir}/php${PHPVER}/fpm \
-				${sysconfdir}/php${PHPVER}/php-fpm.d/ \
-				${sysconfdir}/sysconfig/php-fpm${PHPVER} \
-				${systemd_unitdir}/system/php-fpm${PHPVER}.service \
-				${localstatedir}/lib/php${PHPVER}/session \
-			"
+	${sbindir}/php-fpm${PHPVER} \
+	${datadir}/php${PHPVER}/fpm \
+	${sysconfdir}/php${PHPVER}/php-fpm.d/ \
+	${sysconfdir}/sysconfig/php-fpm${PHPVER} \
+	${systemd_unitdir}/system/php-fpm${PHPVER}.service \
+	${localstatedir}/lib/php${PHPVER}/session \
+"
 FILES:${PN}-fpm-apache2 = "${sysconfdir}/apache2/conf.d/php-fpm.conf"
 CONFFILES:${PN}-fpm-apache2 = "${sysconfdir}/apache2/conf.d/php-fpm.conf"
 INITSCRIPT_NAME:${PN}-fpm = "php-fpm"
 INITSCRIPT_PARAMS:${PN}-fpm = "defaults 60"
 FILES:${PN}-pear = "${bindir}/pear* ${bindir}/pecl* ${PHP_LIBDIR}/PEAR \
-				${PHP_LIBDIR}/PEAR*.php ${PHP_LIBDIR}/System.php \
-				${PHP_LIBDIR}/peclcmd.php ${PHP_LIBDIR}/pearcmd.php \
-				${PHP_LIBDIR}/.channels ${PHP_LIBDIR}/.channels/.alias \
-				${PHP_LIBDIR}/.registry ${PHP_LIBDIR}/Archive/Tar.php \
-				${PHP_LIBDIR}/Console/Getopt.php ${PHP_LIBDIR}/OS/Guess.php \
-				${PHP_LIBDIR}/data/PEAR \
-				${sysconfdir}/php${PHPVER}/pear.conf"
+	${PHP_LIBDIR}/PEAR*.php ${PHP_LIBDIR}/System.php \
+	${PHP_LIBDIR}/peclcmd.php ${PHP_LIBDIR}/pearcmd.php \
+	${PHP_LIBDIR}/.channels ${PHP_LIBDIR}/.channels/.alias \
+	${PHP_LIBDIR}/.registry ${PHP_LIBDIR}/Archive/Tar.php \
+	${PHP_LIBDIR}/Console/Getopt.php ${PHP_LIBDIR}/OS/Guess.php \
+	${PHP_LIBDIR}/data/PEAR \
+	${sysconfdir}/php${PHPVER}/pear.conf"
 FILES:${PN}-dev = " \
-				${includedir}/php${PHPVER} \
-				${PHP_LIBDIR}/build \
-				${bindir}/phpize${PHPVER} \
-				${bindir}/php-config${PHPVER} \
-				${bindir}/phpdbg${PHPVER} \
-				${datadir}/pear${PHPVER}/.depdb \
-				${datadir}/pear${PHPVER}/.depdblock \
-				${datadir}/pear${PHPVER}/.filemap \
-				${datadir}/pear${PHPVER}/.lock \
-				${datadir}/pear${PHPVER} \
-				${PHP_LIBDIR}/test \
-			"
+	${includedir}/php${PHPVER} \
+	${PHP_LIBDIR}/build \
+	${bindir}/phpize${PHPVER} \
+	${bindir}/php-config${PHPVER} \
+	${bindir}/phpdbg${PHPVER} \
+	${datadir}/pear${PHPVER}/.depdb \
+	${datadir}/pear${PHPVER}/.depdblock \
+	${datadir}/pear${PHPVER}/.filemap \
+	${datadir}/pear${PHPVER}/.lock \
+	${datadir}/pear${PHPVER} \
+	${PHP_LIBDIR}/test \
+"
 FILES:${PN}-staticdev += "${libdir}/php${PHPVER}/modules/*.a"
 FILES:${PN} += " \
-				${PHP_LIBDIR} \
-				${bindir} \
-				${sysconfdir}/php${PHPVER}/php.d \
-				${localstatedir}/lib/php${PHPVER}/session/ \
-			"
+	${PHP_LIBDIR} \
+	${bindir} \
+	${sysconfdir}/php${PHPVER}/php.d \
+	${localstatedir}/lib/php${PHPVER}/session/ \
+"
 FILES:${PN}:append:class-native = " \
-				${sysconfdir}/php${PHPVER}/php.ini \
-			"
+	${sysconfdir}/php${PHPVER}/php.ini \
+"
 
 SUMMARY:${PN}-modphp = "PHP module for the Apache HTTP server"
 FILES:${PN}-modphp = "${libdir}/apache2"
