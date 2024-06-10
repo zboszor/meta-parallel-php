@@ -8,7 +8,7 @@ DEPENDS:append:class-native = " libmcrypt-native "
 
 LIC_FILES_CHKSUM = "file://LICENSE;md5=c0af599f66d0461c5837c695fcbc5c1e"
 
-PR = "r15"
+PR = "r16"
 
 EXTRA_OECONF:append:class-target = " \
 	--enable-crosscompiling \
@@ -140,6 +140,7 @@ SRC_URI:append:class-target = " \
 	file://php-cve-2023-3824.patch \
 	file://php-cve-2024-2756.patch \
 	file://php-cve-2024-3096.patch \
+	file://php-cve-2024-5458.patch \
 "
 
 SRC_URI[md5sum] = "6988ea64d0b32c9e1ab8aabe10b80dd1"
