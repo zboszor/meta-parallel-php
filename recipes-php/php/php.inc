@@ -16,7 +16,8 @@ export PHPVER
 DEPENDS:class-target = " \
 	zlib bzip2 libxml2 libxslt virtual/libiconv php${PHPVER}-native lemon-native \
 	uw-imap openssl mariadb curl icu systemd libpcre libgcrypt \
-	gd jpeg libpng libxpm freetype libpcre net-snmp freetds \
+	gd jpeg libpng freetype libpcre net-snmp freetds \
+	${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'libxpm', '', d)} \
 	rsync-native \
 "
 
