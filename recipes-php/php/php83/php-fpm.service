@@ -3,7 +3,7 @@
 # the best way is to use the "systemctl edit" command.
 
 [Unit]
-Description=The PHP 8.2 FastCGI Process Manager
+Description=The PHP 8.3 FastCGI Process Manager
 After=syslog.target network.target systemd-tmpfiles-setup.service
 Before=lighttpd.service
 
