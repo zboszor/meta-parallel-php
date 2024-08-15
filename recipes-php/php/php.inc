@@ -176,7 +176,6 @@ PACKAGECONFIG ??= " \
 	${@bb.utils.contains('DISTRO_FEATURES', 'pam', 'pam', '', d)} \
 	${@bb.utils.contains('DISTRO_FEATURES', 'ipv6', 'ipv6', '', d)} \
 "
-PACKAGECONFIG:class-native = ""
 
 MYSQLND = "${@ '=shared,mysqlnd' if is_target_pkg(d) else '=mysqlnd'}"
 
