@@ -56,11 +56,11 @@ SRC_URI = " \
 	file://php-5.6.5-xslt-config.patch \
 	file://0001-ext-xsl-use-pkgconfig-for-xslt-config.patch \
 	file://phar-makefile.patch \
+	file://imap-fix-autofoo.patch \
 "
 
 SRC_URI:append:class-target = " \
 	file://iconv.patch \
-	file://imap-fix-autofoo.patch \
 	file://pear-makefile.patch \
 	file://php_exec_native.patch \
 	file://php-fpm.service \
@@ -85,9 +85,9 @@ export EXTENSION_DIR
 PEAR_INSTALLDIR = "${datadir}/pear${PHPVER}"
 export PEAR_INSTALLDIR
 
-DEPSETTING1 = "${@ '%s%s/..' % ('shared,' if is_target_pkg(d) else '' , d.getVar('STAGING_LIBDIR'))}"
-DEPSETTING2 = "${@ '%s%s%s' % ('shared,' if is_target_pkg(d) else '', d.getVar('STAGING_DIR_TARGET'), d.getVar('exec_prefix'))}"
-DEPSETTING3 = "${@ '=shared' if is_target_pkg(d) else ''}"
+DEPSETTING1 = "${@ 'shared,%s/..' % (d.getVar('STAGING_LIBDIR') if is_target_pkg(d) else d.getVar('STAGING_LIBDIR_NATIVE'))}"
+DEPSETTING2 = "${@ 'shared,%s%s' % (d.getVar('STAGING_DIR_TARGET') if is_target_pkg(d) else d.getVar('STAGING_DIR_NATIVE'), d.getVar('exec_prefix'))}"
+DEPSETTING3 = "=shared"
 
 # Common EXTRA_OECONF
 COMMON_EXTRA_OECONF = " \
@@ -130,8 +130,6 @@ COMMON_EXTRA_OECONF = " \
 EXTRA_OECONF:class-target = " \
 	--enable-opcache \
 	--enable-phpdbg \
-	--with-imap=${@ '%s,%s' % ('shared' if is_target_pkg(d) else '', d.getVar('STAGING_DIR_HOST'))} \
-	--with-imap-ssl=${@ '%s,%s' % ('shared' if is_target_pkg(d) else '', d.getVar('STAGING_DIR_HOST'))} \
 	--with-iconv=${DEPSETTING1} \
 	--enable-dom${DEPSETTING3} \
 	--with-fpm-systemd \
@@ -177,7 +175,7 @@ PACKAGECONFIG ??= " \
 	${@bb.utils.contains('DISTRO_FEATURES', 'ipv6', 'ipv6', '', d)} \
 "
 
-MYSQLND = "${@ '=shared,mysqlnd' if is_target_pkg(d) else '=mysqlnd'}"
+MYSQLND = "'=shared,mysqlnd'"
 
 PACKAGECONFIG[mysql] = " \
 	--enable-mysqlnd${DEPSETTING3}  \
@@ -197,11 +195,7 @@ PACKAGECONFIG[pgsql] = "--with-pgsql${PGSQL},--without-pgsql,postgresql"
 PACKAGECONFIG[soap] = "--enable-libxml --enable-soap, --disable-soap, libxml2"
 PACKAGECONFIG[apache2] = "--with-apxs2=${STAGING_BINDIR_CROSS}/apxs,,apache2-native apache2"
 PACKAGECONFIG[pam] = ",,libpam"
-PACKAGECONFIG[imap] = " \
-	--with-imap=${STAGING_DIR_HOST} \
-	--with-imap-ssl=${STAGING_DIR_HOST} \
-	,--without-imap --without-imap-ssl \
-	,uw-imap"
+PACKAGECONFIG[imap] = "--with-imap=${DEPSETTING1} --with-imap-ssl=${DEPSETTING1},--without-imap --without-imap-ssl,uw-imap"
 PACKAGECONFIG[ipv6] = "--enable-ipv6,--disable-ipv6,"
 PACKAGECONFIG[valgrind] = "--with-valgrind=${STAGING_DIR_TARGET}/usr,--with-valgrind=no,valgrind"
 
