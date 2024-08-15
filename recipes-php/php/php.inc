@@ -87,7 +87,7 @@ export PEAR_INSTALLDIR
 
 DEPSETTING1 = "${@ 'shared,%s/..' % (d.getVar('STAGING_LIBDIR') if is_target_pkg(d) else d.getVar('STAGING_LIBDIR_NATIVE'))}"
 DEPSETTING2 = "${@ 'shared,%s%s' % (d.getVar('STAGING_DIR_TARGET') if is_target_pkg(d) else d.getVar('STAGING_DIR_NATIVE'), d.getVar('exec_prefix'))}"
-DEPSETTING3 = "=shared"
+DEPSETTING3 = "${@ '=shared' if is_target_pkg(d) else ''}"
 
 # Common EXTRA_OECONF
 COMMON_EXTRA_OECONF = " \
