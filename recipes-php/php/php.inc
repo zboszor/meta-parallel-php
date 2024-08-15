@@ -220,7 +220,7 @@ do_configure:prepend () {
 	find ${S} -name config.m4 | xargs -n1 sed -i 's!APXS_HTTPD=.*!APXS_HTTPD=${STAGING_BINDIR_NATIVE}/httpd!'
 }
 
-do_configure:append() {
+do_configure:append:class-target () {
 	# No, libtool, we really don't want rpath set...
 	sed -i 's|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g' libtool
 	sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' libtool
@@ -233,7 +233,18 @@ do_configure:append() {
 		${B}/scripts/php-config
 }
 
-do_install:append:class-native() {
+do_install:append:class-native () {
+	# No, libtool, we really don't want rpath set...
+	sed -i 's|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g' libtool
+	sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' libtool
+	sed -i -e's@${RECIPE_SYSROOT_NATIVE}@@g' \
+		-e's@-ffile-prefix-map=[^ ]*[ ]*@@g' \
+		-e's@-fdebug-prefix-map=[^ ]*[ ]*@@g' \
+		-e's@-ffile-prefix-map=[^ ]*[ ]*@@g' \
+		-e's@-fmacro-prefix-map=[^ ]*[ ]*@@g' \
+		${B}/main/build-defs.h \
+		${B}/scripts/php-config
+
 	rm -rf ${D}/${datadir}/pear${PHPVER}/.registry
 	rm -rf ${D}/${datadir}/pear${PHPVER}/.channels
 	rm -rf ${D}/${datadir}/pear${PHPVER}/.[a-z]*
