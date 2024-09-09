@@ -40,7 +40,7 @@ diff --git a/ext/date/config0.m4 b/ext/date/config0.m4
 index 6b803bf33e..53c3cdb3f4 100644
 --- a/ext/date/config0.m4
 +++ b/ext/date/config0.m4
-@@ -4,6 +4,19 @@ AC_CHECK_HEADERS([io.h])
+@@ -4,6 +4,19 @@
  dnl Check for strtoll, atoll
  AC_CHECK_FUNCS(strtoll atoll)
  
@@ -57,9 +57,9 @@ index 6b803bf33e..53c3cdb3f4 100644
 +   fi
 +fi
 +
- PHP_DATE_CFLAGS="-Wno-implicit-fallthrough -I@ext_builddir@/lib -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -DHAVE_TIMELIB_CONFIG_H=1"
- timelib_sources="lib/astro.c lib/dow.c lib/parse_date.c lib/parse_tz.c lib/parse_posix.c
-                  lib/timelib.c lib/tm2unixtime.c lib/unixtime2tm.c lib/parse_iso_intervals.c lib/interval.c"
+ AX_CHECK_COMPILE_FLAG([-Wno-implicit-fallthrough],
+   [PHP_DATE_CFLAGS="$PHP_DATE_CFLAGS -Wno-implicit-fallthrough"],,
+   [-Werror])
 diff --git a/ext/date/lib/parse_tz.c b/ext/date/lib/parse_tz.c
 index c7f93580d7..ec196a98b6 100644
 --- a/ext/date/lib/parse_tz.c
