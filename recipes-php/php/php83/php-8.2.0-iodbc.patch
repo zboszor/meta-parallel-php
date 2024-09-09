@@ -1,0 +1,41 @@
+From fbdf54c9efefaaa78277bbd951532cd9b6f0a16e Mon Sep 17 00:00:00 2001
+From: Remi Collet <remi@remirepo.net>
+Date: Wed, 14 Aug 2024 14:32:47 +0200
+Subject: [PATCH] fix libodbc detection for headers in sub directory
+
+---
+ ext/pdo_odbc/config.m4 | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/ext/pdo_odbc/config.m4 b/ext/pdo_odbc/config.m4
+index 72b604199bf72..b4478254ee0cb 100644
+--- a/ext/pdo_odbc/config.m4
++++ b/ext/pdo_odbc/config.m4
+@@ -40,6 +40,7 @@ if test "$PHP_PDO_ODBC" != "no"; then
+     pdo_odbc_dir=
+   fi
+ 
++  dnl TODO use PKG_CHECK_MODULES when possible
+   case $pdo_odbc_flavour in
+     ibm-db2)
+         pdo_odbc_def_libdir=/home/db2inst1/sqllib/lib
+@@ -51,6 +52,7 @@ if test "$PHP_PDO_ODBC" != "no"; then
+         pdo_odbc_def_libdir=/usr/local/$PHP_LIBDIR
+         pdo_odbc_def_incdir=/usr/local/include
+         pdo_odbc_def_lib=iodbc
++        pdo_odbc_subdir=libiodbc
+         ;;
+ 
+     unixODBC|unixodbc)
+@@ -85,6 +87,11 @@ if test "$PHP_PDO_ODBC" != "no"; then
+     PDO_ODBC_LIBDIR="$pdo_odbc_def_libdir"
+   fi
+ 
++  dnl handle installation in /usr/include/libiodbc
++  if test -n "$pdo_odbc_subdir" -a -d $PDO_ODBC_INCDIR/$pdo_odbc_subdir ; then
++    PDO_ODBC_INCDIR=$PDO_ODBC_INCDIR/$pdo_odbc_subdir
++  fi
++
+   AC_MSG_RESULT([$pdo_odbc_flavour
+           libs       $PDO_ODBC_LIBDIR,
+           headers    $PDO_ODBC_INCDIR])
