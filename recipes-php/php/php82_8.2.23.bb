@@ -54,7 +54,7 @@ SRC_URI:append:class-target = " \
 			file://php-8.1.0-libdb.patch \
 			file://php-8.2.0-curl.patch \
 			file://php-8.2.0-parser.patch \
-			file://php-8.1.0-systzdata-v24.patch \
+			file://php-8.2.23-systzdata-v24.patch \
 			file://php-7.4.0-phpize.patch \
 			file://php-7.4.0-ldap_r.patch \
 			file://php-8.0.7-argon2.patch \
@@ -63,7 +63,7 @@ SRC_URI:append:class-target = " \
 			file://php-7.4.0-datetests.patch \
 "
 
-SRC_URI[sha256sum] = "8566229bc88ad1f4aadc10700ab5fbcec81587c748999d985f11cf3b745462df"
+SRC_URI[sha256sum] = "81c5ae6ba44e262a076349ee54a2e468638a4571085d80bff37f6fd308e1d8d5"
 
 do_install:append:class-target() {
 	install -m 644 ${WORKDIR}/opcache-default.blacklist ${D}${sysconfdir}/php${PHPVER}/php.d/
