@@ -5,7 +5,7 @@ DEPENDS:append:class-native = " libpcre2-native "
 
 LIC_FILES_CHKSUM = "file://LICENSE;md5=fb07bfc51f6d5e0c30b65d9701233b2e"
 
-PR = "r5"
+PR = "r6"
 
 EXTRA_OECONF:append:class-target = " \
 	--enable-fpm=shared \
@@ -32,6 +32,7 @@ SRC_URI += " \
 	file://php-7.3.9-pcre2-use-pkgconfig.patch \
 	file://php-7.2.0-fix-phpize-for-parallel-installation.patch \
 	file://php-7.3.3-fix-phar-build.patch \
+	file://0001-Fix-bug-78823-add-zlib-library-to-mysqlnd.patch \
 	file://php.ini.native \
 	file://mod.ini \
 	file://20-openssl.ini \

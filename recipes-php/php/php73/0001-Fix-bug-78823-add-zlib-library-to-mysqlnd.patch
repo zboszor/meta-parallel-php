@@ -1,0 +1,48 @@
+From ee4295b4ce421003c2e1d2af98066826deb23319 Mon Sep 17 00:00:00 2001
+From: Arjen de Korte <build+github@de-korte.org>
+Date: Mon, 25 Nov 2019 23:54:49 +0100
+Subject: [PATCH] Fix bug #78823: add zlib library to mysqlnd
+
+The problem is newer binutils will no longer default to --copy-dt-needed-entries but use --no-copy-dt-needed-entries instead. So all libraries needed *must* be provided.
+
+Workarounds (either one works)
+1) Add "-Wl,--copy-dt-needed-entries" to LDFLAGS to bring back the old behavior of the linker
+2) Add "-lz" to list of libraries to be added
+
+In "ext/mysqlnd/mysqlnd_protocol_frame_codec.c" when the "zlib.h" header is included should also trigger adding '-lz' to the list of libraries.
+---
+ NEWS                   | 3 +++
+ ext/mysqlnd/config9.m4 | 3 +++
+ 2 files changed, 6 insertions(+)
+
+diff --git a/NEWS b/NEWS
+index 82f20812c01..8ae025b8e46 100644
+--- a/NEWS
++++ b/NEWS
+@@ -21,6 +21,9 @@ PHP                                                                        NEWS
+     (Maksim Nikulin)
+   . Fixed bug #78889 (php-fpm service fails to start). (Jakub Zelenka)
+ 
++- Mysqlnd:
++  . Fixed bug #78823 (ZLIB_LIBS not added to EXTRA_LIBS). (Arjen de Korte)
++
+ - OPcache:
+   . Fixed $x = (bool)$x; with opcache (should emit undeclared variable notice).
+     (Tyson Andre)
+diff --git a/ext/mysqlnd/config9.m4 b/ext/mysqlnd/config9.m4
+index 4084c7250b7..5c01ed762f1 100644
+--- a/ext/mysqlnd/config9.m4
++++ b/ext/mysqlnd/config9.m4
+@@ -24,6 +24,9 @@ if test "$PHP_MYSQLND" != "no" || test "$PHP_MYSQLND_ENABLED" = "yes"; then
+ 
+ 
+   if test "$PHP_MYSQLND_COMPRESSION_SUPPORT" != "no"; then
++    PKG_CHECK_MODULES([ZLIB], [zlib])
++    PHP_EVAL_LIBLINE($ZLIB_LIBS, MYSQLND_SHARED_LIBADD)
++    PHP_EVAL_INCLINE($ZLIB_CFLAGS)
+     AC_DEFINE([MYSQLND_COMPRESSION_WANTED], 1, [Enable compressed protocol support])
+   fi
+ 
+-- 
+2.46.0
+
