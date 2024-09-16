@@ -228,8 +228,8 @@ do_configure:append:class-target () {
 
 do_install:append:class-native () {
 	# No, libtool, we really don't want rpath set...
-	sed -i 's|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g' libtool
-	sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' libtool
+	sed -i 's|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g'${HOST_SYS}-libtool
+	sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g'${HOST_SYS}-libtool
 	sed -i -e's@${RECIPE_SYSROOT_NATIVE}@@g' \
 		-e's@-ffile-prefix-map=[^ ]*[ ]*@@g' \
 		-e's@-fdebug-prefix-map=[^ ]*[ ]*@@g' \
