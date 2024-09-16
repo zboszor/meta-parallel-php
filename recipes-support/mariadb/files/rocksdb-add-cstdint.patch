@@ -1,0 +1,43 @@
+Signed-off-by: Zoltán Böszörményi <zboszor@gmail.com>
+Upstream-Status: Backport
+
+--- mariadb-10.6.11.old/storage/rocksdb/rocksdb/db/compaction/compaction_iteration_stats.h	2022-11-03 10:07:26.000000000 +0000
++++ mariadb-10.6.11/storage/rocksdb/rocksdb/db/compaction/compaction_iteration_stats.h	2024-09-16 09:26:41.098716031 +0000
+@@ -5,6 +5,7 @@
+ 
+ #pragma once
+ 
++#include <cstdint>
+ #include "rocksdb/rocksdb_namespace.h"
+ 
+ struct CompactionIterationStats {
+--- mariadb-10.6.11.old/storage/rocksdb/rocksdb/table/block_based/data_block_hash_index.h	2022-11-03 10:07:26.000000000 +0000
++++ mariadb-10.6.11/storage/rocksdb/rocksdb/table/block_based/data_block_hash_index.h	2024-09-16 09:46:47.489381303 +0000
+@@ -5,6 +5,7 @@
+ 
+ #pragma once
+ 
++#include <cstdint>
+ #include <string>
+ #include <vector>
+ 
+--- mariadb-10.6.11.old/storage/rocksdb/rocksdb/util/string_util.h	2022-11-03 10:07:26.000000000 +0000
++++ mariadb-10.6.11/storage/rocksdb/rocksdb/util/string_util.h	2024-09-16 09:56:18.207622021 +0000
+@@ -6,6 +6,7 @@
+ 
+ #pragma once
+ 
++#include <cstdint>
+ #include <sstream>
+ #include <string>
+ #include <unordered_map>
+--- mariadb-10.6.11.old/storage/rocksdb/rocksdb/include/rocksdb/utilities/checkpoint.h	2022-11-03 10:07:26.000000000 +0000
++++ mariadb-10.6.11/storage/rocksdb/rocksdb/include/rocksdb/utilities/checkpoint.h	2024-09-16 10:08:44.168451538 +0000
+@@ -8,6 +8,7 @@
+ #pragma once
+ #ifndef ROCKSDB_LITE
+ 
++#include <cstdint>
+ #include <string>
+ #include <vector>
+ #include "rocksdb/status.h"
