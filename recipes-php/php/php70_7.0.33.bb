@@ -8,7 +8,7 @@ DEPENDS:append:class-native = " libmcrypt-native "
 
 LIC_FILES_CHKSUM = "file://LICENSE;md5=c0af599f66d0461c5837c695fcbc5c1e"
 
-PR = "r17"
+PR = "r18"
 
 EXTRA_OECONF:append:class-target = " \
 	--enable-crosscompiling \
@@ -40,6 +40,7 @@ SRC_URI += " \
 	file://readdir.patch \
 	file://cookie-funcs-use-off64_t.patch \
 	file://fix-func-prototypes-in-m4.patch \
+	file://0001-Fix-bug-78823-add-zlib-library-to-mysqlnd.patch \
 	file://php.ini.native \
 	file://mod.ini \
 	file://20-openssl.ini \
