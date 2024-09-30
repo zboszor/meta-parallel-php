@@ -5,7 +5,7 @@ DEPENDS:append:class-native = " libmcrypt-native "
 
 LIC_FILES_CHKSUM = "file://LICENSE;md5=fb07bfc51f6d5e0c30b65d9701233b2e"
 
-PR = "r5"
+PR = "r6"
 
 # PHP 7.1 doesn't have --with-valgrind
 PACKAGECONFIG[valgrind] = ""
@@ -39,6 +39,7 @@ SRC_URI += " \
 	file://readdir.patch \
 	file://cookie-funcs-use-off64_t.patch \
 	file://fix-func-prototypes-in-m4.patch \
+	file://0001-Fix-bug-78823-add-zlib-library-to-mysqlnd.patch \
 	file://php.ini.native \
 	file://mod.ini \
 	file://20-openssl.ini \
