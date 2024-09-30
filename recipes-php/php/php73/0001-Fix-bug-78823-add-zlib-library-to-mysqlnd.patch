@@ -11,24 +11,9 @@ Workarounds (either one works)
 
 In "ext/mysqlnd/mysqlnd_protocol_frame_codec.c" when the "zlib.h" header is included should also trigger adding '-lz' to the list of libraries.
 ---
- NEWS                   | 3 +++
  ext/mysqlnd/config9.m4 | 3 +++
  2 files changed, 6 insertions(+)
 
-diff --git a/NEWS b/NEWS
-index 82f20812c01..8ae025b8e46 100644
---- a/NEWS
-+++ b/NEWS
-@@ -21,6 +21,9 @@ PHP                                                                        NEWS
-     (Maksim Nikulin)
-   . Fixed bug #78889 (php-fpm service fails to start). (Jakub Zelenka)
- 
-+- Mysqlnd:
-+  . Fixed bug #78823 (ZLIB_LIBS not added to EXTRA_LIBS). (Arjen de Korte)
-+
- - OPcache:
-   . Fixed $x = (bool)$x; with opcache (should emit undeclared variable notice).
-     (Tyson Andre)
 diff --git a/ext/mysqlnd/config9.m4 b/ext/mysqlnd/config9.m4
 index 4084c7250b7..5c01ed762f1 100644
 --- a/ext/mysqlnd/config9.m4
