@@ -13,7 +13,7 @@ SRC_URI = " \
 			file://my_screw.h \
 		"
 
-S = "${WORKDIR}"
+S = "${UNPACKDIR}"
 
 do_compile () {
 	${CC} ${CFLAGS} ${LDFLAGS} -o unscrew unscrew.c -lphpscrew
