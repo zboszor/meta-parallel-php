@@ -9,7 +9,7 @@ FILESEXTRAPATHS:prepend = "${FILE_DIRNAME}/php-symlinks:"
 
 SRC_URI = "file://LICENSE"
 
-S = "${WORKDIR}"
+S = "${UNPACKDIR}"
 
 inherit allarch
 
