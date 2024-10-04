@@ -11,6 +11,6 @@ SRCREV = "df66d1c8cdea548880f61c60057cf7585aeda73b"
 
 SRC_URI = "git://github.com/zboszor/libphpscrew.git;protocol=https;nobranch=1"
 
-S = "${WORKDIR}/git"
+S = "${UNPACKDIR}/git"
 
 inherit pkgconfig autotools-brokensep
