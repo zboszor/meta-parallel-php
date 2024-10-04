@@ -13,4 +13,4 @@ SRC_URI = " \
 	file://01-php_screw.ini \
 "
 
-S = "${WORKDIR}/git"
+S = "${UNPACKDIR}/git"
