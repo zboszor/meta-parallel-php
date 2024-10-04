@@ -11,7 +11,7 @@ SRC_URI = "https://github.com/composer/composer/releases/download/${PV}/composer
 
 do_install () {
 	install -d -m755 ${D}${bindir}
-	install -m755 ${WORKDIR}/composer-${PV}.phar ${D}${bindir}/composer
+	install -m755 ${UNPACKDIR}/composer-${PV}.phar ${D}${bindir}/composer
 }
 
 BBCLASSEXTEND = "native"
