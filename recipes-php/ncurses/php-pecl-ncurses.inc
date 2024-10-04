@@ -19,6 +19,6 @@ SRC_URI = " \
 			file://40-ncurses.ini \
 		"
 
-S = "${WORKDIR}/git"
+S = "${UNPACKDIR}/git"
 
 EXTRA_OECONF = "--with-ncurses=${STAGING_LIBDIR}/.. --enable-ncursesw"
