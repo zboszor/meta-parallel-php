@@ -19,4 +19,4 @@ SRC_URI = " \
 
 SRC_URI[sha256sum] = "f48777371f90cbb315ea4ea082a1ede6765bcfb35d7d6356ab8f71fd6dfcc157"
 
-S = "${WORKDIR}/xdebug-${PV}"
+S = "${UNPACKDIR}/xdebug-${PV}"
