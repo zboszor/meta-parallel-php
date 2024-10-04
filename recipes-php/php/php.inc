@@ -67,7 +67,7 @@ SRC_URI:append:class-target = " \
 	file://php-fpm.sysconfig \
 "
 
-S = "${WORKDIR}/php-${PV}${BETALEVEL}"
+S = "${UNPACKDIR}/php-${PV}${BETALEVEL}"
 
 inherit autotools-brokensep pkgconfig python3native gettext systemd
 
@@ -282,15 +282,15 @@ install_php_module_ini () {
 		esac
 
 		# some extensions may have their own config file
-		if [ -f ${WORKDIR}/${ini} ]; then
-			install -m644 ${WORKDIR}/${ini} ${D}${sysconfdir}/php${PHPVER}/php.d/${ini}
+		if [ -f ${UNPACKDIR}/${ini} ]; then
+			install -m644 ${UNPACKDIR}/${ini} ${D}${sysconfdir}/php${PHPVER}/php.d/${ini}
 		else
-			cat ${WORKDIR}/mod.ini | sed "s/@MOD@/${mod}/" > ${D}${sysconfdir}/php${PHPVER}/php.d/${ini}
+			cat ${UNPACKDIR}/mod.ini | sed "s/@MOD@/${mod}/" > ${D}${sysconfdir}/php${PHPVER}/php.d/${ini}
 		fi
 	done
 
 	# Install extra configuration
-	install -m644 ${WORKDIR}/50-date.ini ${D}${sysconfdir}/php${PHPVER}/php.d/
+	install -m644 ${UNPACKDIR}/50-date.ini ${D}${sysconfdir}/php${PHPVER}/php.d/
 
 	# Rename PHAR files
 	if [ -f "${D}${bindir}/phar.phar" ]; then
@@ -341,7 +341,7 @@ do_install:append:class-target() {
 
 	if ${@bb.utils.contains('DISTRO_FEATURES','systemd','true','false',d)};then
 		install -d ${D}${systemd_unitdir}/system
-		install -m 0644 ${WORKDIR}/php-fpm.service ${D}${systemd_unitdir}/system/php-fpm${PHPVER}.service
+		install -m 0644 ${UNPACKDIR}/php-fpm.service ${D}${systemd_unitdir}/system/php-fpm${PHPVER}.service
 		sed -i -e 's,@SYSCONFDIR@,${sysconfdir},g' \
 			-e 's,@LOCALSTATEDIR@,${localstatedir},g' \
 			-e 's,@PHPVER@,${PHPVER},g' \
@@ -361,7 +361,7 @@ do_install:append:class-target() {
 		install -d ${D}${sysconfdir}/apache2/modules.d
 		install -d ${D}${sysconfdir}/php/apache2-php5
 		install -m 755  libs/libphp5.so ${D}${libdir}/apache2/modules
-		install -m 644  ${WORKDIR}/70_mod_php5.conf ${D}${sysconfdir}/apache2/modules.d
+		install -m 644  ${UNPACKDIR}/70_mod_php5.conf ${D}${sysconfdir}/apache2/modules.d
 		sed -i s,lib/,${libdir}/, ${D}${sysconfdir}/apache2/modules.d/70_mod_php5.conf
 		cat ${S}/php.ini-production | \
 			sed -e 's,extension_dir = \"\./\",extension_dir = \"/usr/lib/extensions\",' \
@@ -370,7 +370,7 @@ do_install:append:class-target() {
 	fi
 
 	install -d -m0755 ${D}${sysconfdir}/sysconfig
-	install -m0644 ${WORKDIR}/php-fpm.sysconfig ${D}${sysconfdir}/sysconfig/php-fpm${PHPVER}
+	install -m0644 ${UNPACKDIR}/php-fpm.sysconfig ${D}${sysconfdir}/sysconfig/php-fpm${PHPVER}
 	install -d ${D}${sysconfdir}/php${PHPVER}
 	install -d ${D}${sysconfdir}/php${PHPVER}/php.d
 	mkdir -p ${D}${localstatedir}/lib/php${PHPVER}/session
@@ -389,7 +389,7 @@ do_install:append:class-target() {
 
 do_install:append:class-native () {
 	install -m0755 -d ${D}${sysconfdir}/php${PHPVER}
-	install -m0644 ${WORKDIR}/php.ini.native ${D}${sysconfdir}/php${PHPVER}/php.ini
+	install -m0644 ${UNPACKDIR}/php.ini.native ${D}${sysconfdir}/php${PHPVER}/php.ini
 	install -m0755 -d ${D}${sysconfdir}/php${PHPVER}/php.d
 
 	install_php_module_ini

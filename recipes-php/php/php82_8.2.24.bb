@@ -66,7 +66,7 @@ SRC_URI:append:class-target = " \
 SRC_URI[sha256sum] = "80a5225746a9eb484475b312d4c626c63a88a037d8e56d214f30205e1ba1411a"
 
 do_install:append:class-target() {
-	install -m 644 ${WORKDIR}/opcache-default.blacklist ${D}${sysconfdir}/php${PHPVER}/php.d/
+	install -m 644 ${UNPACKDIR}/opcache-default.blacklist ${D}${sysconfdir}/php${PHPVER}/php.d/
 }
 
 do_install:append:class-native() {

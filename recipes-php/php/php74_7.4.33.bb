@@ -91,7 +91,7 @@ SRC_URI:append:class-target = " \
 SRC_URI[sha256sum] = "924846abf93bc613815c55dd3f5809377813ac62a9ec4eb3778675b82a27b927"
 
 do_install:append:class-target() {
-	install -m 644 ${WORKDIR}/opcache-default.blacklist ${D}${sysconfdir}/php${PHPVER}/php.d/
+	install -m 644 ${UNPACKDIR}/opcache-default.blacklist ${D}${sysconfdir}/php${PHPVER}/php.d/
 }
 
 PACKAGES =+ "php${PHPVER}-json php${PHPVER}-sodium"
