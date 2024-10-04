@@ -18,4 +18,4 @@ SRC_URI = " \
 	file://20-posixrealtime.ini \
 "
 
-S = "${WORKDIR}/git"
+S = "${UNPACKDIR}/git"
