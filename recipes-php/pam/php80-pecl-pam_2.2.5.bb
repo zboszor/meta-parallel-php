@@ -20,6 +20,6 @@ SRC_URI = " \
 
 SRC_URI[sha256sum] = "aa4e51a3f975b1462dd2cda82ce2288bd87efb5e01cd439ae086758b85e19b82"
 
-S = "${WORKDIR}/pam-${PV}"
+S = "${UNPACKDIR}/pam-${PV}"
 
 EXTRA_OECONF += "--with-pam=${STAGING_LIBDIR}/.."
