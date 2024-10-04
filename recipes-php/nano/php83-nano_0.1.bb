@@ -21,4 +21,4 @@ SRC_URI = " \
 			file://20-nano.ini \
 		"
 
-S = "${WORKDIR}/git"
+S = "${UNPACKDIR}/git"
