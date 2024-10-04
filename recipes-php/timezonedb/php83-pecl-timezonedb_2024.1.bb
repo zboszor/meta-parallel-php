@@ -20,4 +20,4 @@ SRC_URI = " \
 
 SRC_URI[sha256sum] = "6031d5c4fe7daba91e5b6cf46a58b0df89d8e1a963d28f38b3df091843c39c46"
 
-S = "${WORKDIR}/timezonedb-${PV}"
+S = "${UNPACKDIR}/timezonedb-${PV}"
