@@ -19,6 +19,6 @@ SRC_URI = " \
 	file://20-crack.ini \
 "
 
-S = "${WORKDIR}/git"
+S = "${UNPACKDIR}/git"
 
 EXTRA_OECONF = "--with-crack=${STAGING_LIBDIR}/.."
