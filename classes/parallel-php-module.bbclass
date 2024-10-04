@@ -50,7 +50,7 @@ phpmod_install_target () {
 
 	install -d -m0755 ${D}${sysconfdir}/php${PHPVERSION}/php.d
 
-	for conf in ${WORKDIR}/*.ini ; do
+	for conf in ${UNPACKDIR}/*.ini ; do
 		if [ -f "$conf" ]; then
 			install -m0644 "$conf" "${D}${sysconfdir}/php${PHPVERSION}/php.d/"
 		fi
@@ -79,7 +79,7 @@ phpmod_install_native () {
 
 	install -d -m0755 ${D}${sysconfdir}/php${PHPVERSION}/php.d
 
-	for conf in ${WORKDIR}/*.ini ; do
+	for conf in ${UNPACKDIR}/*.ini ; do
 		if [ -f "$conf" ]; then
 			install -m0644 "$conf" "${D}${sysconfdir}/php${PHPVERSION}/php.d/"
 		fi
