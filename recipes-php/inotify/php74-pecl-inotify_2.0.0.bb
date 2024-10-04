@@ -22,4 +22,4 @@ SRC_URI = " \
 SRC_URI[md5sum] = "f7a951b3c66d08f5e7889479f5fc7564"
 SRC_URI[sha256sum] = "d044a89d26bbaa110f34f182b1c92ab5eb09768096bacf3d837d7e49ac045107"
 
-S = "${WORKDIR}/inotify-${PV}"
+S = "${UNPACKDIR}/inotify-${PV}"

@@ -21,4 +21,4 @@ SRC_URI = " \
 
 SRC_URI[sha256sum] = "c71b78644c0115579cc794f58e78441441751d78040b9d9d1a223d3e9c2d723d"
 
-S = "${WORKDIR}/inotify-${PV}"
+S = "${UNPACKDIR}/inotify-${PV}"
