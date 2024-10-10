@@ -1,6 +1,6 @@
 DESCRIPTION = "libphpscrew - php-screw core functions in a library"
 HOMEPAGE = "https://github.com/zboszor/libphpscrew"
-LICENSE = "BSD"
+LICENSE = "BSD-3-Clause"
 LIC_FILES_CHKSUM = "file://COPYING;md5=cc437efa0395fbb3b9d40e3ccf342ea3"
 DEPENDS = "zlib"
 BBCLASSEXTEND = "native"
