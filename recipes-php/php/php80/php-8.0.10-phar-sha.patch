@@ -6,6 +6,7 @@ From: Remi Collet <remi@remirepo.net>
 Date: Thu, 5 Aug 2021 11:10:15 +0200
 Subject: [PATCH] switch phar to use sha256 signature by default
 
+Upstream-Status: Backport [8bb0c74e24359a11216824117ac3adf3d5ef7b71]
 ---
  ext/phar/phar/pharcommand.inc                  | 2 +-
  ext/phar/tests/create_new_and_modify.phpt      | 4 ++--

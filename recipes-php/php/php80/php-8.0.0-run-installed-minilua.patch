@@ -1,3 +1,5 @@
+Upstream-Status: Inappropriate [cross compile specific]
+
 diff -durpN php-8.0.0.orig/ext/opcache/jit/Makefile.frag php-8.0.0/ext/opcache/jit/Makefile.frag
 --- php-8.0.0.orig/ext/opcache/jit/Makefile.frag	2020-11-24 12:04:03.000000000 -0500
 +++ php-8.0.0/ext/opcache/jit/Makefile.frag	2020-12-15 09:13:53.385857004 -0500

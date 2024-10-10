@@ -13,6 +13,7 @@ From: Remi Collet <remi@remirepo.net>
 Date: Mon, 28 Dec 2020 08:33:09 +0100
 Subject: [PATCH] rename COMPILER and ARCHITECTURE macro (too generic)
 
+Upstream-Status: Backport [9bf43c45908433d382f0499d529849172d0d8206]
 ---
  configure.ac             |  4 ++--
  ext/standard/info.c      |  8 ++++----

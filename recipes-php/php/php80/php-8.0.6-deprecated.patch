@@ -4,6 +4,7 @@ Date: Wed, 5 May 2021 15:41:00 +0200
 Subject: [PATCH] get rid of inet_aton and inet_ntoa use inet_ntop iand
  inet_pton where available standardize buffer size
 
+Upstream-Status: Backport [f9547f2b47633d30087703df04f7d8e20f89ec80]
 ---
  ext/sockets/sockaddr_conv.c |  4 ++++
  ext/sockets/sockets.c       | 48 +++++++++++++++++++++++++------------

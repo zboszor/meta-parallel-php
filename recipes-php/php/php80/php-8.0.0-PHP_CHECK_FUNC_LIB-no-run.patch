@@ -1,3 +1,5 @@
+Upstream-Status: Inappropriate [cross compile specific]
+
 diff -durpN php-8.0.0.orig/build/php.m4 php-8.0.0/build/php.m4
 --- php-8.0.0.orig/build/php.m4	2020-12-15 07:24:45.334205812 -0500
 +++ php-8.0.0/build/php.m4	2020-12-15 07:29:34.415528812 -0500

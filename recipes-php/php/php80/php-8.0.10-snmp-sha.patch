@@ -6,6 +6,7 @@ From: Remi Collet <remi@php.net>
 Date: Wed, 11 Aug 2021 13:02:18 +0200
 Subject: [PATCH] add SHA256 and SHA512 for security protocol
 
+Upstream-Status: Backport [718e91343fddb8817a004f96f111c424843bf746]
 ---
  ext/snmp/config.m4                            | 18 +++++++++-
  ext/snmp/snmp.c                               | 33 ++++++++++++++++++-

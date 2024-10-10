@@ -5,6 +5,7 @@ Subject: [PATCH] Fix GH-11071: Revert "Fix [-Wundef] warning in INTL
  extension"
 
 This reverts commit ea8686540ac43e59dd3f8784e29a0c06e3446df2.
+Upstream-Status: Backport [31e21f7dbce5ff270c20e7642407a2c2405a6aaf]
 ---
  ext/intl/php_intl.c | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)

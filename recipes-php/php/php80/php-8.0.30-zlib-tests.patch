@@ -9,6 +9,8 @@ Subject: [PATCH] Fix GH-13217 Test failure with zlib-ng
 As compressed result may be different
 - drop or relax expectations on compressed data
 - rely on uncompressed result of compressed data
+
+Upstream-Status: Backport [5e12844d4d0053f3c3f1b20635efdb6f30e85190]
 ---
  ext/zlib/tests/bug48725_2.phpt            |  4 +-
  ext/zlib/tests/bug71417.phpt              |  2 +-
