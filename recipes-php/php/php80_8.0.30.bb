@@ -44,6 +44,8 @@ SRC_URI += " \
 	file://20-snmp.ini \
 	file://50-date.ini \
 	file://opcache-default.blacklist \
+	file://0001-Fix-cookie_seek_function_t-signature-under-musl-1389.patch \
+	file://0002-ext-intl-level-up-c-runtime-std-for-icu-74-and-onwar.patch \
 "
 
 SRC_URI:append:class-target = " \
