@@ -9,6 +9,8 @@ inherit allarch
 # We have just pull the pre-built composer
 SRC_URI = "https://github.com/composer/composer/releases/download/${PV}/composer.phar;downloadfilename=composer-${PV}.phar"
 
+S = "${UNPACKDIR}"
+
 do_install () {
 	install -d -m755 ${D}${bindir}
 	install -m755 ${UNPACKDIR}/composer-${PV}.phar ${D}${bindir}/composer
