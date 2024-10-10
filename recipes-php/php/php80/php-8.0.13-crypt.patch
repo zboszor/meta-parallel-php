@@ -4,6 +4,7 @@ Date: Fri, 15 Oct 2021 17:11:12 +0200
 Subject: [PATCH] add --with-external-libcrypt build option display an error
  message if some algo not available in external libcrypt
 
+Upstream-Status: Backport [5cdc65e245e74dbd2abd713185ea495b5077f9d6]
 ---
  ext/standard/config.m4 | 21 ++++++++++++++++-----
  1 file changed, 16 insertions(+), 5 deletions(-)

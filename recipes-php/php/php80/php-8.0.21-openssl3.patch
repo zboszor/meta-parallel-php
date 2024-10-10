@@ -4,6 +4,7 @@ Date: Sun, 8 Aug 2021 17:38:30 +0200
 Subject: [PATCH 01/39] minimal fix for openssl 3.0 (#7002)
 
 (cherry picked from commit a0972deb0f441fc7991001cb51efc994b70a3b51)
+Upstream-Status: Backport [a0972deb0f441fc7991001cb51efc994b70a3b51]
 ---
  ext/openssl/openssl.c | 2 ++
  1 file changed, 2 insertions(+)
