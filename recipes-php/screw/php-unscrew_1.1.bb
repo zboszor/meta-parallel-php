@@ -1,6 +1,6 @@
 DESCRIPTION = "PHP UnScrew is a too to decrypt PHP scripts encrypted with PHP Screw."
 SECTION = "console/network"
-LICENSE = "BSD"
+LICENSE = "BSD-3-Clause"
 LIC_FILES_CHKSUM = "file://unscrew.c;md5=30987cce86f12f5c2d45740690c6d0ae"
 DEPENDS += "zlib libphpscrew"
 
