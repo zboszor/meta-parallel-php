@@ -1,3 +1,5 @@
+Upstream-Status: Inappropriate [cross compile specific]
+
 diff -up ./scripts/phpize.in.headers ./scripts/phpize.in
 --- ./scripts/phpize.in.headers	2019-07-23 10:05:11.000000000 +0200
 +++ ./scripts/phpize.in	2019-07-23 10:18:13.648098089 +0200

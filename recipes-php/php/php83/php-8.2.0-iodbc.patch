@@ -3,6 +3,7 @@ From: Remi Collet <remi@remirepo.net>
 Date: Wed, 14 Aug 2024 14:32:47 +0200
 Subject: [PATCH] fix libodbc detection for headers in sub directory
 
+Upstream-Status: Inappropriate [Red Hat specific]
 ---
  ext/pdo_odbc/config.m4 | 7 +++++++
  1 file changed, 7 insertions(+)

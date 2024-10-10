@@ -1,3 +1,5 @@
+Upstream-Status: Inappropriate [cross compile specific]
+
 diff -durpN php-8.1.0.orig/ext/opcache/config.m4 php-8.1.0/ext/opcache/config.m4
 --- php-8.1.0.orig/ext/opcache/config.m4	2021-11-29 13:32:15.230416521 +0000
 +++ php-8.1.0/ext/opcache/config.m4	2021-11-29 13:36:20.176159078 +0000

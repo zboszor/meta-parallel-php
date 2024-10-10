@@ -1,3 +1,5 @@
+Upstream-Status: Inappropriate [cross compile specific]
+
 --- php-8.3.0/ext/fileinfo/config.m4.orig	2023-11-21 15:40:35.000000000 +0100
 +++ php-8.3.0/ext/fileinfo/config.m4	2023-11-27 13:40:43.090788741 +0100
 @@ -3,6 +3,10 @@
