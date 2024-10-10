@@ -35,6 +35,7 @@ r3: fix a crash if /usr/share/zoneinfo doesn't exist (Raphael Geissert)
 r2: add filesystem trawl to set up name alias index
 r1: initial revision
 
+Upstream-Status: Inappropriate [Red Hat specific]
 
 diff --git a/ext/date/config0.m4 b/ext/date/config0.m4
 index 6b803bf33e..53c3cdb3f4 100644
