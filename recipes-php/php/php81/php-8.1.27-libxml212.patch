@@ -4,6 +4,7 @@ Date: Fri, 1 Dec 2023 18:03:35 +0100
 Subject: [PATCH] Fix libxml2 2.12 build due to API breaks
 
 See https://github.com/php/php-src/actions/runs/7062192818/job/19225478601
+Upstream-Status: Backport [0a39890c967aa57225bb6bdf4821aff7a3a3c082]
 ---
  ext/libxml/libxml.c | 14 ++++++++++----
  ext/soap/php_sdl.c  |  2 +-
