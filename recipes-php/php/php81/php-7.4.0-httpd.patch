@@ -4,6 +4,7 @@ mod_php is build twice
 - as NTS without option
 - as ZTS using --enable-maintainer-zts
 
+Upstream-Status: Inappropriate [Red Hat specific]
 diff --git a/sapi/apache2handler/config.m4 b/sapi/apache2handler/config.m4
 --- a/sapi/apache2handler/config.m4
 +++ b/sapi/apache2handler/config.m4

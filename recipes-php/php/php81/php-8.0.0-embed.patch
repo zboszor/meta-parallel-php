@@ -1,3 +1,5 @@
+Upstream-Status: Inappropriate [cross compile specific]
+
 diff -up ./sapi/embed/config.m4.embed ./sapi/embed/config.m4
 --- ./sapi/embed/config.m4.embed	2020-07-07 13:51:05.879764972 +0200
 +++ ./sapi/embed/config.m4	2020-07-07 13:52:50.128412148 +0200

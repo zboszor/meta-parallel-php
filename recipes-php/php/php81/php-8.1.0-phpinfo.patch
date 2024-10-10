@@ -6,6 +6,7 @@ The available extensions are not related to this command.
 Replace full GCC name by gcc in php -v output
 
 
+Upstream-Status: Inappropriate [Red Hat specific]
 diff -up ./ext/standard/info.c.phpinfo ./ext/standard/info.c
 --- ./ext/standard/info.c.phpinfo	2020-07-21 10:49:31.000000000 +0200
 +++ ./ext/standard/info.c	2020-07-21 11:41:56.295633523 +0200

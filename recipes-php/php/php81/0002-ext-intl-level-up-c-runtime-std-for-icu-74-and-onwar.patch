@@ -1,0 +1,39 @@
+From b5f72bcfc122861b7d5e02e53a5021840aeceb35 Mon Sep 17 00:00:00 2001
+From: David Carlier <devnexen@gmail.com>
+Date: Sat, 17 Feb 2024 21:38:21 +0000
+Subject: [PATCH 2/2] ext/intl: level up c++ runtime std for icu 74 and
+ onwards.
+
+to align with what is required to build icu 74 itself.
+
+Close GH-14002
+Upstream-Status: Backport [cc46a4e6b5a413bab3e264c1dcaaf7052f54fbc4]
+---
+ ext/intl/config.m4 | 11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
+
+diff --git a/ext/intl/config.m4 b/ext/intl/config.m4
+index daadd3e73d8..0836fd039e2 100644
+--- a/ext/intl/config.m4
++++ b/ext/intl/config.m4
+@@ -85,7 +85,16 @@ if test "$PHP_INTL" != "no"; then
+     breakiterator/codepointiterator_methods.cpp"
+ 
+   PHP_REQUIRE_CXX()
+-  PHP_CXX_COMPILE_STDCXX(11, mandatory, PHP_INTL_STDCXX)
++
++  AC_MSG_CHECKING([if intl requires -std=gnu++17])
++  AS_IF([test "$PKG_CONFIG icu-uc --atleast-version=74"],[
++    AC_MSG_RESULT([yes])
++    PHP_CXX_COMPILE_STDCXX(17, mandatory, PHP_INTL_STDCXX)
++  ],[
++    AC_MSG_RESULT([no])
++    PHP_CXX_COMPILE_STDCXX(11, mandatory, PHP_INTL_STDCXX)
++  ])
++
+   PHP_INTL_CXX_FLAGS="$INTL_COMMON_FLAGS $PHP_INTL_STDCXX $ICU_CXXFLAGS"
+   case $host_alias in
+   *cygwin*) PHP_INTL_CXX_FLAGS="$PHP_INTL_CXX_FLAGS -D_POSIX_C_SOURCE=200809L"
+-- 
+2.46.2
+
