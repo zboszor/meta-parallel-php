@@ -1,3 +1,5 @@
+Upstream-Status: Backport [aeaab8ee3e52f74c042a861e394437d6554b36be]
+
 diff -up php-7.4.33/ext/pdo_oci/oci_statement.c.gcc14 php-7.4.33/ext/pdo_oci/oci_statement.c
 --- php-7.4.33/ext/pdo_oci/oci_statement.c.gcc14	2022-10-31 11:36:05.000000000 +0100
 +++ php-7.4.33/ext/pdo_oci/oci_statement.c	2024-02-14 15:05:34.224568567 +0100

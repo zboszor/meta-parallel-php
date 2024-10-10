@@ -1,3 +1,5 @@
+Upstream-Status: Inappropriate [cross compile specific]
+
 --- php-7.4.11/ext/phar/Makefile.frag	2018-12-04 11:12:23.000000000 -0500
 +++ php-7.4.11/ext/phar/Makefile.frag	2019-01-04 05:57:18.079360729 -0500
 @@ -8,22 +8,10 @@
