@@ -1,3 +1,4 @@
+Upstream-Status: Backport
 --- a/ext/date/tests/bug66985.phpt	2014-10-30 07:32:03.297693403 +0100
 +++ b/ext/date/tests/bug66985.phpt	2014-10-30 07:32:45.138877977 +0100
 @@ -3,7 +3,7 @@

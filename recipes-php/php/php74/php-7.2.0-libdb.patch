@@ -1,3 +1,5 @@
+Upstream-Status: Inappropriate [cross compile specific]
+
 diff -up php-7.2.0alpha0/ext/dba/config.m4.libdb php-7.2.0alpha0/ext/dba/config.m4
 --- php-7.2.0alpha0/ext/dba/config.m4.libdb	2017-05-29 08:56:06.000000000 +0200
 +++ php-7.2.0alpha0/ext/dba/config.m4	2017-05-29 09:13:52.014823282 +0200

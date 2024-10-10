@@ -1,3 +1,4 @@
+Upstream-Status: Inappropriate [cross compile specific]
 --- php-7.4.11/build/php.m4.orig	2020-10-09 07:09:50.588538423 -0400
 +++ php-7.4.11/build/php.m4	2020-10-09 07:10:52.022988805 -0400
 @@ -1950,7 +1950,7 @@

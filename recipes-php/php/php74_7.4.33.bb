@@ -67,7 +67,6 @@ SRC_URI:append:class-target = " \
 	file://php-7.4.0-ldap_r.patch \
 	file://php-7.4.20-argon2.patch \
 	file://php-7.4.8-phpinfo.patch \
-	file://php-7.2.0-oci8conf.patch \
 	file://php-7.0.10-datetests.patch \
 	file://php-7.4.11-PHP_CHECK_FUNC_LIB-no-run.patch \
 	file://php-7.4.11-reproducible-build.patch \

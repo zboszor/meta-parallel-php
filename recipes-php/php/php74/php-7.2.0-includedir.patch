@@ -1,3 +1,5 @@
+Upstream-Status: Inappropriate [cross compile specific]
+
 --- php-7.2.0/configure.ac.includedir
 +++ php-7.2.0/configure.ac
 @@ -1283,7 +1283,7 @@

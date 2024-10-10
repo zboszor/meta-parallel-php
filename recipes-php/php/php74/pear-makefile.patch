@@ -1,3 +1,4 @@
+Upstream-Status: Inappropriate [cross compile specific]
 diff -durpN php-7.3.0.1/pear/Makefile.frag php-7.3.0.2/pear/Makefile.frag
 --- php-7.3.0.1/pear/Makefile.frag	2018-12-04 11:12:20.000000000 -0500
 +++ php-7.3.0.2/pear/Makefile.frag	2019-01-04 05:56:06.845168263 -0500
