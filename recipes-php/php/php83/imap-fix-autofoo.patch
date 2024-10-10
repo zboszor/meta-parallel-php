@@ -1,3 +1,5 @@
+Upstream-Status: Inappropriate [cross compile specific]
+
 diff -durpN php-7.3.3.orig/ext/imap/config.m4 php-7.3.3/ext/imap/config.m4
 --- php-7.3.3.orig/ext/imap/config.m4	2019-03-05 08:50:41.000000000 -0500
 +++ php-7.3.3/ext/imap/config.m4	2019-03-27 05:51:02.953967860 -0400
