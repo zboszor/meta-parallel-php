@@ -1,3 +1,5 @@
+Upstream-Status: Inappropriate [cross compile specific]
+
 diff -durpN php-7.4.11.orig/configure.ac php-7.4.11/configure.ac
 --- php-7.4.11.orig/configure.ac	2019-03-27 06:32:21.228353553 -0400
 +++ php-7.4.11/configure.ac	2019-03-27 06:46:07.430549722 -0400

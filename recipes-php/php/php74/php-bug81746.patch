@@ -12,6 +12,7 @@ We'll let the DOM and XML case handle a potentially too long path in the
 library code.
 
 (cherry picked from commit ec10b28d64decbc54aa1e585dce580f0bd7a5953)
+Upstream-Status: Backport [ec10b28d64decbc54aa1e585dce580f0bd7a5953]
 ---
  ext/dom/document.c            | 2 +-
  ext/xmlreader/php_xmlreader.c | 2 +-

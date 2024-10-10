@@ -1,3 +1,5 @@
+Upstream-Status: Inappropriate [cross compile specific]
+
 diff -durpN php-7.4.11.orig/ext/iconv/config.m4 php-7.4.11/ext/iconv/config.m4
 --- php-7.4.11.orig/ext/iconv/config.m4	2020-10-09 08:04:45.951837732 -0400
 +++ php-7.4.11/ext/iconv/config.m4	2020-10-09 08:06:36.874657935 -0400

@@ -3,6 +3,7 @@ Drop "Configure Command" from phpinfo as it doesn't
 provide any useful information.
 The available extensions are not related to this command.
 
+Upstream-Status: Inappropriate [Red Hat specific]
 diff -up a/ext/standard/info.c.phpinfo v/ext/standard/info.c
 --- a/ext/standard/info.c.phpinfo	2015-08-18 23:39:24.000000000 +0200
 +++ b/ext/standard/info.c	2015-08-22 07:56:18.344761928 +0200

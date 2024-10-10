@@ -22,6 +22,7 @@ because BCrypt hashes containing a `$` character in their salt are not valid
 BCrypt hashes.
 
 (cherry picked from commit c840f71524067aa474c00c3eacfb83bd860bfc8a)
+Upstream-Status: Backport [c840f71524067aa474c00c3eacfb83bd860bfc8a]
 ---
  ext/standard/crypt_blowfish.c                 |  8 --
  .../tests/crypt/bcrypt_salt_dollar.phpt       | 82 +++++++++++++++++++

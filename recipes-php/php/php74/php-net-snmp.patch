@@ -6,6 +6,7 @@ From: Remi Collet <remi@remirepo.net>
 Date: Thu, 27 May 2021 14:20:07 +0200
 Subject: [PATCH] Fix snmp build without DES
 
+Upstream-Status: Backport [f9fd3595ecb36c8dc6add0515782a18f15216d77]
 ---
  ext/snmp/snmp.c | 16 ++++++++++++++--
  1 file changed, 14 insertions(+), 2 deletions(-)
