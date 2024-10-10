@@ -5,7 +5,7 @@ implicit function declarations.
 Also fix a minor type error in the perminit calls in the Triple DES
 implementation.
 
-Submitted upstream: <https://sourceforge.net/p/mcrypt/patches/15/>
+Upstream-Status: Submitted [https://sourceforge.net/p/mcrypt/patches/15/]
 
 diff --git a/lib/Makefile.am b/lib/Makefile.am
 index a1a09578858aaf3c..a92f150627a1f610 100644

@@ -1,6 +1,8 @@
 Fix glitches in the readdir and bcopy probes.  They were
 just invalid.
 
+Upstream-Status: Submitted [https://sourceforge.net/p/mcrypt/patches/15/]
+
 diff --git a/configure b/configure
 index d0fb8783e147654b..4fe7660a16359171 100755
 --- a/configure

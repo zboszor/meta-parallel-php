@@ -1,3 +1,5 @@
+Upstream-Status: Inappropriate [Red Hat specific]
+
 diff -up libmcrypt-2.5.8/Makefile.in.orig libmcrypt-2.5.8/Makefile.in
 --- libmcrypt-2.5.8/Makefile.in.orig	2007-02-19 00:32:38.000000000 -0600
 +++ libmcrypt-2.5.8/Makefile.in	2007-07-19 21:23:39.000000000 -0500

@@ -2,6 +2,8 @@ Generic fixes for the configure script for C99 compatibility.  These
 changes are already part of current autoconf and do not need to be
 upstreamed separately.
 
+Upstream-Status: Submitted [https://sourceforge.net/p/mcrypt/patches/15/]
+
 diff --git a/aclocal.m4 b/aclocal.m4
 index 345e600b35ab530a..630f383376f016f1 100644
 --- a/aclocal.m4
