@@ -1,4 +1,4 @@
-Upstream-Status: Inapprpriate [Red Hat specific]
+Upstream-Status: Inappropriate [Red Hat specific]
 
 diff -up ./build/gen_stub.php.syslib ./build/gen_stub.php
 --- ./build/gen_stub.php.syslib	2020-06-25 08:11:51.782046813 +0200
