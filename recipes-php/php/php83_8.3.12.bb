@@ -59,7 +59,6 @@ SRC_URI:append:class-target = " \
 			file://php-7.4.0-ldap_r.patch \
 			file://php-8.0.7-argon2.patch \
 			file://php-8.1.0-phpinfo.patch \
-			file://php-7.2.0-oci8conf.patch \
 			file://php-7.4.0-datetests.patch \
 			file://php-8.2.0-iodbc.patch \
 "
