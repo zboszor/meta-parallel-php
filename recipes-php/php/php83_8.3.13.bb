@@ -58,13 +58,13 @@ SRC_URI:append:class-target = " \
 			file://php-7.4.0-phpize.patch \
 			file://php-7.4.0-ldap_r.patch \
 			file://php-8.0.7-argon2.patch \
-			file://php-8.1.0-phpinfo.patch \
+			file://php-8.3.13-phpinfo.patch \
 			file://php-7.2.0-oci8conf.patch \
 			file://php-7.4.0-datetests.patch \
 			file://php-8.2.0-iodbc.patch \
 "
 
-SRC_URI[sha256sum] = "f774e28633e26fc8c5197f4dae58ec9e3ff87d1b4311cbc61ab05a7ad24bd131"
+SRC_URI[sha256sum] = "89adb978cca209124fe53fd6327bc4966ca21213a7fa2e9504f854e340873018"
 
 LIBS:append:class-target = ""
 LIBS:append:class-native = " -lpthread"
