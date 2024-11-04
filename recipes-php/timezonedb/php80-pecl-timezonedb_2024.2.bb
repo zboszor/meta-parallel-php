@@ -18,6 +18,6 @@ SRC_URI = " \
 			file://40-timezonedb.ini \
 		"
 
-SRC_URI[sha256sum] = "6031d5c4fe7daba91e5b6cf46a58b0df89d8e1a963d28f38b3df091843c39c46"
+SRC_URI[sha256sum] = "6181df34c56320a0b9fdaffd6869addea974fb2dc6318a7081af2d43b4e5e897"
 
 S = "${WORKDIR}/timezonedb-${PV}"
