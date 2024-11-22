@@ -39,6 +39,7 @@ SRC_URI:remove = " \
 "
 
 SRC_URI += " \
+	file://imap-fix-autofoo.patch \
 	file://php-7.4.11-fix-phpize-for-parallel-installation.patch \
 	file://php-7.4.26-openssl3.patch \
 	file://php-7.4.26-openssl3-fixup.patch \
