@@ -101,6 +101,8 @@ PACKAGECONFIG += "imap"
 
 PACKAGES =+ "php${PHPVER}-json php${PHPVER}-sodium"
 
+RPROVIDES:php${PHPVER} += "${@bb.utils.contains('PACKAGECONFIG', 'imap', 'php${PHPVER}-pecl-imap', '', d)}"
+
 FILES:php${PHPVER}-json = ""
 RPROVIDES:php${PHPVER}-json = "php${PHPVER}-pecl-json php${PHPVER}-pecl-jsonc"
 ALLOW_EMPTY:php${PHPVER}-json = "1"
