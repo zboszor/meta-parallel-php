@@ -1,4 +1,4 @@
-DESCRIPTION = "Symlinks for PHP 8.0"
+DESCRIPTION = "Symlinks for PHP 8.1"
 
 require php-symlinks.inc
 
