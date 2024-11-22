@@ -21,4 +21,4 @@ SRC_URI = " \
 
 SRC_URI[sha256sum] = "7bca5b23f731db9d8ed0aea5db9bb15da8ff133b0fbba96102b82e95da4d8764"
 
-S = "${UNPACKDIR}/ssh2-${PV}"
+S = "${WORKDIR}/ssh2-${PV}"
