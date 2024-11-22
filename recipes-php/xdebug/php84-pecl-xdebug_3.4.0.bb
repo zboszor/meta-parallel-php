@@ -39,4 +39,4 @@ SRC_URI = " \
 
 SRC_URI[sha256sum] = "08a1bce7f303b12a010256f09b399fe1f7c277472028f5c81474d75931fff322"
 
-S = "${UNPACKDIR}/xdebug-${PV}${BETALEVEL}"
+S = "${WORKDIR}/xdebug-${PV}${BETALEVEL}"
