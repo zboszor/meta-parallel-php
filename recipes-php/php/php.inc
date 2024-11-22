@@ -131,7 +131,6 @@ EXTRA_OECONF:class-target = " \
 	--with-iconv=${DEPSETTING1} \
 	--enable-dom${DEPSETTING3} \
 	--with-fpm-systemd \
-	--with-strcasestr=system \
 	--with-snmp${DEPSETTING3} \
 	--enable-soap${DEPSETTING3} \
 	--enable-pdo${DEPSETTING3} \

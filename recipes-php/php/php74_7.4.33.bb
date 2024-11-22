@@ -26,6 +26,7 @@ EXTRA_OECONF:append:class-target = " \
 	--with-xmlrpc${DEPSETTING3} \
 	--with-sodium=shared,${STAGING_LIBDIR}/.. \
 	--with-zlib-dir=${STAGING_LIBDIR}/.. \
+	--with-strcasestr=system \
 "
 
 EXTRA_OECONF:append:class-native = " \
