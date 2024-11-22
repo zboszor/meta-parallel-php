@@ -21,6 +21,6 @@ SRC_URI = " \
 
 SRC_URI[sha256sum] = "12ea2fbbf2e2efbe790a12121f77bf096c8b84cef81d0216bec00d56e5badef4"
 
-S = "${UNPACKDIR}/mcrypt-${PV}"
+S = "${WORKDIR}/mcrypt-${PV}"
 
 EXTRA_OECONF = "--with-mcrypt=${STAGING_LIBDIR}/.."
