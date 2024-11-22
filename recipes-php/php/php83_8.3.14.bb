@@ -34,6 +34,7 @@ SRC_URI:remove = " \
 "
 
 SRC_URI += " \
+	file://imap-fix-autofoo.patch \
 	file://php-8.3.0-fix-phpize-for-parallel-installation.patch \
 	file://php.ini.native \
 	file://mod.ini \

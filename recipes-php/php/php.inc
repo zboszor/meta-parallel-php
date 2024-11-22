@@ -56,7 +56,6 @@ SRC_URI = " \
 	file://php-5.6.5-xslt-config.patch \
 	file://0001-ext-xsl-use-pkgconfig-for-xslt-config.patch \
 	file://phar-makefile.patch \
-	file://imap-fix-autofoo.patch \
 "
 
 SRC_URI:append:class-target = " \
