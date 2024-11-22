@@ -20,6 +20,6 @@ SRC_URI = " \
 
 SRC_URI[sha256sum] = "0c2c0b1f94f299004be996b85a424e3d11ff65ac0a3c980db3213289a4a3faaf"
 
-S = "${UNPACKDIR}/imap-${PV}"
+S = "${WORKDIR}/imap-${PV}"
 
 EXTRA_OECONF += "--with-imap=shared,${STAGING_LIBDIR}/.. --with-imap-ssl"
