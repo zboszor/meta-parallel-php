@@ -15,6 +15,7 @@ FILESEXTRAPATHS:prepend = "${FILE_DIRNAME}/php-pecl-mcrypt:"
 
 SRC_URI = " \
 	http://pecl.php.net/get/mcrypt-${PV}.tgz \
+	file://fix-php_rand-on-8.4.patch \
 	file://20-mcrypt.ini \
 "
 
