@@ -1,0 +1,14 @@
+
+# Redirect to local php-fpm if mod_php (5, 7 or 8) is not available
+<IfModule !mod_php5.c>
+  <IfModule !mod_php7.c>
+    <IfModule !mod_php.c>
+      # Enable http authorization headers
+      SetEnvIfNoCase ^Authorization$ "(.+)" HTTP_AUTHORIZATION=$1
+
+      <FilesMatch \.(php|phar)$>
+          SetHandler "proxy:fcgi://127.0.0.1:9000"
+      </FilesMatch>
+    </IfModule>
+  </IfModule>
+</IfModule>
