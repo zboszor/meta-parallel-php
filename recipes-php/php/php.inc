@@ -15,7 +15,7 @@ export PHPVER
 
 DEPENDS:class-target = " \
 	zlib bzip2 libxml2 libxslt virtual/libiconv php${PHPVER}-native lemon-native \
-	uw-imap openssl mariadb curl icu systemd libpcre libgcrypt \
+	openssl mariadb curl icu systemd libpcre libgcrypt \
 	gd jpeg libpng freetype libpcre net-snmp freetds openldap \
 	${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'libxpm', '', d)} \
 	rsync-native \
@@ -169,7 +169,7 @@ EXTRA_OECONF:class-native = " \
 "
 
 PACKAGECONFIG ??= " \
-	mysql sqlite3 imap \
+	mysql sqlite3 \
 	${@bb.utils.contains('DISTRO_FEATURES', 'pam', 'pam', '', d)} \
 	${@bb.utils.contains('DISTRO_FEATURES', 'ipv6', 'ipv6', '', d)} \
 "
@@ -194,7 +194,6 @@ PACKAGECONFIG[pgsql] = "--with-pgsql${PGSQL},--without-pgsql,postgresql"
 PACKAGECONFIG[soap] = "--enable-libxml --enable-soap, --disable-soap, libxml2"
 PACKAGECONFIG[apache2] = "--with-apxs2=${STAGING_BINDIR_CROSS}/apxs,,apache2-native apache2"
 PACKAGECONFIG[pam] = ",,libpam"
-PACKAGECONFIG[imap] = "--with-imap=${DEPSETTING1} --with-imap-ssl=${DEPSETTING1},--without-imap --without-imap-ssl,uw-imap"
 PACKAGECONFIG[ipv6] = "--enable-ipv6,--disable-ipv6,"
 PACKAGECONFIG[valgrind] = "--with-valgrind=${STAGING_DIR_TARGET}/usr,--with-valgrind=no,valgrind"
 

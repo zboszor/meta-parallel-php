@@ -73,6 +73,9 @@ do_install:append:class-native() {
 	install -m0755 ${B}/ext/opcache/minilua ${D}${bindir}/php-native-minilua
 }
 
+PACKAGECONFIG[imap] = "--with-imap=${DEPSETTING1} --with-imap-ssl=${DEPSETTING1},--without-imap --without-imap-ssl,uw-imap"
+PACKAGECONFIG += "imap"
+
 PACKAGES =+ "php${PHPVER}-json php${PHPVER}-sodium"
 
 FILES:php${PHPVER}-json = ""
