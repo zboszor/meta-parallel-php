@@ -116,7 +116,6 @@ COMMON_EXTRA_OECONF = " \
 	--enable-simplexml${DEPSETTING3} \
 	--enable-xml${DEPSETTING3} \
 	--with-zlib=${DEPSETTING1} \
-	--with-zlib-dir=${STAGING_LIBDIR}/.. \
 	--with-xsl=${DEPSETTING1} \
 	--enable-xmlreader${DEPSETTING3} \
 	--enable-xmlwriter${DEPSETTING3} \

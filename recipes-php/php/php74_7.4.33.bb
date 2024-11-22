@@ -25,10 +25,12 @@ EXTRA_OECONF:append:class-target = " \
 	--with-jpeg \
 	--with-xmlrpc${DEPSETTING3} \
 	--with-sodium=shared,${STAGING_LIBDIR}/.. \
+	--with-zlib-dir=${STAGING_LIBDIR}/.. \
 "
 
 EXTRA_OECONF:append:class-native = " \
 	--with-xmlrpc${DEPSETTING3} \
+	--with-zlib-dir=${STAGING_LIBDIR}/.. \
 "
 
 SRC_URI:remove = " \

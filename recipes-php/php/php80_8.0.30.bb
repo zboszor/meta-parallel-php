@@ -24,6 +24,11 @@ EXTRA_OECONF:append:class-target = " \
 	--enable-gd${DEPSETTING3} \
 	--with-jpeg \
 	--with-sodium=shared,${STAGING_LIBDIR}/.. \
+	--with-zlib-dir=${STAGING_LIBDIR}/.. \
+"
+
+EXTRA_OECONF:append:class-native = " \
+	--with-zlib-dir=${STAGING_LIBDIR}/.. \
 "
 
 SRC_URI:remove = " \
