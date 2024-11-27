@@ -16,9 +16,9 @@ SRCBRANCH = "master"
 SRCREV = "231dc43f57ecf7bf0edb8a6e99d77ef74a4719b1"
 
 SRC_URI = " \
-			git://github.com/treeleaf/php-nano.git;protocol=https;branch=${SRCBRANCH} \
-			file://0001-Allow-building-with-PHP-8.0.patch \
-			file://20-nano.ini \
-		"
+	git://github.com/treeleaf/php-nano.git;protocol=https;branch=${SRCBRANCH} \
+	file://0001-Allow-building-with-PHP-8.0.patch \
+	file://20-nano.ini \
+"
 
 S = "${WORKDIR}/git"
