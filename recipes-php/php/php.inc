@@ -144,7 +144,6 @@ EXTRA_OECONF:class-target = " \
 	--enable-fileinfo${DEPSETTING3} \
 	--with-libdir=${baselib} \
 	${@oe.utils.conditional('SITEINFO_ENDIANNESS', 'le', 'ac_cv_c_bigendian_php=no', 'ac_cv_c_bigendian_php=yes', d)} \
-	${@bb.utils.contains('PACKAGECONFIG', 'pam', '', 'ac_cv_lib_pam_pam_start=no', d)} \
 	ac_cv_pwrite=yes \
 	ac_cv_pread=yes \
 	ac_cv_flush_io=yes \
