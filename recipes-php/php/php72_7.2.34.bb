@@ -20,15 +20,19 @@ EXTRA_OECONF:append:class-target = " \
 	--enable-wddx${DEPSETTING3} \
 	--enable-zip \
 	--with-sodium=shared,${STAGING_LIBDIR}/.. \
+	--with-zlib-dir=${STAGING_LIBDIR}/.. \
+	--with-strcasestr=system \
 "
 
 EXTRA_OECONF:append:class-native = " \
 	--with-pcre-regex=${STAGING_LIBDIR}/.. \
 	--with-libxml-dir=${STAGING_BINDIR_NATIVE} \
 	--with-xmlrpc${DEPSETTING3} \
+	--with-zlib-dir=${STAGING_LIBDIR}/.. \
 "
 
 SRC_URI += " \
+	file://imap-fix-autofoo.patch \
 	file://php-7.2.0-fix-phpize-for-parallel-installation.patch \
 	file://php-7.2.16-fix-phar-build.patch \
 	file://opcache-crosscompile.patch \
@@ -100,7 +104,12 @@ SRC_URI:append:class-target = " \
 SRC_URI[md5sum] = "4cc3868c4ab7a094bf15b02c2d953ccd"
 SRC_URI[sha256sum] = "0e5816d668a2bb14aca68cef8c430430bd86c3c5233f6c427d1a54aac127abcf"
 
+PACKAGECONFIG[imap] = "--with-imap=${DEPSETTING1} --with-imap-ssl=${DEPSETTING1},--without-imap --without-imap-ssl,uw-imap"
+PACKAGECONFIG += "imap"
+
 PACKAGES =+ "php${PHPVER}-json php${PHPVER}-sodium"
+
+RPROVIDES:php${PHPVER} += "${@bb.utils.contains('PACKAGECONFIG', 'imap', 'php${PHPVER}-pecl-imap', '', d)}"
 
 FILES:php${PHPVER}-json = ""
 RPROVIDES:php${PHPVER}-json = "php${PHPVER}-pecl-json php${PHPVER}-pecl-jsonc"

@@ -25,15 +25,19 @@ EXTRA_OECONF:append:class-target = " \
 	--with-mcrypt=${DEPSETTING2} \
 	--enable-fpm=shared \
 	--enable-intl=shared \
+	--with-zlib-dir=${STAGING_LIBDIR}/.. \
+	--with-strcasestr=system \
 "
 
 EXTRA_OECONF:append:class-native = " \
 	--with-pcre-regex=${STAGING_LIBDIR}/.. \
 	--with-libxml-dir=${STAGING_BINDIR_NATIVE} \
 	--with-xmlrpc${DEPSETTING3} \
+	--with-zlib-dir=${STAGING_LIBDIR}/.. \
 "
 
 SRC_URI += " \
+	file://imap-fix-autofoo.patch \
 	file://php-7.0.0-fix-phpize-for-parallel-installation.patch \
 	file://php-7.1.27-fix-phar-build.patch \
 	file://readdir.patch \
@@ -125,7 +129,13 @@ SRC_URI:append:class-target = " \
 SRC_URI[md5sum] = "01974aa2076c56d4c2730f2c2ec6d8aa"
 SRC_URI[sha256sum] = "95a5e5f2e2b79b376b737a82d9682c91891e60289fa24183463a2aca158f4f4b"
 
+PACKAGECONFIG[imap] = "--with-imap=${DEPSETTING1} --with-imap-ssl=${DEPSETTING1},--without-imap --without-imap-ssl,uw-imap"
+PACKAGECONFIG += "imap"
+
 PACKAGES =+ "php${PHPVER}-json"
+
+RPROVIDES:php${PHPVER} += "${@bb.utils.contains('PACKAGECONFIG', 'imap', 'php${PHPVER}-pecl-imap', '', d)}"
+
 FILES:php${PHPVER}-json = ""
 RPROVIDES:php${PHPVER}-json = "php${PHPVER}-pecl-json php${PHPVER}-pecl-jsonc"
 ALLOW_EMPTY:php${PHPVER}-json = "1"
