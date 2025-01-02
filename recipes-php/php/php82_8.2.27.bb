@@ -69,7 +69,7 @@ SRC_URI:append:class-target = " \
 	file://php-7.4.0-datetests.patch \
 "
 
-SRC_URI[sha256sum] = "54747400cb4874288ad41a785e6147e2ff546cceeeb55c23c00c771ac125c6ef"
+SRC_URI[sha256sum] = "3eec91294d8c09b3df80b39ec36d574ed9b05de4c8afcb25fa215d48f9ecbc6b"
 
 do_install:append:class-target() {
 	install -m 644 ${UNPACKDIR}/opcache-default.blacklist ${D}${sysconfdir}/php${PHPVER}/php.d/
