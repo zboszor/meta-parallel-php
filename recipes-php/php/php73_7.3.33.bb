@@ -5,7 +5,7 @@ DEPENDS:append:class-native = " libpcre2-native "
 
 LIC_FILES_CHKSUM = "file://LICENSE;md5=fb07bfc51f6d5e0c30b65d9701233b2e"
 
-PR = "r8"
+PR = "r9"
 
 EXTRA_OECONF:append:class-target = " \
 	--enable-fpm=shared \
@@ -95,6 +95,12 @@ SRC_URI:append:class-target = " \
 	file://php-cve-2024-8925.patch \
 	file://php-cve-2024-8926.patch \
 	file://php-cve-2024-8927.patch \
+	file://php-cve-2024-11236.patch \
+	file://php-cve-2024-11234.patch \
+	file://php-cve-2024-8932.patch \
+	file://php-cve-2024-11233.patch \
+	file://php-ghsa-4w77-75f9-2c8w.patch \
+	file://php-cve-2024-8929.patch \
 "
 
 SRC_URI[sha256sum] = "f412487d7d953437e7978a0d7b6ec99bf4a85cf3378014438a8577b89535451a"
