@@ -13,7 +13,7 @@ DEPENDS:append:class-native = " libpcre2-native onig-native "
 
 LIC_FILES_CHKSUM = "file://LICENSE;md5=99532e0f6620bc9bca34f12fadaee33c"
 
-PR = "r7"
+PR = "r8"
 
 EXTRA_OECONF:append:class-target = " \
 	ac_cv_func_fnmatch_works=yes \
@@ -90,6 +90,12 @@ SRC_URI:append:class-target = " \
 	file://php-cve-2024-8926.patch \
 	file://php-cve-2024-8927.patch \
 	file://php-cve-2024-9026.patch \
+	file://php-cve-2024-11236.patch \
+	file://php-cve-2024-11234.patch \
+	file://php-cve-2024-8932.patch \
+	file://php-cve-2024-11233.patch \
+	file://php-ghsa-4w77-75f9-2c8w.patch \
+	file://php-cve-2024-8929.patch \
 "
 
 SRC_URI[sha256sum] = "924846abf93bc613815c55dd3f5809377813ac62a9ec4eb3778675b82a27b927"
