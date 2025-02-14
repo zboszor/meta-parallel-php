@@ -100,7 +100,7 @@ COMMON_EXTRA_OECONF = " \
 	--with-gmp=${DEPSETTING1} \
 	--enable-calendar${DEPSETTING3} \
 	--enable-bcmath${DEPSETTING3} \
-	--with-bz2=${DEPSETTING2} \
+	--with-bz2=${DEPSETTING1} \
 	--enable-ctype${DEPSETTING3} \
 	--enable-exif${DEPSETTING3} \
 	--enable-ftp${DEPSETTING3} \
