@@ -13,17 +13,14 @@ PHP_MINVER = "${@d.getVar('PV',1).split('.')[1]}"
 PHPVER = "${PHP_MAJVER}${PHP_MINVER}"
 export PHPVER
 
-DEPENDS:class-target = " \
-	zlib bzip2 libxml2 libxslt virtual/libiconv php${PHPVER}-native lemon-native \
-	openssl mariadb curl icu systemd libpcre libgcrypt \
+DEPENDS = "zlib bzip2 libxml2 libxslt openssl curl gmp gettext libpcre"
+
+DEPENDS:append:class-target = " \
+	virtual/libiconv php${PHPVER}-native lemon-native \
+	mariadb icu systemd libpcre libgcrypt \
 	gd jpeg libpng freetype libpcre net-snmp freetds openldap \
 	${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'libxpm', '', d)} \
 	rsync-native \
-"
-
-DEPENDS:class-native = " \
-	zlib-native bzip2-native libxml2-native libxslt-native openssl-native curl-native \
-	gmp-native gettext-native libpcre-native \
 "
 
 BETALEVEL ??= ""
