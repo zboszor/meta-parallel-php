@@ -13,7 +13,7 @@ DEPENDS:append:class-native = " libpcre2-native onig-native "
 
 LIC_FILES_CHKSUM = "file://LICENSE;md5=99532e0f6620bc9bca34f12fadaee33c"
 
-PR = "r8"
+PR = "r9"
 
 EXTRA_OECONF:append:class-target = " \
 	ac_cv_func_fnmatch_works=yes \
@@ -44,7 +44,11 @@ SRC_URI += " \
 	file://php-8.0.0-fix-phpize-for-parallel-installation.patch \
 	file://php-8.0.21-openssl3.patch \
 	file://php-8.0.13-crypt.patch \
-	file://php-8.0.30-libxml212.patch \
+	file://php-cve-2025-1217.patch \
+	file://php-cve-2025-1734.patch \
+	file://php-cve-2025-1861.patch \
+	file://php-cve-2025-1736.patch \
+	file://php-cve-2025-1219.patch \
 	file://php.ini.native \
 	file://mod.ini \
 	file://20-openssl.ini \
@@ -62,6 +66,7 @@ SRC_URI:append:class-target = " \
 	file://php-8.0.0-embed.patch \
 	file://php-7.4.0-libdb.patch \
 	file://php-8.0.6-deprecated.patch \
+	file://php-8.0.30-proto.patch \
 	file://php-7.0.7-curl.patch \
 	file://php-8.0.0-parser.patch \
 	file://php-8.0.10-systzdata-v21.patch \
@@ -77,6 +82,7 @@ SRC_URI:append:class-target = " \
 	file://php-8.0.0-PHP_CHECK_FUNC_LIB-no-run.patch \
 	file://php-8.0.0-run-installed-minilua.patch \
 	file://php-8.0.30-zlib-tests.patch \
+	file://php-8.0.30-pcretests.patch \
 	file://php-cve-2024-2756.patch \
 	file://php-cve-2024-3096.patch \
 	file://php-cve-2024-5458.patch \
