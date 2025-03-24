@@ -13,7 +13,7 @@ DEPENDS:append:class-native = " libpcre2-native onig-native "
 
 LIC_FILES_CHKSUM = "file://LICENSE;md5=99532e0f6620bc9bca34f12fadaee33c"
 
-PR = "r8"
+PR = "r9"
 
 EXTRA_OECONF:append:class-target = " \
 	ac_cv_func_fnmatch_works=yes \
@@ -54,6 +54,7 @@ SRC_URI += " \
 	file://50-date.ini \
 	file://opcache-default.blacklist \
 	file://php-7.4.33-gcc14.patch \
+	file://php-7.4.33-proto.patch \
 	file://0001-Fix-cookie_seek_function_t-signature-under-musl-1389.patch \
 	file://0002-ext-intl-level-up-c-runtime-std-for-icu-74-and-onwar.patch \
 "
