@@ -5,7 +5,7 @@ DEPENDS:append:class-native = " libmcrypt-native "
 
 LIC_FILES_CHKSUM = "file://LICENSE;md5=fb07bfc51f6d5e0c30b65d9701233b2e"
 
-PR = "r7"
+PR = "r8"
 
 # PHP 7.1 doesn't have --with-valgrind
 PACKAGECONFIG[valgrind] = ""
@@ -14,6 +14,7 @@ EXTRA_OECONF:append:class-target = " \
 	--enable-crosscompiling \
 	--with-flock-type=linux \
 	--with-pcre-regex=${STAGING_LIBDIR}/.. \
+	--enable-libxml \
 	--with-libxml-dir=${STAGING_BINDIR_CROSS} \
 	--with-png-dir=${STAGING_LIBDIR}/.. \
 	--with-jpeg-dir=${STAGING_LIBDIR}/.. \

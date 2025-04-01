@@ -4,13 +4,14 @@ DEPENDS:append:class-target = " libsodium "
 
 LIC_FILES_CHKSUM = "file://LICENSE;md5=fb07bfc51f6d5e0c30b65d9701233b2e"
 
-PR = "r10"
+PR = "r11"
 
 EXTRA_OECONF:append:class-target = " \
 	--enable-crosscompiling \
 	--enable-fpm=shared \
 	--enable-intl=shared \
 	--with-pcre-regex=${STAGING_LIBDIR}/.. \
+	--enable-libxml \
 	--with-libxml-dir=${STAGING_BINDIR_CROSS} \
 	--with-png-dir=${STAGING_LIBDIR}/.. \
 	--with-jpeg-dir=${STAGING_LIBDIR}/.. \

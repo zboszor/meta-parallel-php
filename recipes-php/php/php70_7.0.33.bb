@@ -8,12 +8,13 @@ DEPENDS:append:class-native = " libmcrypt-native "
 
 LIC_FILES_CHKSUM = "file://LICENSE;md5=c0af599f66d0461c5837c695fcbc5c1e"
 
-PR = "r19"
+PR = "r20"
 
 EXTRA_OECONF:append:class-target = " \
 	--enable-crosscompiling \
 	--with-flock-type=linux \
 	--with-pcre-regex=${STAGING_LIBDIR}/.. \
+	--enable-libxml \
 	--with-libxml-dir=${STAGING_BINDIR_CROSS} \
 	--with-png-dir=${STAGING_LIBDIR}/.. \
 	--with-jpeg-dir=${STAGING_LIBDIR}/.. \
