@@ -129,7 +129,6 @@ EXTRA_OECONF:class-target = " \
 	--enable-dom${DEPSETTING3} \
 	--with-fpm-systemd \
 	--with-snmp${DEPSETTING3} \
-	--with-libxml \
 	--enable-soap${DEPSETTING3} \
 	--enable-pdo${DEPSETTING3} \
 	--with-pdo-dblib=${DEPSETTING1} \

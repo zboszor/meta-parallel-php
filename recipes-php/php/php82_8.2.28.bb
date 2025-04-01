@@ -13,12 +13,13 @@ DEPENDS:append:class-native = " libpcre2-native onig-native "
 
 LIC_FILES_CHKSUM = "file://LICENSE;md5=fd469cce1a919f0cc95bab7afb28d19d"
 
-#PR = "r1"
+PR = "r1"
 
 EXTRA_OECONF:append:class-target = " \
 	ac_cv_func_fnmatch_works=yes \
 	--with-external-pcre \
 	--with-pcre-jit \
+	--with-libxml \
 	--enable-fpm${DEPSETTING3} \
 	--enable-intl${DEPSETTING3} \
 	--enable-gd${DEPSETTING3} \
