@@ -129,6 +129,7 @@ EXTRA_OECONF:class-target = " \
 	--enable-dom${DEPSETTING3} \
 	--with-fpm-systemd \
 	--with-snmp${DEPSETTING3} \
+	--with-libxml \
 	--enable-soap${DEPSETTING3} \
 	--enable-pdo${DEPSETTING3} \
 	--with-pdo-dblib=${DEPSETTING1} \
@@ -185,7 +186,6 @@ PACKAGECONFIG[sqlite3] = " \
 	,sqlite3"
 PGSQL = "=${DEPSETTING2}"
 PACKAGECONFIG[pgsql] = "--with-pgsql${PGSQL},--without-pgsql,postgresql"
-PACKAGECONFIG[soap] = "--enable-libxml --enable-soap, --disable-soap, libxml2"
 PACKAGECONFIG[apache2] = "--with-apxs2=${STAGING_BINDIR_CROSS}/apxs,,apache2-native apache2"
 PACKAGECONFIG[pam] = ",,libpam"
 PACKAGECONFIG[ipv6] = "--enable-ipv6,--disable-ipv6,"
