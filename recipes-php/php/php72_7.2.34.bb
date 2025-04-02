@@ -4,7 +4,7 @@ DEPENDS:append:class-target = " libsodium "
 
 LIC_FILES_CHKSUM = "file://LICENSE;md5=fb07bfc51f6d5e0c30b65d9701233b2e"
 
-PR = "r12"
+PR = "r13"
 
 EXTRA_OECONF:append:class-target = " \
 	--enable-crosscompiling \
@@ -67,7 +67,6 @@ SRC_URI:append:class-target = " \
 	file://php-7.2.32-fixheader.patch \
 	file://php-7.2.32-phpinfo.patch \
 	file://php-7.2.8-getallheaders.patch \
-	file://php-7.2.16-pdooci.patch \
 	file://php-bug77423.patch \
 	file://php-bug80672.patch \
 	file://php-bug80710.patch \

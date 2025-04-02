@@ -5,7 +5,7 @@ DEPENDS:append:class-native = " libmcrypt-native "
 
 LIC_FILES_CHKSUM = "file://LICENSE;md5=fb07bfc51f6d5e0c30b65d9701233b2e"
 
-PR = "r8"
+PR = "r9"
 
 # PHP 7.1 doesn't have --with-valgrind
 PACKAGECONFIG[valgrind] = ""
@@ -72,7 +72,6 @@ SRC_URI:append:class-target = " \
 	file://php-7.1.27-phpinfo.patch \
 	file://php-7.1.9-openssl-load-config.patch \
 	file://php-7.1.24-getallheaders.patch \
-	file://php-5.6.3-oci8conf.patch \
 	file://php-bug78878.patch \
 	file://php-bug78862.patch \
 	file://php-bug78863.patch \

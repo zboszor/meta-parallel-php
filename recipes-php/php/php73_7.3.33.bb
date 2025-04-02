@@ -5,7 +5,7 @@ DEPENDS:append:class-native = " libpcre2-native "
 
 LIC_FILES_CHKSUM = "file://LICENSE;md5=fb07bfc51f6d5e0c30b65d9701233b2e"
 
-PR = "r10"
+PR = "r11"
 
 EXTRA_OECONF:append:class-target = " \
 	--enable-fpm=shared \
@@ -67,8 +67,6 @@ SRC_URI:append:class-target = " \
 	file://php-7.3.3-ldap_r.patch \
 	file://php-7.3.3-fixheader.patch \
 	file://php-7.3.3-phpinfo.patch \
-	file://php-7.3.3-pdooci.patch \
-	file://php-7.3.3-oci8conf.patch \
 	file://php-7.0.10-datetests.patch \
 	file://php-5.6.3-PHP_CHECK_FUNC_LIB-no-run.patch \
 	file://php-bug80682.patch \
