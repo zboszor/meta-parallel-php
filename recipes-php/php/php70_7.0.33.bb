@@ -1,5 +1,7 @@
 require php.inc
 
+PACKAGECONFIG[ldap] = "--with-ldap=${DEPSETTING1} --with-ldap-sasl=no,--with-ldap=no --with-ldap-sasl=no,openldap"
+
 # PHP 7.0 doesn't have --with-valgrind
 PACKAGECONFIG[valgrind] = ""
 

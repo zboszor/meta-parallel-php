@@ -1,5 +1,7 @@
 require php.inc
 
+PACKAGECONFIG[ldap] = "--with-ldap=${DEPSETTING1} --with-ldap-sasl=no,--with-ldap=no --with-ldap-sasl=no,openldap"
+
 DEPENDS:append:class-target = " libmcrypt "
 DEPENDS:append:class-native = " libmcrypt-native "
 

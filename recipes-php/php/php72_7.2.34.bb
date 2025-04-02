@@ -1,5 +1,7 @@
 require php.inc
 
+PACKAGECONFIG[ldap] = "--with-ldap=${DEPSETTING1} --with-ldap-sasl=no,--with-ldap=no --with-ldap-sasl=no,openldap"
+
 DEPENDS:append:class-target = " libsodium "
 
 LIC_FILES_CHKSUM = "file://LICENSE;md5=fb07bfc51f6d5e0c30b65d9701233b2e"

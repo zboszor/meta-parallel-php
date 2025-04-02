@@ -1,5 +1,7 @@
 require php.inc
 
+PACKAGECONFIG[ldap] = "--with-ldap=${DEPSETTING1} --with-ldap-sasl=no,--with-ldap=no --with-ldap-sasl=no,openldap"
+
 DEPENDS:append:class-target = " libpcre2 libzip libsodium "
 DEPENDS:append:class-native = " libpcre2-native "
 
