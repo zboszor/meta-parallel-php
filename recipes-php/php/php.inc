@@ -18,7 +18,7 @@ DEPENDS = "zlib bzip2 libxml2 libxslt openssl curl gmp gettext libpcre"
 DEPENDS:append:class-target = " \
 	virtual/libiconv php${PHPVER}-native lemon-native \
 	mariadb icu systemd libpcre libgcrypt \
-	gd jpeg libpng freetype libpcre net-snmp freetds openldap \
+	gd jpeg libpng freetype libpcre net-snmp freetds \
 	${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'libxpm', '', d)} \
 	rsync-native \
 "
@@ -185,6 +185,7 @@ PACKAGECONFIG[sqlite3] = " \
 PGSQL = "=${DEPSETTING2}"
 PACKAGECONFIG[pgsql] = "--with-pgsql${PGSQL},--without-pgsql,postgresql"
 PACKAGECONFIG[apache2] = "--with-apxs2=${STAGING_BINDIR_CROSS}/apxs,,apache2-native apache2"
+PACKAGECONFIG[ldap] = "--with-ldap=${DEPSETTING1} --with-ldap-sasl=${DEPSETTING1},--with-ldap=no --with-ldap-sasl=no,openldap cyrus-sasl"
 PACKAGECONFIG[ipv6] = "--enable-ipv6,--disable-ipv6,"
 PACKAGECONFIG[valgrind] = "--with-valgrind=${STAGING_DIR_TARGET}/usr,--with-valgrind=no,valgrind"
 
