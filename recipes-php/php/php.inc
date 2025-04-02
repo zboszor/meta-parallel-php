@@ -164,6 +164,7 @@ EXTRA_OECONF:class-native = " \
 
 PACKAGECONFIG = " \
 	mysql sqlite3 \
+	${@bb.utils.contains('DISTRO_FEATURES', 'ldap', 'ldap', '', d)} \
 	${@bb.utils.contains('DISTRO_FEATURES', 'ipv6', 'ipv6', '', d)} \
 "
 
