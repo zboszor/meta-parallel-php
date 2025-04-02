@@ -13,7 +13,7 @@ DEPENDS:append:class-native = " libpcre2-native onig-native "
 
 LIC_FILES_CHKSUM = "file://LICENSE;md5=fd469cce1a919f0cc95bab7afb28d19d"
 
-PR = "r1"
+PR = "r2"
 
 EXTRA_OECONF:append:class-target = " \
 	ac_cv_func_fnmatch_works=yes \
@@ -66,7 +66,6 @@ SRC_URI:append:class-target = " \
 	file://php-7.4.0-ldap_r.patch \
 	file://php-8.0.7-argon2.patch \
 	file://php-8.3.13-phpinfo.patch \
-	file://php-7.2.0-oci8conf.patch \
 	file://php-7.4.0-datetests.patch \
 	file://php-8.2.0-iodbc.patch \
 "

@@ -13,7 +13,7 @@ DEPENDS:append:class-native = " libpcre2-native onig-native "
 
 LIC_FILES_CHKSUM = "file://LICENSE;md5=99532e0f6620bc9bca34f12fadaee33c"
 
-PR = "r10"
+PR = "r11"
 
 EXTRA_OECONF:append:class-target = " \
 	ac_cv_func_fnmatch_works=yes \
@@ -73,7 +73,6 @@ SRC_URI:append:class-target = " \
 	file://php-7.4.0-ldap_r.patch \
 	file://php-7.4.20-argon2.patch \
 	file://php-7.4.8-phpinfo.patch \
-	file://php-7.2.0-oci8conf.patch \
 	file://php-7.0.10-datetests.patch \
 	file://php-7.4.11-PHP_CHECK_FUNC_LIB-no-run.patch \
 	file://php-7.4.11-reproducible-build.patch \
