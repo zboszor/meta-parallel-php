@@ -13,7 +13,7 @@ DEPENDS:append:class-native = " libpcre2-native onig-native "
 
 LIC_FILES_CHKSUM = "file://LICENSE;md5=fd469cce1a919f0cc95bab7afb28d19d"
 
-PR = "r1"
+#PR = "r1"
 
 EXTRA_OECONF:append:class-target = " \
 	ac_cv_func_fnmatch_works=yes \
@@ -57,7 +57,7 @@ SRC_URI:append:class-target = " \
 \
 	file://php-7.4.0-httpd.patch \
 	file://php-7.2.0-includedir.patch \
-	file://php-8.0.0-embed.patch \
+	file://php-8.3.20-embed.patch \
 	file://php-8.1.0-libdb.patch \
 	file://php-8.2.0-curl.patch \
 	file://php-8.3.3-parser.patch \
@@ -70,7 +70,7 @@ SRC_URI:append:class-target = " \
 	file://php-8.2.0-iodbc.patch \
 "
 
-SRC_URI[sha256sum] = "976e4077dd25bec96b5dfe8938052d243bbd838f95368a204896eff12756545f"
+SRC_URI[sha256sum] = "f15914e071b5bddaf1475b5f2ba68107e8b8846655f9e89690fb7cd410b0db6c"
 
 LIBS:append:class-target = ""
 LIBS:append:class-native = " -lpthread"
