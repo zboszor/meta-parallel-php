@@ -13,7 +13,7 @@ SRC_URI = "http://ftp.freetds.org/pub/freetds/stable/freetds-${PV}.tar.bz2"
 
 inherit autotools pkgconfig
 
-export LIBS="-lgcrypt"
+export LIBS = "-lgcrypt"
 
 EXTRA_OECONF = " \
 	--enable-sspi \
