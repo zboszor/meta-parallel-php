@@ -2,8 +2,8 @@ PHPVERSION ??= "74"
 
 DEPENDS:append = " php${PHPVERSION}-native "
 
-export PHPRC="${STAGING_ETCDIR_NATIVE}/php${PHPVERSION}/php.ini"
-export PHP_INI_SCAN_DIR="${STAGING_ETCDIR_NATIVE}/php${PHPVERSION}/php.d"
+export PHPRC = "${STAGING_ETCDIR_NATIVE}/php${PHPVERSION}/php.ini"
+export PHP_INI_SCAN_DIR = "${STAGING_ETCDIR_NATIVE}/php${PHPVERSION}/php.d"
 
 php_native_set_ext_dir() {
 	if [ -f ${PHPRC} ]; then
