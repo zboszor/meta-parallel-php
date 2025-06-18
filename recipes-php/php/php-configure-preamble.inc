@@ -1,4 +1,7 @@
 do_configure:prepend () {
 	libtoolize --force --copy
-	cat $(aclocal --print-ac-dir)/{libtool,ltoptions,ltsugar,ltversion,lt~obsolete}.m4 >build/libtool.m4
+	rm -f build/libtool.m4
+	for ltpart in libtool ltoptions ltsugar ltversion lt~obsolete ; do
+		cat $(aclocal --print-ac-dir)/$ltpart >>build/libtool.m4
+	done
 }
