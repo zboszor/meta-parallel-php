@@ -377,7 +377,7 @@ do_install:append:class-target() {
 	mv ${D}${includedir}/php ${D}${includedir}/php${PHPVER}
 
 	for i in pear peardev pecl ; do
-		if [[ -f "${D}${bindir}/$i" ]]; then
+		if [ -f "${D}${bindir}/$i" ]; then
 			mv "${D}${bindir}/$i" "${D}${bindir}/$i"${PHPVER}
 		fi
 	done
@@ -393,7 +393,7 @@ do_install:append:class-native () {
 	mv ${D}${includedir}/php ${D}${includedir}/php${PHPVER}
 
 	for i in pear peardev pecl ; do
-		if [[ -f "${D}${bindir}/$i" ]]; then
+		if [ -f "${D}${bindir}/$i" ]; then
 			mv "${D}${bindir}/$i" "${D}${bindir}/$i"${PHPVER}
 		fi
 	done
