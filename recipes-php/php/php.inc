@@ -13,10 +13,13 @@ PHP_MINVER = "${@d.getVar('PV',1).split('.')[1]}"
 PHPVER = "${PHP_MAJVER}${PHP_MINVER}"
 export PHPVER
 
-DEPENDS = "zlib bzip2 libxml2 libxslt openssl curl gmp gettext libpcre"
+DEPENDS = " \
+	virtual/libiconv zlib bzip2 libxml2 libxslt \
+	openssl curl gmp gettext libpcre \
+"
 
 DEPENDS:append:class-target = " \
-	virtual/libiconv php${PHPVER}-native lemon-native \
+	php${PHPVER}-native lemon-native \
 	mariadb icu systemd libpcre libgcrypt \
 	gd jpeg libpng freetype libpcre net-snmp freetds \
 	${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'libxpm', '', d)} \
@@ -53,10 +56,10 @@ SRC_URI = " \
 	file://php-5.6.5-xslt-config.patch \
 	file://0001-ext-xsl-use-pkgconfig-for-xslt-config.patch \
 	file://phar-makefile.patch \
+	file://iconv.patch \
 "
 
 SRC_URI:append:class-target = " \
-	file://iconv.patch \
 	file://pear-makefile.patch \
 	file://php_exec_native.patch \
 	file://php-fpm.service \
@@ -114,6 +117,7 @@ COMMON_EXTRA_OECONF = " \
 	--enable-xml${DEPSETTING3} \
 	--with-zlib=${DEPSETTING1} \
 	--with-xsl=${DEPSETTING1} \
+	--with-iconv=${DEPSETTING1} \
 	--enable-xmlreader${DEPSETTING3} \
 	--enable-xmlwriter${DEPSETTING3} \
 	--enable-phar${DEPSETTING3} \
@@ -125,7 +129,6 @@ COMMON_EXTRA_OECONF = " \
 EXTRA_OECONF:class-target = " \
 	--enable-opcache \
 	--enable-phpdbg \
-	--with-iconv=${DEPSETTING1} \
 	--enable-dom${DEPSETTING3} \
 	--with-fpm-systemd \
 	--with-snmp${DEPSETTING3} \
@@ -157,7 +160,6 @@ EXTRA_OECONF:class-target = " \
 
 EXTRA_OECONF:class-native = " \
 	--with-zlib=${STAGING_LIBDIR_NATIVE}/.. \
-	--without-iconv \
 	--disable-shared \
 	${COMMON_EXTRA_OECONF} \
 "
