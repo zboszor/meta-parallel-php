@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=afd6ce4aa04fdc346e5b3c6e634bd75c"
 
 # This is only for pre-release versions, i.e. X.Y.0alphaZ.
 # In other cases, wait for the proper point release (X.Y.1 and up)
-BETALEVEL = "beta1"
+BETALEVEL = ""
 
 def xdebug_pr(d):
     import re
@@ -33,10 +33,10 @@ inherit parallel-php-module
 FILESEXTRAPATHS:prepend = "${FILE_DIRNAME}/php-pecl-xdebug:"
 
 SRC_URI = " \
-			http://pecl.php.net/get/xdebug-${PV}${BETALEVEL}.tgz \
-			file://02-xdebug.ini \
-		"
+	http://pecl.php.net/get/xdebug-${PV}${BETALEVEL}.tgz \
+	file://02-xdebug.ini \
+"
 
-SRC_URI[sha256sum] = "a043888c86e1526ac5ddb220d37ed3a1809e79a16bbb059b9c7e2d2f83b43cc1"
+SRC_URI[sha256sum] = "f8e6aaac0c61b466204ed1117456cb1ba788e083229bd1aa7acd8f53dbfeb614"
 
 S = "${UNPACKDIR}/xdebug-${PV}${BETALEVEL}"
