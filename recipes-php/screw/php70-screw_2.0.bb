@@ -1,5 +1,5 @@
 require php-screw.inc
 PHPVERSION = "70"
 #PR = "r1"
-SRCREV = "55c0f77ecd591726d251f15d0d28f59bf99a3c4f"
+SRCREV = "fb482a7c4aad09a8129c6b21382fd08a8887f1e6"
 inherit parallel-php-module
