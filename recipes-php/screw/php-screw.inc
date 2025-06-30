@@ -3,7 +3,7 @@ HOMEPAGE = "http://sourceforge.net/projects/php-screw/"
 SECTION = "console/network"   
 LICENSE = "BSD-3-Clause"
 BBCLASSEXTEND = "native"
-LIC_FILES_CHKSUM = "file://LICENSE;md5=3967a73344d01c72bdf5f02fb95ee421"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=c41e344bb758f5bfaae2302677f013e9"
 DEPENDS += "zlib"
 
 FILESEXTRAPATHS:prepend = "${FILE_DIRNAME}/php-screw:"
