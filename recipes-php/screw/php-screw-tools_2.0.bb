@@ -1,6 +1,6 @@
 require php-screw.inc
 
-SRCREV = "fb482a7c4aad09a8129c6b21382fd08a8887f1e6"
+SRCREV = "d40f813e16033d5ce6d3762fab5db94e52cc9295"
 
 do_compile () {
 	make -C tools
