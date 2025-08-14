@@ -55,6 +55,7 @@ SRC_URI += " \
 	file://opcache-default.blacklist \
 	file://0001-Fix-cookie_seek_function_t-signature-under-musl-1389.patch \
 	file://0002-ext-intl-level-up-c-runtime-std-for-icu-74-and-onwar.patch \
+	file://php-8.0.30-proto.patch \
 "
 
 SRC_URI:append:class-target = " \
@@ -66,7 +67,6 @@ SRC_URI:append:class-target = " \
 	file://php-8.0.0-embed.patch \
 	file://php-7.4.0-libdb.patch \
 	file://php-8.0.6-deprecated.patch \
-	file://php-8.0.30-proto.patch \
 	file://php-7.0.7-curl.patch \
 	file://php-8.0.0-parser.patch \
 	file://php-8.0.10-systzdata-v21.patch \
