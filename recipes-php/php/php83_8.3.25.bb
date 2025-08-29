@@ -67,7 +67,7 @@ SRC_URI:append:class-target = " \
 	file://php-8.2.0-iodbc.patch \
 "
 
-SRC_URI[sha256sum] = "388ee5fd111097e97bae439bff46aec4ea27f816d3f0c2cb5490a41410d44251"
+SRC_URI[sha256sum] = "187b61bb795015adacf53f8c55b44414a63777ec19a776b75fb88614506c0d37"
 
 LIBS:append:class-target = ""
 LIBS:append:class-native = " -lpthread"
