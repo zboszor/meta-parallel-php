@@ -12,6 +12,8 @@ PR = "r9"
 # PHP 7.1 doesn't have --with-valgrind
 PACKAGECONFIG[valgrind] = ""
 
+CFLAGS:append:class-native = " -std=gnu17 -Wno-incompatible-pointer-types"
+
 EXTRA_OECONF:append:class-target = " \
 	--enable-crosscompiling \
 	--with-flock-type=linux \
