@@ -12,6 +12,8 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=c0af599f66d0461c5837c695fcbc5c1e"
 
 PR = "r20"
 
+CFLAGS:append:class-native = " -std=gnu17 -Wno-incompatible-pointer-types"
+
 EXTRA_OECONF:append:class-target = " \
 	--enable-crosscompiling \
 	--with-flock-type=linux \
