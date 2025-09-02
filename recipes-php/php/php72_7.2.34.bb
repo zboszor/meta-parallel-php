@@ -8,6 +8,8 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=fb07bfc51f6d5e0c30b65d9701233b2e"
 
 PR = "r13"
 
+CFLAGS:append:class-native = " -std=gnu17 -Wno-incompatible-pointer-types"
+
 EXTRA_OECONF:append:class-target = " \
 	--enable-crosscompiling \
 	--enable-fpm=shared \
@@ -33,6 +35,12 @@ EXTRA_OECONF:append:class-native = " \
 	--with-xmlrpc${DEPSETTING3} \
 	--with-zlib-dir=${STAGING_LIBDIR}/.. \
 "
+
+addtask fix_patches after do_unpack before do_patch
+
+do_fix_patches () {
+	rm -f ${S}/ext/standard/tests/url/bug77423.phpt
+}
 
 SRC_URI += " \
 	file://imap-fix-autofoo.patch \
