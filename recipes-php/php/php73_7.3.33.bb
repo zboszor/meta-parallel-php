@@ -9,6 +9,8 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=fb07bfc51f6d5e0c30b65d9701233b2e"
 
 PR = "r11"
 
+CFLAGS:append:class-native = " -std=gnu17 -Wno-incompatible-pointer-types"
+
 EXTRA_OECONF:append:class-target = " \
 	--enable-fpm=shared \
 	--enable-intl=shared \
