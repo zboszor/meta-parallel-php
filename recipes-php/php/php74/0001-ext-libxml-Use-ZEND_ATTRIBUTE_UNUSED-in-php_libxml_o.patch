@@ -1,0 +1,34 @@
+From f476b5c4f1d308703a0b06942b34539704296511 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Zolt=C3=A1n=20B=C3=B6sz=C3=B6rm=C3=A9nyi?=
+ <zboszor@gmail.com>
+Date: Tue, 9 Sep 2025 17:13:09 +0200
+Subject: [PATCH] ext/libxml: Use ZEND_ATTRIBUTE_UNUSED in
+ php_libxml_output_buffer_create_filename
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+ATTRIBUTE_UNUSED is not defined everywhere, use ZEND_ATTRIBUTE_UNUSED.
+
+Signed-off-by: Zoltán Böszörményi <zboszor@gmail.com>
+Upstream-Status: Inappropriate [oe specific]
+---
+ ext/libxml/libxml.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/ext/libxml/libxml.c b/ext/libxml/libxml.c
+index d343135b98d..5b8aad8e1e5 100644
+--- a/ext/libxml/libxml.c
++++ b/ext/libxml/libxml.c
+@@ -476,7 +476,7 @@ php_libxml_input_buffer_create_filename(const char *URI, xmlCharEncoding enc)
+ static xmlOutputBufferPtr
+ php_libxml_output_buffer_create_filename(const char *URI,
+                               xmlCharEncodingHandlerPtr encoder,
+-                              int compression ATTRIBUTE_UNUSED)
++                              int compression ZEND_ATTRIBUTE_UNUSED)
+ {
+ 	xmlOutputBufferPtr ret;
+ 	xmlURIPtr puri;
+-- 
+2.51.0
+
