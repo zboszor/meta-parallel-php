@@ -17,5 +17,3 @@ SRC_URI = " \
 	git://github.com/adrianguenter/php-posix-realtime.git;protocol=https;nobranch=1 \
 	file://20-posixrealtime.ini \
 "
-
-S = "${UNPACKDIR}/git"
