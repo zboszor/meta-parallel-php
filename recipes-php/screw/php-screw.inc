@@ -12,5 +12,3 @@ SRC_URI = " \
 	git://github.com/zboszor/php-screw.git;protocol=https;nobranch=1 \
 	file://01-php_screw.ini \
 "
-
-S = "${UNPACKDIR}/git"
