@@ -19,5 +19,3 @@ SRC_URI = " \
 	git://github.com/treeleaf/php-nano.git;protocol=https;branch=${SRCBRANCH} \
 	file://20-nano.ini \
 "
-
-S = "${UNPACKDIR}/git"
