@@ -25,4 +25,8 @@ PACKAGECONFIG[pandas] = ",,python3 python3-numpy python3-native python3-numpy-na
 
 EXTRA_OECONF = "--disable-tests --disable-documentation"
 
-CFLAGS += "-I${STAGING_DIR_HOST}${PYTHON_SITEPACKAGES_DIR}/numpy/core/include -Wno-error=unused-function"
+CFLAGS += " \
+	-I${STAGING_DIR_HOST}${PYTHON_SITEPACKAGES_DIR}/numpy/core/include \
+	-I${STAGING_DIR_HOST}${PYTHON_SITEPACKAGES_DIR}/numpy/_core/include \
+	-Wno-error=unused-function \
+"
