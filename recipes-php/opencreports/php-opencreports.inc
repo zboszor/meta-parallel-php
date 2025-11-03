@@ -12,8 +12,8 @@ SRC_URI = " \
 	file://40-opencreports.ini \
 "
 
-PV = "0.8.12"
-SRCREV = "d117369c71ca3c2a3f00d1702c651b2aa196d269"
+PV = "0.8.13"
+SRCREV = "291e146fefa96631e8bcd450f3c943830f85d705"
 
 S = "${UNPACKDIR}/git/bindings/php"
 
