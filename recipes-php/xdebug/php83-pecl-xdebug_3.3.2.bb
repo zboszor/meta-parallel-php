@@ -34,6 +34,7 @@ FILESEXTRAPATHS:prepend = "${FILE_DIRNAME}/php-pecl-xdebug:"
 
 SRC_URI = " \
 			http://pecl.php.net/get/xdebug-${PV}${BETALEVEL}.tgz \
+			file://fix-prototype.patch \
 			file://02-xdebug.ini \
 		"
 
