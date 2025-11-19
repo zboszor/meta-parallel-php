@@ -1,0 +1,15 @@
+Signed-off-by: Zoltán Böszörményi <zboszor@gmail.com>
+Upstream-Status: Backport
+
+diff -durpN xdebug-3.1.6.old/src/develop/develop.h xdebug-3.1.6/src/develop/develop.h
+--- xdebug-3.1.6.old/src/develop/develop.h	2022-11-08 14:48:05.000000000 +0100
++++ xdebug-3.1.6/src/develop/develop.h	2025-11-19 13:06:19.295340488 +0100
+@@ -67,7 +67,7 @@ typedef struct _xdebug_develop_settings_
+ void xdebug_init_develop_globals(xdebug_develop_globals_t *xg);
+ void xdebug_deinit_develop_globals(xdebug_develop_globals_t *xg);
+ 
+-void xdebug_develop_minit();
++void xdebug_develop_minit(INIT_FUNC_ARGS);
+ void xdebug_develop_mshutdown();
+ void xdebug_develop_rinit();
+ void xdebug_develop_post_deactivate();
