@@ -14,6 +14,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=fd469cce1a919f0cc95bab7afb28d19d"
 
 EXTRA_OECONF:append:class-target = " \
 	ac_cv_func_fnmatch_works=yes \
+	--enable-opcache \
 	--with-external-pcre \
 	--with-pcre-jit \
 	--with-libxml \

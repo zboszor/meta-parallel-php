@@ -14,6 +14,7 @@ PR = "r10"
 
 EXTRA_OECONF:append:class-target = " \
 	ac_cv_func_fnmatch_works=yes \
+	--enable-opcache \
 	--with-external-pcre \
 	--with-pcre-jit \
 	--with-libxml \

@@ -18,6 +18,7 @@ EXTRA_OECONF:append:class-target = " \
 	php_cv_shm_ipc=yes \
 	php_cv_shm_mmap_anon=yes \
 	php_cv_shm_mmap_posix=yes \
+	--enable-opcache \
 	--with-external-pcre \
 	--with-pcre-jit \
 	--with-libxml \
