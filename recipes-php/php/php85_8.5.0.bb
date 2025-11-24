@@ -36,7 +36,7 @@ SRC_URI:remove = " \
 "
 
 SRC_URI += " \
-	file://php-8.4.0-fix-phpize-for-parallel-installation.patch \
+	file://php-8.5.0-fix-phpize-for-parallel-installation.patch \
 	file://php-bug20528.patch \
 	file://php.ini.native \
 	file://mod.ini \
