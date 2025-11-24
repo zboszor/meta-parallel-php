@@ -1,0 +1,23 @@
+Disable MPM detection
+
+mod_php is build twice
+- as NTS without option
+- as ZTS using --enable-maintainer-zts
+
+Upstream-Status: Inappropriate [Red Hat specific]
+
+diff -up ./sapi/apache2handler/config.m4.mpmcheck ./sapi/apache2handler/config.m4
+--- ./sapi/apache2handler/config.m4.mpmcheck	2024-07-03 15:56:56.882370597 +0200
++++ ./sapi/apache2handler/config.m4	2024-07-03 15:59:15.967824949 +0200
+@@ -120,11 +120,6 @@ if test "$PHP_APXS2" != "no"; then
+       -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1
+     ])
+ 
+-  AS_IF([$APXS_HTTPD -V 2>/dev/null | grep 'threaded:.*yes' >/dev/null 2>&1], [
+-    APACHE_THREADED_MPM=yes
+-    enable_zts=yes
+-  ], [APACHE_THREADED_MPM=no])
+-
+ AC_CONFIG_COMMANDS([apache2handler], [AS_VAR_IF([enable_zts], [yes],,
+   [AS_VAR_IF([APACHE_THREADED_MPM], [no],
+     [AC_MSG_WARN([

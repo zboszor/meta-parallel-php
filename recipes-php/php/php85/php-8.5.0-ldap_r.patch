@@ -1,0 +1,20 @@
+
+Use -lldap_r by default.
+
+Upstream-Status: Inappropriate [Red Hat specific]
+diff -up ./ext/ldap/config.m4.ldap_r ./ext/ldap/config.m4
+--- ./ext/ldap/config.m4.ldap_r	2025-06-30 15:52:59.464676379 +0200
++++ ./ext/ldap/config.m4	2025-06-30 15:53:57.499266397 +0200
+@@ -76,7 +76,11 @@ if test "$PHP_LDAP" != "no"; then
+     AH_TEMPLATE([HAVE_ORALDAP],
+       [Define to 1 if the ldap extension uses the Oracle Instant Client.])
+ 
+-    if test -f $LDAP_LIBDIR/liblber.a || test -f $LDAP_LIBDIR/liblber.$SHLIB_SUFFIX_NAME || test -f $LDAP_LIBDIR/$MACHINE_INCLUDES/liblber.a || test -f $LDAP_LIBDIR/$MACHINE_INCLUDES/liblber.$SHLIB_SUFFIX_NAME; then
++    if test -f $LDAP_LIBDIR/libldap_r.$SHLIB_SUFFIX_NAME; then
++      PHP_ADD_LIBRARY_WITH_PATH(lber, [$LDAP_LIBDIR], [LDAP_SHARED_LIBADD])
++      PHP_ADD_LIBRARY_WITH_PATH(ldap_r, [$LDAP_LIBDIR], [LDAP_SHARED_LIBADD])
++
++    elif test -f $LDAP_LIBDIR/liblber.a || test -f $LDAP_LIBDIR/liblber.$SHLIB_SUFFIX_NAME || test -f $LDAP_LIBDIR/$MACHINE_INCLUDES/liblber.a || test -f $LDAP_LIBDIR/$MACHINE_INCLUDES/liblber.$SHLIB_SUFFIX_NAME; then
+       PHP_ADD_LIBRARY_WITH_PATH([lber], [$LDAP_LIBDIR], [LDAP_SHARED_LIBADD])
+       PHP_ADD_LIBRARY_WITH_PATH([ldap], [$LDAP_LIBDIR], [LDAP_SHARED_LIBADD])
+ 
