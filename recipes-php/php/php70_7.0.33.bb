@@ -16,6 +16,7 @@ CFLAGS:append:class-native = " -std=gnu17 -Wno-incompatible-pointer-types"
 
 EXTRA_OECONF:append:class-target = " \
 	--enable-crosscompiling \
+	--enable-opcache \
 	--with-flock-type=linux \
 	--with-pcre-regex=${STAGING_LIBDIR}/.. \
 	--enable-libxml \

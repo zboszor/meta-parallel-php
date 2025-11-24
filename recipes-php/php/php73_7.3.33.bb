@@ -12,6 +12,7 @@ PR = "r11"
 CFLAGS:append:class-native = " -std=gnu17 -Wno-incompatible-pointer-types"
 
 EXTRA_OECONF:append:class-target = " \
+	--enable-opcache \
 	--enable-fpm=shared \
 	--enable-intl=shared \
 	--with-pcre-regex=${STAGING_LIBDIR}/.. \
