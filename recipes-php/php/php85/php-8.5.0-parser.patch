@@ -1,0 +1,18 @@
+Upstream-Status: Inappropriate [Red Hat specific]
+
+diff -up ./build/gen_stub.php.syslib ./build/gen_stub.php
+--- ./build/gen_stub.php.syslib	2025-06-30 12:31:27.000000000 +0200
++++ ./build/gen_stub.php	2025-06-30 15:49:00.751144274 +0200
+@@ -6082,6 +6082,12 @@ function initPhpParser() {
+     }
+ 
+     $isInitialized = true;
++
++    if (file_exists('/usr/share/php/PhpParser5/autoload.php')) {
++        require_once '/usr/share/php/PhpParser5/autoload.php';
++        return;
++    }
++
+     $version = "5.6.1";
+     $phpParserDir = __DIR__ . "/PHP-Parser-$version";
+     if (!is_dir($phpParserDir)) {
