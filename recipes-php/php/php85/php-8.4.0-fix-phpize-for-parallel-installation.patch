@@ -1,0 +1,15 @@
+Upstream-Status: Inappropriate [cross compile specific]
+
+--- php-8.3.0.orig/scripts/phpize.m4.old	2016-07-26 10:26:52.306196789 -0400
++++ php-8.3.0/scripts/phpize.m4	2016-07-26 10:27:26.708520553 -0400
+@@ -50,8 +50,8 @@
+ dnl Find php-config script.
+ PHP_ARG_WITH([php-config],,
+   [AS_HELP_STRING([--with-php-config=PATH],
+-    [Path to php-config [php-config]])],
+-  [php-config],
++    [Path to php-config [php-config84]])],
++  [php-config84],
+   [no])
+ 
+ dnl For BC.
