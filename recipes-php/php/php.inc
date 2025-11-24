@@ -127,7 +127,6 @@ COMMON_EXTRA_OECONF = " \
 "
 
 EXTRA_OECONF:class-target = " \
-	--enable-opcache \
 	--enable-phpdbg \
 	--enable-dom${DEPSETTING3} \
 	--with-fpm-systemd \
