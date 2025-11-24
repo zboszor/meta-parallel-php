@@ -37,6 +37,7 @@ SRC_URI:remove = " \
 
 SRC_URI += " \
 	file://php-8.4.0-fix-phpize-for-parallel-installation.patch \
+	file://php-bug20528.patch \
 	file://php.ini.native \
 	file://mod.ini \
 	file://20-openssl.ini \
@@ -61,7 +62,7 @@ SRC_URI:append:class-target = " \
 	file://php-7.4.0-datetests.patch \
 "
 
-SRC_URI[sha256sum] = "bac90ee7cf738e814c89b6b27d4d2c4b70e50942a420837e1a22f5fd5f9867a3"
+SRC_URI[sha256sum] = "a060684f614b8344f9b34c334b6ba8db1177555997edb5b1aceab0a4b807da7e"
 
 LIBS:append:class-target = ""
 LIBS:append:class-native = " -lpthread"
