@@ -1,3 +1,5 @@
+PV = "1.0"
+
 S = "${UNPACKDIR}"
 
 inherit allarch
