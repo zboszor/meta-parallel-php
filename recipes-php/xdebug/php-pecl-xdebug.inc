@@ -2,22 +2,18 @@ DESCRIPTION = "Provides functions for function traces and profiling"
 HOMEPAGE = "http://pecl.php.net/package/xdebug"
 SECTION = "console/network"
 LICENSE = "Xdebug"
-LIC_FILES_CHKSUM = "file://LICENSE;md5=92d94a330d34ee6edc2638450736f119"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=afd6ce4aa04fdc346e5b3c6e634bd75c"
 
-#PR = "r1"
-
-PHPVERSION = "81"
+PV = "3.4.7"
+SRC_URI[sha256sum] = "7592923501e3fdb9741ad35b90e08fc6b3c5dd31eadc4c83b7b3c9dda0627b24"
 
 inherit parallel-php-module
 
 FILESEXTRAPATHS:prepend = "${FILE_DIRNAME}/php-pecl-xdebug:"
 
 SRC_URI = " \
-			http://pecl.php.net/get/xdebug-${PV}.tgz \
-			file://fix-prototype.patch \
-			file://02-xdebug.ini \
-		"
-
-SRC_URI[sha256sum] = "554eca0b4d5b7b93cb2258fab0b0bd84cc8721e74322a2255c14e137cbcad5d2"
+	http://pecl.php.net/get/xdebug-${PV}.tgz \
+	file://02-xdebug.ini \
+"
 
 S = "${UNPACKDIR}/xdebug-${PV}"
