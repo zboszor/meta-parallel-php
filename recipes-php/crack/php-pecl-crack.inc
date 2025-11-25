@@ -6,6 +6,8 @@ BBCLASSEXTEND = "native"
 LIC_FILES_CHKSUM = "file://crack.c;beginline=1;endline=18;md5=fd24615e1d33d3e88908fea46f121b8f"
 DEPENDS += "cracklib"
 
+PV = "1.1"
+SRCREV = "dd0699635f389fd8d4875ed8b5bc37b99ab2fe58"
 #PR = "r1"
 
 inherit parallel-php-module
