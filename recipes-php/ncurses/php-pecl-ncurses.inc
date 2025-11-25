@@ -15,9 +15,9 @@ FILESEXTRAPATHS:prepend = "${FILE_DIRNAME}/php-pecl-ncurses:"
 SRCREV = "9d41187a23fbd239262e4682fe1718e117a6bda1"
 
 SRC_URI = " \
-			git://github.com/OOPS-ORG-PHP/mod_ncurses.git;protocol=https;nobranch=1 \
-			file://40-ncurses.ini \
-		"
+	git://github.com/OOPS-ORG-PHP/mod_ncurses.git;protocol=https;nobranch=1 \
+	file://40-ncurses.ini \
+"
 
 S = "${WORKDIR}/git"
 
