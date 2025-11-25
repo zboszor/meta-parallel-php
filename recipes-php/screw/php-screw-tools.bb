@@ -1,4 +1,4 @@
-require php-screw.inc
+require php-screw-base.inc
 
 do_compile () {
 	make -C tools
