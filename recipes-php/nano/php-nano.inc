@@ -6,13 +6,13 @@ DEPENDS = "nanomsg"
 
 PV = "0.1"
 #PR = "r1"
-SRCREV = "195ab371121ddeb5b8f2e3b38536d0c08b3746de"
+SRCREV = "58b3529c5b84ced623bb668e2c8f68fc866aeb90"
 
 inherit parallel-php-module
 
 FILESEXTRAPATHS:prepend = "${FILE_DIRNAME}/php-nano:"
 
 SRC_URI = " \
-	git://github.com/treeleaf/php-nano.git;protocol=https;branch=master \
+	git://github.com/zboszor/php-nano.git;protocol=https;branch=master \
 	file://20-nano.ini \
 "
