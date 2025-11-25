@@ -37,6 +37,6 @@ SRC_URI = " \
 	file://02-xdebug.ini \
 "
 
-SRC_URI[sha256sum] = "f8e6aaac0c61b466204ed1117456cb1ba788e083229bd1aa7acd8f53dbfeb614"
+SRC_URI[sha256sum] = "7592923501e3fdb9741ad35b90e08fc6b3c5dd31eadc4c83b7b3c9dda0627b24"
 
 S = "${WORKDIR}/xdebug-${PV}${BETALEVEL}"
