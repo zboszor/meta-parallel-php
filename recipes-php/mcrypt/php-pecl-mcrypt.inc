@@ -5,9 +5,9 @@ LICENSE = "PHP-3.0"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=727d8e538931300e934e754c47398710"
 DEPENDS += "libmcrypt"
 
+PV = "1.0.9"
 #PR = "r1"
-
-PHPVERSION = "82"
+SRC_URI[sha256sum] = "2a9ef0817d3bf677f6d7baf8e325629a2758974735d8abad6566384788d424a5"
 
 inherit parallel-php-module
 
@@ -17,8 +17,6 @@ SRC_URI = " \
 	http://pecl.php.net/get/mcrypt-${PV}.tgz \
 	file://20-mcrypt.ini \
 "
-
-SRC_URI[sha256sum] = "12ea2fbbf2e2efbe790a12121f77bf096c8b84cef81d0216bec00d56e5badef4"
 
 S = "${WORKDIR}/mcrypt-${PV}"
 
