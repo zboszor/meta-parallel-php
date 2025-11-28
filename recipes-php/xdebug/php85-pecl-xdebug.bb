@@ -7,4 +7,4 @@ SRC_URI:prepend = "git://github.com/xdebug/xdebug.git;protocol=https;branch=mast
 
 PV = "3.5.0alpha3"
 SRCREV = "eb6378f2feb65e6f26ab172cb42d478aa4b5e7f1"
-S = "${UNPACKDIR}/${BPN}-${PV}"
+S = "${WORKDIR}/git"
