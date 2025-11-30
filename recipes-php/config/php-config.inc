@@ -1,6 +1,6 @@
 PV = "1.0"
 
-S = "${UNPACKDIR}"
+S = "${WORKDIR}"
 
 inherit allarch
 
