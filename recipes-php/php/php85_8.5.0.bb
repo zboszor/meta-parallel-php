@@ -69,7 +69,7 @@ LIBS:append:class-native = " -lpthread"
 export LIBS
 
 do_install:append:class-target() {
-	install -m 644 ${UNPACKDIR}/opcache-default.blacklist ${D}${sysconfdir}/php${PHPVER}/php.d/
+	install -m 644 ${WORKDIR}/opcache-default.blacklist ${D}${sysconfdir}/php${PHPVER}/php.d/
 }
 
 do_install:append:class-native() {
