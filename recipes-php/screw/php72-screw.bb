@@ -1,3 +1,3 @@
 require php-screw.inc
 
-PHPVERSION = "71"
+PHPVERSION = "72"
