@@ -39,6 +39,7 @@ SRC_URI:remove = " \
 "
 
 SRC_URI += " \
+	file://php-7.4.33-bash53.patch  \
 	file://imap-fix-autofoo.patch \
 	file://php-8.1.0-fix-phpize-for-parallel-installation.patch \
 	file://php.ini.native \
@@ -68,7 +69,7 @@ SRC_URI:append:class-target = " \
 	file://php-7.4.0-datetests.patch \
 "
 
-SRC_URI[sha256sum] = "475f991afd2d5b901fb410be407d929bc00c46285d3f439a02c59e8b6fe3589c"
+SRC_URI[sha256sum] = "bc90523e17af4db46157e75d0c9ef0b9d0030b0514e62c26ba7b513b8c4eb015"
 
 do_install:append:class-target() {
 	install -m 644 ${WORKDIR}/opcache-default.blacklist ${D}${sysconfdir}/php${PHPVER}/php.d/
