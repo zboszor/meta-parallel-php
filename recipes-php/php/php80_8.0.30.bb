@@ -10,7 +10,7 @@ DEPENDS:append:class-native = " libpcre2-native onig-native "
 
 LIC_FILES_CHKSUM = "file://LICENSE;md5=99532e0f6620bc9bca34f12fadaee33c"
 
-PR = "r10"
+PR = "r11"
 
 EXTRA_OECONF:append:class-target = " \
 	ac_cv_func_fnmatch_works=yes \
@@ -39,6 +39,7 @@ SRC_URI:remove = " \
 "
 
 SRC_URI += " \
+	file://php-7.4.33-bash53.patch \
 	file://imap-fix-autofoo.patch \
 	file://php-8.0.0-fix-phpize-for-parallel-installation.patch \
 	file://php-8.0.21-openssl3.patch \
@@ -48,6 +49,12 @@ SRC_URI += " \
 	file://php-cve-2025-1861.patch \
 	file://php-cve-2025-1736.patch \
 	file://php-cve-2025-1219.patch \
+	file://php-cve-2025-6491.patch \
+	file://php-cve-2025-1220.patch \
+	file://php-cve-2025-1735.patch \
+	file://php-cve-2025-14177.patch \
+	file://php-cve-2025-14178.patch \
+	file://php-ghsa-www2-q4fc-65wf.patch \
 	file://php.ini.native \
 	file://mod.ini \
 	file://20-openssl.ini \
