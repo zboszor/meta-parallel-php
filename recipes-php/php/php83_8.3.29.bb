@@ -40,7 +40,6 @@ SRC_URI:remove = " \
 SRC_URI += " \
 	file://imap-fix-autofoo.patch \
 	file://php-8.3.0-fix-phpize-for-parallel-installation.patch \
-	file://php-bug20528.patch \
 	file://php.ini.native \
 	file://mod.ini \
 	file://20-openssl.ini \
@@ -69,7 +68,7 @@ SRC_URI:append:class-target = " \
 	file://php-8.2.0-iodbc.patch \
 "
 
-SRC_URI[sha256sum] = "25e3860f30198a386242891c0bf9e2955931f7b666b96c3e3103d36a2a322326"
+SRC_URI[sha256sum] = "f7950ca034b15a78f5de9f1b22f4d9bad1dd497114d175cb1672a4ca78077af5"
 
 LIBS:append:class-target = ""
 LIBS:append:class-native = " -lpthread"
