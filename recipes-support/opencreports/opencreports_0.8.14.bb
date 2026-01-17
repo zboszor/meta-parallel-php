@@ -10,7 +10,7 @@ DEPENDS = " \
 "
 
 SRC_URI = "git://github.com/zboszor/OpenCReports;protocol=https;branch=main"
-SRCREV = "291e146fefa96631e8bcd450f3c943830f85d705"
+SRCREV = "f864554cd06e225a124a5c45928e2d64170e9fef"
 
 S = "${WORKDIR}/git"
 
