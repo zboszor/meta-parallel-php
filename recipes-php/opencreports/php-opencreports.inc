@@ -12,8 +12,8 @@ SRC_URI = " \
 	file://40-opencreports.ini \
 "
 
-PV = "0.8.14"
-SRCREV = "f864554cd06e225a124a5c45928e2d64170e9fef"
+PV = "0.8.15"
+SRCREV = "ccfd7cd3ab577f154a240c034354e697a0d10ecf"
 
 S:append = "/bindings/php"
 
