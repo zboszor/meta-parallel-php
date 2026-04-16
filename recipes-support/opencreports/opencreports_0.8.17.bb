@@ -10,7 +10,7 @@ DEPENDS = " \
 "
 
 SRC_URI = "git://github.com/zboszor/OpenCReports;protocol=https;branch=main"
-SRCREV = "ccfd7cd3ab577f154a240c034354e697a0d10ecf"
+SRCREV = "2d0bcfa9631039f6867a572d7f5d7a7a71621407"
 
 inherit autotools pkgconfig python3-dir
 
