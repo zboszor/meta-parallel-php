@@ -14,14 +14,14 @@ PHPVER = "${PHP_MAJVER}${PHP_MINVER}"
 export PHPVER
 
 DEPENDS = " \
-	virtual/libiconv zlib bzip2 libxml2 libxslt \
+	virtual/libiconv gd zlib bzip2 libxml2 libxslt \
 	openssl curl gmp gettext libpcre \
 "
 
 DEPENDS:append:class-target = " \
 	php${PHPVER}-native lemon-native \
 	mariadb icu systemd libpcre libgcrypt \
-	gd jpeg libpng freetype libpcre net-snmp freetds \
+	jpeg libpng freetype libpcre net-snmp freetds \
 	${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'libxpm', '', d)} \
 	rsync-native \
 "
@@ -101,6 +101,7 @@ COMMON_EXTRA_OECONF = " \
 	--enable-mbstring${DEPSETTING3} \
 	--enable-mbregex \
 	--with-gmp=${DEPSETTING1} \
+	--enable-gd${DEPSETTING3} \
 	--enable-calendar${DEPSETTING3} \
 	--enable-bcmath${DEPSETTING3} \
 	--with-bz2=${DEPSETTING1} \
