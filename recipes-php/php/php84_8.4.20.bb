@@ -24,7 +24,6 @@ EXTRA_OECONF:append:class-target = " \
 	--with-libxml \
 	--enable-fpm${DEPSETTING3} \
 	--enable-intl${DEPSETTING3} \
-	--enable-gd${DEPSETTING3} \
 	--with-jpeg \
 	--with-sodium=shared,${STAGING_LIBDIR}/.. \
 "
