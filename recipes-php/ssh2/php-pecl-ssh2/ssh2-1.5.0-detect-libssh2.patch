@@ -1,8 +1,8 @@
 Upstream-Status: Inappropriate [cross compiler specific]
 
 diff -durpN ssh2-1.5.0.old/config.m4 ssh2-1.5.0/config.m4
---- ssh2-1.5.0.old/config.m4	2026-04-04 22:11:46.000000000 +0200
-+++ ssh2-1.5.0/config.m4	2026-05-12 13:46:34.608679742 +0200
+--- ssh2-1.5.0.old/config.m4	2026-05-12 14:30:45.181235201 +0200
++++ ssh2-1.5.0/config.m4	2026-05-12 14:30:31.306472187 +0200
 @@ -4,54 +4,33 @@ PHP_ARG_WITH(ssh2, for ssh2 support,
  [  --with-ssh2=[DIR]       Include ssh2 support])
  
@@ -79,3 +79,21 @@ diff -durpN ssh2-1.5.0.old/config.m4 ssh2-1.5.0/config.m4
  
    PHP_CHECK_LIBRARY(ssh2,libssh2_keepalive_config,
    [
+@@ -59,7 +38,7 @@ if test "$PHP_SSH2" != "no"; then
+   ],[
+     AC_MSG_WARN([libssh2 keepalive support not available])
+   ],[
+-    -L$SSH2_DIR/lib -lm
++    -lm
+   ])
+ 
+   PHP_CHECK_LIBRARY(ssh2,libssh2_channel_signal_ex,
+@@ -68,7 +47,7 @@ if test "$PHP_SSH2" != "no"; then
+   ],[
+     AC_MSG_WARN([libssh2 < 1.9.0, channel signal support not available])
+   ],[
+-    -L$SSH2_DIR/lib -lm
++    -lm
+   ])
+ 
+   PHP_SUBST(SSH2_SHARED_LIBADD)
