@@ -5,7 +5,7 @@ LICENSE = "PHP-3.0"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=ab5215b391feaa5fb1ecc15a4caa2b47"
 DEPENDS = "libssh2"
 
-PV ?= "1.5.0"
+PV = "1.5.0"
 SRC_URI[sha256sum] ?= "a943427fae39a5503c813179018ae6c500323c8c9fb434e1a9a665fb32a4d7b4"
 
 #PR = "r1"
