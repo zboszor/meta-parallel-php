@@ -16,7 +16,7 @@ FILESEXTRAPATHS:prepend = "${FILE_DIRNAME}/php-pecl-ssh2:"
 
 SRC_URI = " \
 	http://pecl.php.net/get/ssh2-${PV}.tgz \
-	file://ssh2-detect-libssh2.patch \
+	file://ssh2-${PV}-detect-libssh2.patch \
 	file://40-ssh2.ini \
 "
 
