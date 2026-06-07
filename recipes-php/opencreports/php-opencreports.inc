@@ -8,7 +8,7 @@ DEPENDS = "opencreports"
 FILESEXTRAPATHS:prepend = "${FILE_DIRNAME}/php-opencreports:"
 
 SRC_URI = " \
-	git://github.com/zboszor/OpenCReports;protocol=https;branch=main \
+	git://codeberg.org/zboszor/OpenCReports.git;protocol=https;branch=main \
 	file://40-opencreports.ini \
 "
 
