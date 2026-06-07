@@ -53,7 +53,7 @@ SRC_URI:append:class-target = " \
 	file://php-8.4.6-embed.patch \
 	file://php-8.4.0-libdb.patch \
 	file://php-8.3.3-parser.patch \
-	file://php-8.4.0-systzdata-v24.patch \
+	file://php-8.4.22-systzdata-v24.patch \
 	file://php-8.4.0-phpize.patch \
 	file://php-8.4.0-ldap_r.patch \
 	file://php-8.0.7-argon2.patch \
