@@ -38,9 +38,9 @@ r1: initial revision
 Upstream-Status: Inappropriate [Red Hat specific]
 
 diff -up ./ext/date/config0.m4.systzdata ./ext/date/config0.m4
---- ./ext/date/config0.m4.systzdata	2024-07-03 16:21:20.240786848 +0200
-+++ ./ext/date/config0.m4	2024-07-03 16:25:14.838995464 +0200
-@@ -8,6 +8,18 @@
+--- ./ext/date/config0.m4.systzdata	2026-05-19 17:02:38.000000000 +0200
++++ ./ext/date/config0.m4	2026-05-20 07:34:14.360175792 +0200
+@@ -8,6 +8,18 @@ AX_CHECK_COMPILE_FLAG([-Wno-implicit-fal
    [PHP_DATE_CFLAGS="$PHP_DATE_CFLAGS -Wno-implicit-fallthrough"],,
    [-Werror])
  
@@ -57,11 +57,11 @@ diff -up ./ext/date/config0.m4.systzdata ./ext/date/config0.m4
 +fi
 +
  PHP_DATE_CFLAGS="$PHP_DATE_CFLAGS -I@ext_builddir@/lib -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -DHAVE_TIMELIB_CONFIG_H=1"
- timelib_sources="lib/astro.c lib/dow.c lib/parse_date.c lib/parse_tz.c lib/parse_posix.c
-                  lib/timelib.c lib/tm2unixtime.c lib/unixtime2tm.c lib/parse_iso_intervals.c lib/interval.c"
+ 
+ AX_CHECK_COMPILE_FLAG([-fwrapv],
 diff -up ./ext/date/lib/parse_tz.c.systzdata ./ext/date/lib/parse_tz.c
---- ./ext/date/lib/parse_tz.c.systzdata	2024-07-02 15:43:13.000000000 +0200
-+++ ./ext/date/lib/parse_tz.c	2024-07-03 16:21:20.240786848 +0200
+--- ./ext/date/lib/parse_tz.c.systzdata	2026-05-19 17:02:38.000000000 +0200
++++ ./ext/date/lib/parse_tz.c	2026-05-20 07:33:10.301120979 +0200
 @@ -26,9 +26,33 @@
  #include "timelib.h"
  #include "timelib_private.h"
@@ -727,9 +727,9 @@ diff -up ./ext/date/lib/parse_tz.c.systzdata ./ext/date/lib/parse_tz.c
  		*error_code = TIMELIB_ERROR_NO_SUCH_TIMEZONE;
  		tmp = NULL;
 diff -up ./ext/date/php_date.c.systzdata ./ext/date/php_date.c
---- ./ext/date/php_date.c.systzdata	2024-07-02 15:43:13.000000000 +0200
-+++ ./ext/date/php_date.c	2024-07-03 16:21:20.240786848 +0200
-@@ -487,7 +487,11 @@ PHP_MINFO_FUNCTION(date)
+--- ./ext/date/php_date.c.systzdata	2026-05-19 17:02:38.000000000 +0200
++++ ./ext/date/php_date.c	2026-05-20 07:33:10.301467311 +0200
+@@ -483,7 +483,11 @@ PHP_MINFO_FUNCTION(date)
  	php_info_print_table_row(2, "date/time support", "enabled");
  	php_info_print_table_row(2, "timelib version", TIMELIB_ASCII_VERSION);
  	php_info_print_table_row(2, "\"Olson\" Timezone Database Version", tzdb->version);
