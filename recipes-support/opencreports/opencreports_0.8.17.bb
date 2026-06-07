@@ -9,7 +9,7 @@ DEPENDS = " \
 	libpaper cairo gdk-pixbuf librsvg pango \
 "
 
-SRC_URI = "git://github.com/zboszor/OpenCReports;protocol=https;branch=main"
+SRC_URI = "git://codeberg.org/zboszor/OpenCReports.git;protocol=https;branch=main"
 SRCREV = "2d0bcfa9631039f6867a572d7f5d7a7a71621407"
 
 S = "${UNPACKDIR}/git"
