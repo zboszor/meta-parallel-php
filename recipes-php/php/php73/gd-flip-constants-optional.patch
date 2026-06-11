@@ -1,0 +1,45 @@
+Signed-off-by: Zoltán Böszörményi <zboszor@gmail.com>
+Upstream-Status: Inappropriate
+
+--- php-7.0.33/ext/gd/gd.c~	2018-12-04 18:22:57.000000000 +0100
++++ php-7.0.33/ext/gd/gd.c	2026-06-11 17:28:52.360495220 +0200
+@@ -1084,9 +1084,15 @@
+     /* GD2 image format types */
+ 	REGISTER_LONG_CONSTANT("IMG_GD2_RAW", GD2_FMT_RAW, CONST_CS | CONST_PERSISTENT);
+ 	REGISTER_LONG_CONSTANT("IMG_GD2_COMPRESSED", GD2_FMT_COMPRESSED, CONST_CS | CONST_PERSISTENT);
++#ifdef IMG_FLIP_HORIZONTAL
+ 	REGISTER_LONG_CONSTANT("IMG_FLIP_HORIZONTAL", GD_FLIP_HORINZONTAL, CONST_CS | CONST_PERSISTENT);
++#endif
++#ifdef IMG_FLIP_VERTICAL
+ 	REGISTER_LONG_CONSTANT("IMG_FLIP_VERTICAL", GD_FLIP_VERTICAL, CONST_CS | CONST_PERSISTENT);
++#endif
++#ifdef IMG_FLIP_BOTH
+ 	REGISTER_LONG_CONSTANT("IMG_FLIP_BOTH", GD_FLIP_BOTH, CONST_CS | CONST_PERSISTENT);
++#endif
+ 	REGISTER_LONG_CONSTANT("IMG_EFFECT_REPLACE", gdEffectReplace, CONST_CS | CONST_PERSISTENT);
+ 	REGISTER_LONG_CONSTANT("IMG_EFFECT_ALPHABLEND", gdEffectAlphaBlend, CONST_CS | CONST_PERSISTENT);
+ 	REGISTER_LONG_CONSTANT("IMG_EFFECT_NORMAL", gdEffectNormal, CONST_CS | CONST_PERSISTENT);
+@@ -4539,17 +4545,23 @@
+ 	}
+ 
+ 	switch (mode) {
++#ifdef GD_FLIP_VERTICAL
+ 		case GD_FLIP_VERTICAL:
+ 			gdImageFlipVertical(im);
+ 			break;
++#endif
+ 
++#ifdef GD_FLIP_HORINZONTAL
+ 		case GD_FLIP_HORINZONTAL:
+ 			gdImageFlipHorizontal(im);
+ 			break;
++#endif
+ 
++#ifdef GD_FLIP_BOTH
+ 		case GD_FLIP_BOTH:
+ 			gdImageFlipBoth(im);
+ 			break;
++#endif
+ 
+ 		default:
+ 			php_error_docref(NULL, E_WARNING, "Unknown flip mode");

@@ -14,7 +14,7 @@ PHPVER = "${PHP_MAJVER}${PHP_MINVER}"
 export PHPVER
 
 DEPENDS = " \
-	virtual/libiconv gd zlib bzip2 libxml2 libxslt \
+	virtual/libiconv gd libxpm zlib bzip2 libxml2 libxslt \
 	openssl curl gmp gettext libpcre \
 "
 

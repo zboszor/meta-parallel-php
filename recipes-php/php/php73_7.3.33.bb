@@ -21,7 +21,7 @@ EXTRA_OECONF:append:class-target = " \
 	--with-png-dir=${STAGING_LIBDIR}/.. \
 	--with-jpeg-dir=${STAGING_LIBDIR}/.. \
 	--with-xpm-dir=${STAGING_LIBDIR}/.. \
-	--with-gd${DEPSETTING3} \
+	--with-gd=${DEPSETTING1} \
 	--with-xmlrpc${DEPSETTING3} \
 	--enable-wddx${DEPSETTING3} \
 	--enable-zip \
@@ -31,7 +31,7 @@ EXTRA_OECONF:append:class-target = " \
 "
 
 EXTRA_OECONF:append:class-native = " \
-	--with-gd${DEPSETTING3} \
+	--with-gd=${DEPSETTING1} \
 	--with-pcre-regex=${STAGING_LIBDIR}/.. \
 	--with-libxml-dir=${STAGING_BINDIR_NATIVE} \
 	--with-xmlrpc${DEPSETTING3} \
@@ -44,6 +44,7 @@ SRC_URI += " \
 	file://php-7.2.0-fix-phpize-for-parallel-installation.patch \
 	file://php-7.3.3-fix-phar-build.patch \
 	file://0001-Fix-bug-78823-add-zlib-library-to-mysqlnd.patch \
+	file://gd-flip-constants-optional.patch \
 	file://php.ini.native \
 	file://mod.ini \
 	file://20-openssl.ini \
