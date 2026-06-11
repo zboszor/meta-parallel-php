@@ -31,6 +31,7 @@ EXTRA_OECONF:append:class-target = " \
 "
 
 EXTRA_OECONF:append:class-native = " \
+	--with-gd${DEPSETTING3} \
 	--with-pcre-regex=${STAGING_LIBDIR}/.. \
 	--with-libxml-dir=${STAGING_BINDIR_NATIVE} \
 	--with-xmlrpc${DEPSETTING3} \

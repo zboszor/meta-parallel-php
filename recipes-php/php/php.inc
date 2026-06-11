@@ -101,7 +101,6 @@ COMMON_EXTRA_OECONF = " \
 	--enable-mbstring${DEPSETTING3} \
 	--enable-mbregex \
 	--with-gmp=${DEPSETTING1} \
-	--enable-gd${DEPSETTING3} \
 	--enable-calendar${DEPSETTING3} \
 	--enable-bcmath${DEPSETTING3} \
 	--with-bz2=${DEPSETTING1} \

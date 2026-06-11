@@ -20,6 +20,7 @@ EXTRA_OECONF:append:class-target = " \
 	--with-libxml \
 	--enable-fpm${DEPSETTING3} \
 	--enable-intl${DEPSETTING3} \
+	--enable-gd${DEPSETTING3} \
 	--with-jpeg \
 	--with-xmlrpc${DEPSETTING3} \
 	--with-sodium=shared,${STAGING_LIBDIR}/.. \
@@ -28,6 +29,7 @@ EXTRA_OECONF:append:class-target = " \
 "
 
 EXTRA_OECONF:append:class-native = " \
+	--enable-gd${DEPSETTING3} \
 	--with-xmlrpc${DEPSETTING3} \
 	--with-zlib-dir=${STAGING_LIBDIR}/.. \
 "

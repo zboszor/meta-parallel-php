@@ -24,7 +24,7 @@ EXTRA_OECONF:append:class-target = " \
 	--with-png-dir=${STAGING_LIBDIR}/.. \
 	--with-jpeg-dir=${STAGING_LIBDIR}/.. \
 	--with-xpm-dir=${STAGING_LIBDIR}/.. \
-	--with-gd=shared \
+	--with-gd=${DEPSETTING3} \
 	--with-xmlrpc${DEPSETTING3} \
 	--enable-wddx${DEPSETTING3} \
 	--enable-zip \
@@ -36,6 +36,7 @@ EXTRA_OECONF:append:class-target = " \
 "
 
 EXTRA_OECONF:append:class-native = " \
+	--with-gd=${DEPSETTING3} \
 	--with-pcre-regex=${STAGING_LIBDIR}/.. \
 	--with-libxml-dir=${STAGING_BINDIR_NATIVE} \
 	--with-xmlrpc${DEPSETTING3} \
