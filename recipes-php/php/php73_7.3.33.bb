@@ -34,6 +34,8 @@ EXTRA_OECONF:append:class-native = " \
 	--with-gd=${DEPSETTING1} \
 	--with-pcre-regex=${STAGING_LIBDIR}/.. \
 	--with-libxml-dir=${STAGING_BINDIR_NATIVE} \
+	--with-png-dir=${STAGING_LIBDIR}/.. \
+	--with-jpeg-dir=${STAGING_LIBDIR}/.. \
 	--with-xmlrpc${DEPSETTING3} \
 	--with-zlib-dir=${STAGING_LIBDIR}/.. \
 "
