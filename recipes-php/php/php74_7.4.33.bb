@@ -29,7 +29,7 @@ EXTRA_OECONF:append:class-target = " \
 "
 
 EXTRA_OECONF:append:class-native = " \
-	--enable-gd${DEPSETTING3} \
+	--enable-gd=shared \
 	--with-xmlrpc${DEPSETTING3} \
 	--with-zlib-dir=${STAGING_LIBDIR}/.. \
 "
