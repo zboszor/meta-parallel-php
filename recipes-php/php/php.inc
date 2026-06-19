@@ -15,13 +15,13 @@ export PHPVER
 
 DEPENDS = " \
 	virtual/libiconv gd zlib bzip2 libxml2 libxslt \
-	openssl curl gmp gettext libpcre \
+	openssl curl gmp gettext libpcre2 \
 "
 
 DEPENDS:append:class-target = " \
 	php${PHPVER}-native lemon-native \
-	mariadb icu systemd libpcre libgcrypt \
-	jpeg libpng freetype libpcre net-snmp freetds \
+	mariadb icu systemd libgcrypt \
+	jpeg libpng freetype net-snmp freetds \
 	${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'libxpm', '', d)} \
 	rsync-native \
 "
