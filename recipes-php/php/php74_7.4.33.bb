@@ -5,8 +5,8 @@ require php.inc
 
 ARCHIVE_COMPRESSION = "xz"
 
-DEPENDS:append:class-target = " libpcre2 libzip libsodium onig "
-DEPENDS:append:class-native = " libpcre2-native onig-native "
+DEPENDS:append:class-target = " libzip libsodium onig "
+DEPENDS:append:class-native = " onig-native "
 
 LIC_FILES_CHKSUM = "file://LICENSE;md5=99532e0f6620bc9bca34f12fadaee33c"
 
