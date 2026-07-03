@@ -60,7 +60,7 @@ SRC_URI:append:class-target = " \
 	file://php-7.4.0-datetests.patch \
 "
 
-SRC_URI[sha256sum] = "01ba2ed1c2658dacf91bebc8be6a4885f69b811c7993831fc48e26107ab29985"
+SRC_URI[sha256sum] = "58910198d19e873048fe87cdfe16bc790025417ede3d1651bfa1c4b533d573f2"
 
 LIBS:append:class-target = ""
 LIBS:append:class-native = " -lpthread"
