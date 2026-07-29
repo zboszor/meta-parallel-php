@@ -1,7 +1,7 @@
 DESCRIPTION = "Provides functions for function traces and profiling"
 HOMEPAGE = "http://pecl.php.net/package/xdebug"
 SECTION = "console/network"
-LICENSE = "Xdebug"
+LICENSE = "LicenseRef-Xdebug"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=afd6ce4aa04fdc346e5b3c6e634bd75c"
 
 PV = "3.5.1"
