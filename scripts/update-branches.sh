@@ -1,5 +1,8 @@
 #!/bin/bash
 
+echo "blacksail deviated from wrynose"
+exit 0
+
 git checkout main
 git push origin HEAD
 
