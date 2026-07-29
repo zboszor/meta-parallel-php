@@ -1,15 +1,14 @@
 #!/bin/bash
 
-echo "blacksail deviated from wrynose"
-exit 0
+MAINBRANCH=main
 
-git checkout main
+git checkout "$MAINBRANCH"
 git push origin HEAD
 
-for i in whinlatter wrynose ; do
+for i in blacksail ; do
 	git checkout $i
-	git merge origin/main
+	git merge "origin/$MAINBRANCH"
 	git push origin HEAD
 done
 
-git checkout main
+git checkout "$MAINBRANCH"
