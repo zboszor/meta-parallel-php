@@ -25,4 +25,4 @@ EXTRA_OECONF = " \
 	--with-gnutls \
 "
 
-SRC_URI[sha256sum] = "93a3f186b82c6042a66a1970bd478d7914edb1c5669b642d80b4eaacf2a2d17e"
+SRC_URI[sha256sum] = "6b2c8b93b9ee7c83855daf745de5878790032f14dbaee553d83a9d211b84dd4b"
