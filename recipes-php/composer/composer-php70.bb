@@ -2,5 +2,5 @@ PHPVERSION = "70"
 
 require composer.inc
 
-PV = "2.2.25"
-SRC_URI[sha256sum] = "8b3f41253363f0645402d1951d6e7f02adedeef29c16de6074763e463e25c23f"
+PV = "2.2.29"
+SRC_URI[sha256sum] = "f38623ebdeeab5905b24b048fd32804150e598436cc43db9fc12362894c1279d"
