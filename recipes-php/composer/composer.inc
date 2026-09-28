@@ -6,8 +6,8 @@ DEPENDS = "git-native php${PHPVERSION}-native php${PHPVERSION}-symlinks-native"
 
 inherit allarch
 
-PV = "2.9.7"
-SRC_URI[sha256sum] = "d3c6801ea6e5dd291d0f149295a4d0f1539a74d5231958fe8fdaa889a497e6cf"
+PV = "2.10.3"
+SRC_URI[sha256sum] = "7a2d379d5b8ffdaa028580ef26494c36d2feef4b178d3dd1473a4dbc5e17c8d6"
 
 # We have just pull the pre-built composer
 SRC_URI = "https://github.com/composer/composer/releases/download/${PV}/composer.phar;downloadfilename=composer-${PV}.phar"
