@@ -10,7 +10,7 @@ DEPENDS:append:class-native = " onig-native "
 
 LIC_FILES_CHKSUM = "file://LICENSE;md5=99532e0f6620bc9bca34f12fadaee33c"
 
-#PR = "r1"
+PR = "r1"
 
 EXTRA_OECONF:append:class-target = " \
 	ac_cv_func_fnmatch_works=yes \
@@ -48,6 +48,21 @@ SRC_URI += " \
 	file://50-date.ini \
 	file://opcache-default.blacklist \
 	file://0001-Fix-cookie_seek_function_t-signature-under-musl-1389.patch \
+	file://php-cve-2025-14179.patch \
+	file://php-cve-2026-6722.patch \
+	file://php-cve-2026-7261.patch \
+	file://php-cve-2026-7262.patch \
+	file://php-cve-2026-6735.patch \
+	file://php-cve-2026-7259.patch \
+	file://php-cve-2026-7568.patch \
+	file://php-cve-2026-7258.patch \
+	file://php-cve-2026-14355.patch \
+	file://php-cve-2026-9672.patch \
+	file://php-cve-2026-17543.patch \
+	file://php-cve-2026-7260.patch \
+	file://php-gh22643.patch \
+	file://php-from-8.2.34-to-8.1.patch \
+	file://php-8.1-cve-2026-109618.patch \
 "
 
 SRC_URI:append:class-target = " \
