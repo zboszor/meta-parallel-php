@@ -10,7 +10,7 @@ DEPENDS:append:class-native = " libpcre2-native onig-native "
 
 LIC_FILES_CHKSUM = "file://LICENSE;md5=99532e0f6620bc9bca34f12fadaee33c"
 
-PR = "r11"
+PR = "r12"
 
 EXTRA_OECONF:append:class-target = " \
 	ac_cv_func_fnmatch_works=yes \
@@ -45,6 +45,19 @@ SRC_URI += " \
 	file://php-8.0.0-fix-phpize-for-parallel-installation.patch \
 	file://php-8.0.21-openssl3.patch \
 	file://php-8.0.13-crypt.patch \
+	file://php-cve-2024-2756.patch \
+	file://php-cve-2024-3096.patch \
+	file://php-cve-2024-5458.patch \
+	file://php-cve-2024-8925.patch \
+	file://php-cve-2024-8926.patch \
+	file://php-cve-2024-8927.patch \
+	file://php-cve-2024-9026.patch \
+	file://php-cve-2024-11236.patch \
+	file://php-cve-2024-11234.patch \
+	file://php-cve-2024-8932.patch \
+	file://php-cve-2024-11233.patch \
+	file://php-ghsa-4w77-75f9-2c8w.patch \
+	file://php-cve-2024-8929.patch \
 	file://php-cve-2025-1217.patch \
 	file://php-cve-2025-1734.patch \
 	file://php-cve-2025-1861.patch \
@@ -56,6 +69,21 @@ SRC_URI += " \
 	file://php-cve-2025-14177.patch \
 	file://php-cve-2025-14178.patch \
 	file://php-ghsa-www2-q4fc-65wf.patch \
+	file://php-cve-2025-14179.patch \
+	file://php-cve-2026-6722.patch \
+	file://php-cve-2026-7261.patch \
+	file://php-cve-2026-7262.patch \
+	file://php-cve-2026-6735.patch \
+	file://php-cve-2026-7259.patch \
+	file://php-cve-2026-7568.patch \
+	file://php-cve-2026-7258.patch \
+	file://php-cve-2026-14355.patch \
+	file://php-cve-2026-9672.patch \
+	file://php-cve-2026-17543.patch \
+	file://php-cve-2026-7260.patch \
+	file://php-gh22643.patch \
+	file://php-from-8.2.34-to-8.0.patch \
+	file://php-8.0-cve-2026-109618.patch \
 	file://php.ini.native \
 	file://mod.ini \
 	file://20-openssl.ini \
@@ -74,7 +102,6 @@ SRC_URI:append:class-target = " \
 	file://php-8.0.0-embed.patch \
 	file://php-7.4.0-libdb.patch \
 	file://php-8.0.6-deprecated.patch \
-	file://php-7.0.7-curl.patch \
 	file://php-8.0.0-parser.patch \
 	file://php-8.0.10-systzdata-v21.patch \
 	file://php-7.4.0-phpize.patch \
@@ -89,19 +116,6 @@ SRC_URI:append:class-target = " \
 	file://php-8.0.0-run-installed-minilua.patch \
 	file://php-8.0.30-zlib-tests.patch \
 	file://php-8.0.30-pcretests.patch \
-	file://php-cve-2024-2756.patch \
-	file://php-cve-2024-3096.patch \
-	file://php-cve-2024-5458.patch \
-	file://php-cve-2024-8925.patch \
-	file://php-cve-2024-8926.patch \
-	file://php-cve-2024-8927.patch \
-	file://php-cve-2024-9026.patch \
-	file://php-cve-2024-11236.patch \
-	file://php-cve-2024-11234.patch \
-	file://php-cve-2024-8932.patch \
-	file://php-cve-2024-11233.patch \
-	file://php-ghsa-4w77-75f9-2c8w.patch \
-	file://php-cve-2024-8929.patch \
 "
 
 SRC_URI[sha256sum] = "216ab305737a5d392107112d618a755dc5df42058226f1670e9db90e77d777d9"
