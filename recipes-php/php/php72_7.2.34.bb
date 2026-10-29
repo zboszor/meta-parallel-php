@@ -6,7 +6,7 @@ DEPENDS:append:class-target = " libsodium "
 
 LIC_FILES_CHKSUM = "file://LICENSE;md5=fb07bfc51f6d5e0c30b65d9701233b2e"
 
-PR = "r13"
+PR = "r14"
 
 CFLAGS:append:class-native = " -std=gnu17 -Wno-incompatible-pointer-types"
 
@@ -56,6 +56,49 @@ SRC_URI += " \
 	file://fix-func-prototypes-in-m4.patch \
 	file://0001-Fix-bug-78823-add-zlib-library-to-mysqlnd.patch \
 	file://gd-flip-constants-optional.patch \
+	file://php-bug77423.patch \
+	file://php-bug80672.patch \
+	file://php-bug80710.patch \
+	file://php-bug81122.patch \
+	file://php-bug76450.patch \
+	file://php-bug81211.patch \
+	file://php-bug81026.patch \
+	file://php-bug79971.patch \
+	file://php-bug81719.patch \
+	file://php-bug81720.patch \
+	file://php-bug81727.patch \
+	file://php-bug81726.patch \
+	file://php-bug81738.patch \
+	file://php-bug81740.patch \
+	file://php-bug81744.patch \
+	file://php-bug81746.patch \
+	file://php-cve-2023-0662.patch \
+	file://php-cve-2023-3247.patch \
+	file://php-cve-2023-3823.patch \
+	file://php-cve-2023-3824.patch \
+	file://php-cve-2024-2756.patch \
+	file://php-cve-2024-3096.patch \
+	file://php-cve-2024-5458.patch \
+	file://php-cve-2024-8925.patch \
+	file://php-cve-2024-8926.patch \
+	file://php-cve-2024-8927.patch \
+	file://php-cve-2024-11236.patch \
+	file://php-cve-2024-11234.patch \
+	file://php-cve-2024-8932.patch \
+	file://php-cve-2024-11233.patch \
+	file://php-ghsa-4w77-75f9-2c8w.patch \
+	file://php-cve-2025-14178.patch \
+	file://php-cve-2026-6722.patch \
+	file://php-cve-2026-7261.patch \
+	file://php-cve-2026-7262.patch \
+	file://php-cve-2026-6735.patch \
+	file://php-cve-2026-7568.patch \
+	file://php-cve-2026-14355.patch \
+	file://php-cve-2026-9672.patch \
+	file://php-cve-2026-17543.patch \
+	file://php-cve-2026-7260.patch \
+	file://php-from-8.2.34-to-7.2.patch \
+	file://php-from-8.2.35-to-7.2.patch \
 	file://php.ini.native \
 	file://mod.ini \
 	file://20-openssl.ini \
@@ -82,42 +125,11 @@ SRC_URI:append:class-target = " \
 	file://php-7.2.32-fixheader.patch \
 	file://php-7.2.32-phpinfo.patch \
 	file://php-7.2.8-getallheaders.patch \
-	file://php-bug77423.patch \
-	file://php-bug80672.patch \
-	file://php-bug80710.patch \
-	file://php-bug81122.patch \
-	file://php-bug76450.patch \
-	file://php-bug81211.patch \
-	file://php-bug81026.patch \
-	file://php-bug79971.patch \
-	file://php-bug81719.patch \
-	file://php-bug81720.patch \
-	file://php-bug81727.patch \
-	file://php-bug81726.patch \
-	file://php-bug81738.patch \
-	file://php-bug81740.patch \
-	file://php-bug81744.patch \
-	file://php-bug81746.patch \
-	file://php-cve-2023-0662.patch \
-	file://php-cve-2023-3247.patch \
-	file://php-cve-2023-3823.patch \
-	file://php-cve-2023-3824.patch \
 	file://php-7.0.10-datetests.patch \
 	file://php-7.0.0-oldpcre.patch \
 	file://php-7.2.16-icu-includes.patch \
 	file://php-7.2.13-fnmatch-standard-check.patch \
 	file://php-7.2.34-fix-intl.patch \
-	file://php-cve-2024-2756.patch \
-	file://php-cve-2024-3096.patch \
-	file://php-cve-2024-5458.patch \
-	file://php-cve-2024-8925.patch \
-	file://php-cve-2024-8926.patch \
-	file://php-cve-2024-8927.patch \
-	file://php-cve-2024-11236.patch \
-	file://php-cve-2024-11234.patch \
-	file://php-cve-2024-8932.patch \
-	file://php-cve-2024-11233.patch \
-	file://php-ghsa-4w77-75f9-2c8w.patch \
 "
 
 SRC_URI[md5sum] = "4cc3868c4ab7a094bf15b02c2d953ccd"
