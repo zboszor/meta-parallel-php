@@ -7,7 +7,7 @@ DEPENDS:append:class-native = " libpcre2-native "
 
 LIC_FILES_CHKSUM = "file://LICENSE;md5=fb07bfc51f6d5e0c30b65d9701233b2e"
 
-PR = "r11"
+PR = "r12"
 
 CFLAGS:append:class-native = " -std=gnu17 -Wno-incompatible-pointer-types"
 
@@ -47,37 +47,6 @@ SRC_URI += " \
 	file://php-7.3.3-fix-phar-build.patch \
 	file://0001-Fix-bug-78823-add-zlib-library-to-mysqlnd.patch \
 	file://gd-flip-constants-optional.patch \
-	file://php.ini.native \
-	file://mod.ini \
-	file://20-openssl.ini \
-	file://20-snmp.ini \
-	file://50-date.ini \
-	file://opcache-default.blacklist \
-"
-
-SRC_URI:append:class-native = " \
-	file://readdir.patch \
-"
-
-SRC_URI:append:class-target = " \
-	file://php-7.3.3-crosscompile.patch \
-	file://php-5.6.9-install-pear.phar.patch \
-	file://strcasestr-crosscompile.patch \
-	file://php-7.3.3-httpd.patch \
-	file://php-7.3.3-includedir.patch \
-	file://php-7.3.3-embed.patch \
-	file://php-7.3.3-recode.patch \
-	file://php-7.3.3-libdb.patch \
-	file://php-7.3.3-curl.patch \
-	file://php-net-snmp.patch \
-	file://php-7.3.3-dlopen.patch \
-	file://php-7.3.3-systzdata-v19.patch \
-	file://php-7.3.0-phpize.patch \
-	file://php-7.3.3-ldap_r.patch \
-	file://php-7.3.3-fixheader.patch \
-	file://php-7.3.3-phpinfo.patch \
-	file://php-7.0.10-datetests.patch \
-	file://php-5.6.3-PHP_CHECK_FUNC_LIB-no-run.patch \
 	file://php-bug80682.patch \
 	file://php-bug80783.patch \
 	file://php-pcre1038.patch \
@@ -109,6 +78,49 @@ SRC_URI:append:class-target = " \
 	file://php-cve-2024-11233.patch \
 	file://php-ghsa-4w77-75f9-2c8w.patch \
 	file://php-cve-2024-8929.patch \
+	file://php-cve-2025-14178.patch \
+	file://php-cve-2026-6722.patch \
+	file://php-cve-2026-7261.patch \
+	file://php-cve-2026-7262.patch \
+	file://php-cve-2026-6735.patch \
+	file://php-cve-2026-7568.patch \
+	file://php-cve-2026-14355.patch \
+	file://php-cve-2026-9672.patch \
+	file://php-cve-2026-17543.patch \
+	file://php-cve-2026-7260.patch \
+	file://php-from-8.2.34-to-7.3.patch \
+	file://php-from-8.2.35-to-7.3.patch \
+	file://php.ini.native \
+	file://mod.ini \
+	file://20-openssl.ini \
+	file://20-snmp.ini \
+	file://50-date.ini \
+	file://opcache-default.blacklist \
+"
+
+SRC_URI:append:class-native = " \
+	file://readdir.patch \
+"
+
+SRC_URI:append:class-target = " \
+	file://php-7.3.3-crosscompile.patch \
+	file://php-5.6.9-install-pear.phar.patch \
+	file://strcasestr-crosscompile.patch \
+	file://php-7.3.3-httpd.patch \
+	file://php-7.3.3-includedir.patch \
+	file://php-7.3.3-embed.patch \
+	file://php-7.3.3-recode.patch \
+	file://php-7.3.3-libdb.patch \
+	file://php-7.3.3-curl.patch \
+	file://php-net-snmp.patch \
+	file://php-7.3.3-dlopen.patch \
+	file://php-7.3.3-systzdata-v19.patch \
+	file://php-7.3.0-phpize.patch \
+	file://php-7.3.3-ldap_r.patch \
+	file://php-7.3.3-fixheader.patch \
+	file://php-7.3.3-phpinfo.patch \
+	file://php-7.0.10-datetests.patch \
+	file://php-5.6.3-PHP_CHECK_FUNC_LIB-no-run.patch \
 "
 
 SRC_URI[sha256sum] = "f412487d7d953437e7978a0d7b6ec99bf4a85cf3378014438a8577b89535451a"
