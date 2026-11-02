@@ -4,8 +4,8 @@ SECTION = "console/network"
 LICENSE = "PHP-3.0"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=423954b31818fc34cb3064236e2e44ce"
 
-PV = "2026.4"
-SRC_URI[sha256sum] = "7e7e737043c3f85b144c3daeac839b0131484db0a517aa2b7a14fd9c91c0cdcc"
+PV = "2026.6"
+SRC_URI[sha256sum] = "17241d407602c04083b27d469b9c3362558bdac5e62b5940ac3dfdc430686d00"
 
 inherit parallel-php-module
 
