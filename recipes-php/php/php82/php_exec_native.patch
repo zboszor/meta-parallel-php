@@ -1,8 +1,19 @@
-Upstream-Status: Inappropriate [cross compile specific]
+From f203aadd7168b2ee64d50cb5cfc92ba849ad0223 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Zolt=C3=A1n=20B=C3=B6sz=C3=B6rm=C3=A9nyi?=
+ <zboszor@gmail.com>
+Date: Mon, 15 Jan 2024 12:06:09 +0100
+Subject: [PATCH] php74: Add recipe for PHP 7.4.33
 
---- php-7.4.11/sapi/cli/config.m4	2018-12-04 11:12:21.000000000 -0500
-+++ php-7.4.11/sapi/cli/config.m4	2019-01-04 05:58:31.092560285 -0500
-@@ -47,7 +47,7 @@
+Upstream-Status: Inappropriate [cross compile specific]
+---
+ sapi/cli/config.m4 | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/sapi/cli/config.m4 b/sapi/cli/config.m4
+index 1b8e67f0..c2c2892e 100644
+--- a/sapi/cli/config.m4
++++ b/sapi/cli/config.m4
+@@ -47,7 +47,7 @@ if test "$PHP_CLI" != "no"; then
    esac
  
    dnl Set executable for tests.
