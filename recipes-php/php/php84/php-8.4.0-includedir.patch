@@ -1,8 +1,19 @@
-Upstream-Status: Inappropriate [cross compile specific]
+From 3bf894bff48d598c72c4cc5692a4a02b6aa7c1c9 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Zolt=C3=A1n=20B=C3=B6sz=C3=B6rm=C3=A9nyi?=
+ <zboszor@gmail.com>
+Date: Mon, 15 Jan 2024 12:06:09 +0100
+Subject: [PATCH] php74: Add recipe for PHP 7.4.33
 
---- ./configure.ac.includedir
-+++ ./configure.ac
-@@ -1368,7 +1368,7 @@
+Upstream-Status: Inappropriate [cross compile specific]
+---
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/configure.ac b/configure.ac
+index 9efdff6f..492eea9e 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -1357,7 +1357,7 @@ EXPANDED_SYSCONFDIR=$(eval echo $sysconfdir)
  EXPANDED_DATADIR=$datadir
  EXPANDED_PHP_CONFIG_FILE_PATH=$(eval echo "$PHP_CONFIG_FILE_PATH")
  EXPANDED_PHP_CONFIG_FILE_SCAN_DIR=$(eval echo "$PHP_CONFIG_FILE_SCAN_DIR")
