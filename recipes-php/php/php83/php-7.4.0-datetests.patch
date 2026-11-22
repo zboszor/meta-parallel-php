@@ -1,9 +1,21 @@
-Upstream-Status: Backport
+From 5970d05307402d0460475701f2bb445c57659c24 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Zolt=C3=A1n=20B=C3=B6sz=C3=B6rm=C3=A9nyi?=
+ <zboszor@gmail.com>
+Date: Mon, 15 Jan 2024 12:06:09 +0100
+Subject: [PATCH] php74: Add recipe for PHP 7.4.33
 
-diff -up ./ext/date/tests/bug33414-2.phpt.datetests ./ext/date/tests/bug33414-2.phpt
---- ./ext/date/tests/bug33414-2.phpt.datetests	2020-04-09 14:06:11.000000000 +0200
-+++ ./ext/date/tests/bug33414-2.phpt	2020-04-09 14:40:00.809433489 +0200
-@@ -74,10 +74,10 @@ $strtotime_tstamp = strtotime("next Frid
+Upstream-Status: Backport
+---
+ ext/date/tests/bug33414-2.phpt       | 22 +++++++++++-----------
+ ext/date/tests/bug66985.phpt         |  7 +------
+ ext/date/tests/strtotime3-64bit.phpt |  4 ++--
+ 3 files changed, 14 insertions(+), 19 deletions(-)
+
+diff --git a/ext/date/tests/bug33414-2.phpt b/ext/date/tests/bug33414-2.phpt
+index 1c71e886..eb0cf787 100644
+--- a/ext/date/tests/bug33414-2.phpt
++++ b/ext/date/tests/bug33414-2.phpt
+@@ -74,10 +74,10 @@
  print "result=".date("l Y-m-d H:i:s T I", $strtotime_tstamp)."\n";
  print "wanted=Friday            00:00:00\n\n";
  ?>
@@ -17,7 +29,7 @@ diff -up ./ext/date/tests/bug33414-2.phpt.datetests ./ext/date/tests/bug33414-2.
  wanted=Tuesday            00:00:00
  
  TZ=Atlantic/South_Georgia - wrong day.
-@@ -91,13 +91,13 @@ result=Monday 2005-04-04 00:00:00 EDT 1
+@@ -91,13 +91,13 @@
  wanted=Monday            00:00:00
  
  TZ=Pacific/Enderbury - wrong day, off by 2 days.
@@ -35,7 +47,7 @@ diff -up ./ext/date/tests/bug33414-2.phpt.datetests ./ext/date/tests/bug33414-2.
  wanted=Monday            00:00:00
  
  TZ=America/Managua - wrong day.
-@@ -106,13 +106,13 @@ result=Tuesday 2005-04-12 00:00:00 CDT 1
+@@ -106,13 +106,13 @@
  wanted=Tuesday            00:00:00
  
  TZ=Pacific/Pitcairn - wrong day.
@@ -53,10 +65,11 @@ diff -up ./ext/date/tests/bug33414-2.phpt.datetests ./ext/date/tests/bug33414-2.
  wanted=Saturday            00:00:00
  
  TZ=Pacific/Johnston - wrong day.
-diff -up ./ext/date/tests/bug66985.phpt.datetests ./ext/date/tests/bug66985.phpt
---- ./ext/date/tests/bug66985.phpt.datetests	2020-04-09 14:06:11.000000000 +0200
-+++ ./ext/date/tests/bug66985.phpt	2020-04-09 14:40:37.099288185 +0200
-@@ -3,7 +3,7 @@ Bug #66985 (Some timezones are no longer
+diff --git a/ext/date/tests/bug66985.phpt b/ext/date/tests/bug66985.phpt
+index 2bcf97cb..df47097b 100644
+--- a/ext/date/tests/bug66985.phpt
++++ b/ext/date/tests/bug66985.phpt
+@@ -3,7 +3,7 @@
  --FILE--
  <?php
  $zones = array(
@@ -65,22 +78,23 @@ diff -up ./ext/date/tests/bug66985.phpt.datetests ./ext/date/tests/bug66985.phpt
      "GMT0", "Greenwich", "Hongkong", "Iceland", "Iran", "Israel", "Jamaica",
      "Japan", "Kwajalein", "Libya", "MST7MDT", "Navajo", "NZ-CHAT", "Poland",
      "Portugal", "PST8PDT", "Singapore", "Turkey", "Universal", "W-SU",
-@@ -45,11 +45,6 @@ DateTimeZone Object
+@@ -44,11 +44,6 @@
+     [timezone] => EST5EDT
  )
  DateTimeZone Object
- (
+-(
 -    [timezone_type] => 3
 -    [timezone] => Factory
 -)
 -DateTimeZone Object
--(
+ (
      [timezone_type] => 3
      [timezone] => GB-Eire
- )
-diff -up ./ext/date/tests/strtotime3-64bit.phpt.datetests ./ext/date/tests/strtotime3-64bit.phpt
---- ./ext/date/tests/strtotime3-64bit.phpt.datetests	2020-04-09 14:06:11.000000000 +0200
-+++ ./ext/date/tests/strtotime3-64bit.phpt	2020-04-09 14:40:00.809433489 +0200
-@@ -44,7 +44,7 @@ foreach ($strs as $str) {
+diff --git a/ext/date/tests/strtotime3-64bit.phpt b/ext/date/tests/strtotime3-64bit.phpt
+index c4f87c3b..3addaa5a 100644
+--- a/ext/date/tests/strtotime3-64bit.phpt
++++ b/ext/date/tests/strtotime3-64bit.phpt
+@@ -44,7 +44,7 @@
  }
  
  ?>
@@ -89,7 +103,7 @@ diff -up ./ext/date/tests/strtotime3-64bit.phpt.datetests ./ext/date/tests/strto
  bool(false)
  bool(false)
  string(31) "Thu, 15 Jun 2006 00:00:00 +0100"
-@@ -53,7 +53,7 @@ bool(false)
+@@ -53,7 +53,7 @@
  string(31) "Fri, 16 Jun 2006 23:49:12 +0100"
  bool(false)
  string(31) "Fri, 16 Jun 2006 02:22:00 +0100"
