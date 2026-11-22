@@ -1,10 +1,19 @@
+From 15cce2a4ec9af7a30993501b06e825e99f59f502 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Zolt=C3=A1n=20B=C3=B6sz=C3=B6rm=C3=A9nyi?=
+ <zboszor@gmail.com>
+Date: Mon, 15 Jan 2024 12:06:09 +0100
+Subject: [PATCH] php74: Add recipe for PHP 7.4.33
+
 Upstream-Status: Backport
+---
+ ext/sodium/sodium_pwhash.c | 4 ----
+ 1 file changed, 4 deletions(-)
 
 diff --git a/ext/sodium/sodium_pwhash.c b/ext/sodium/sodium_pwhash.c
-index e58a9514cc..86cc06cd91 100644
+index eea7fe9e..d88664ad 100644
 --- a/ext/sodium/sodium_pwhash.c
 +++ b/ext/sodium/sodium_pwhash.c
-@@ -62,10 +62,6 @@ static inline int get_options(zend_array *options, size_t *memlimit, size_t *ops
+@@ -52,10 +52,6 @@ static inline int get_options(zend_array *options, size_t *memlimit, size_t *ops
  			return FAILURE;
  		}
  	}
