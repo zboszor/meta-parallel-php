@@ -1,9 +1,20 @@
+From 4ee25bad8c1498ddcff242ed5bf113747611990b Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Zolt=C3=A1n=20B=C3=B6sz=C3=B6rm=C3=A9nyi?=
+ <zboszor@gmail.com>
+Date: Mon, 15 Jan 2024 12:06:09 +0100
+Subject: [PATCH] Use -lldap_r by default.
 
 Use -lldap_r by default.
 
-diff -up php-7.4.0RC2/ext/ldap/config.m4.ldap_r php-7.4.0RC2/ext/ldap/config.m4
---- php-7.4.0RC2/ext/ldap/config.m4.ldap_r	2019-09-17 10:21:24.769200812 +0200
-+++ php-7.4.0RC2/ext/ldap/config.m4	2019-09-17 10:21:30.658181771 +0200
+Upstream-Status: Inappropriate [Red Hat specific]
+---
+ ext/ldap/config.m4 | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/ext/ldap/config.m4 b/ext/ldap/config.m4
+index 89c4b195..cf0a7559 100644
+--- a/ext/ldap/config.m4
++++ b/ext/ldap/config.m4
 @@ -68,7 +68,11 @@ if test "$PHP_LDAP" != "no"; then
    dnl -pc removal is a hack for clang
    MACHINE_INCLUDES=$($CC -dumpmachine | $SED 's/-pc//')

@@ -1,6 +1,19 @@
---- php-8.3.0/ext/fileinfo/config.m4.orig	2023-11-21 15:40:35.000000000 +0100
-+++ php-8.3.0/ext/fileinfo/config.m4	2023-11-27 13:40:43.090788741 +0100
-@@ -3,6 +3,10 @@
+From 85fb65d919132a3b485579f265c97a3588b31e91 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Zolt=C3=A1n=20B=C3=B6sz=C3=B6rm=C3=A9nyi?=
+ <zboszor@gmail.com>
+Date: Mon, 15 Jan 2024 12:06:09 +0100
+Subject: [PATCH] php74: Add recipe for PHP 7.4.33
+
+Upstream-Status: Inappropriate [cross compile specific]
+---
+ ext/fileinfo/config.m4 | 16 +++++++++++++++-
+ 1 file changed, 15 insertions(+), 1 deletion(-)
+
+diff --git a/ext/fileinfo/config.m4 b/ext/fileinfo/config.m4
+index fd7ba376..09f7dab3 100644
+--- a/ext/fileinfo/config.m4
++++ b/ext/fileinfo/config.m4
+@@ -3,6 +3,10 @@ PHP_ARG_ENABLE([fileinfo],
    [AS_HELP_STRING([--disable-fileinfo],
      [Disable fileinfo support])],
    [yes])
@@ -11,7 +24,7 @@
  
  if test "$PHP_FILEINFO" != "no"; then
  
-@@ -47,7 +51,17 @@
+@@ -47,7 +51,17 @@ int main(void)
      AC_MSG_RESULT(no)
      AC_MSG_NOTICE(using libmagic strcasestr implementation)
      libmagic_sources="$libmagic_sources libmagic/strcasestr.c"
