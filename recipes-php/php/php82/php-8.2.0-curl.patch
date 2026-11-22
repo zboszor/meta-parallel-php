@@ -1,7 +1,19 @@
-diff -up ./ext/curl/curl_arginfo.h.bck ./ext/curl/curl_arginfo.h
---- ./ext/curl/curl_arginfo.h.bck	2022-09-01 09:46:21.410502957 +0200
-+++ ./ext/curl/curl_arginfo.h	2022-09-01 09:47:16.020506046 +0200
-@@ -723,13 +723,16 @@ static void register_curl_symbols(int mo
+From 533c3180d95d0792dcf22cd966c4eb6d4fcf2bd0 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Zolt=C3=A1n=20B=C3=B6sz=C3=B6rm=C3=A9nyi?=
+ <zboszor@gmail.com>
+Date: Mon, 15 Jan 2024 12:09:24 +0100
+Subject: [PATCH] php82: Add recipe for version 8.2.14
+
+Upstream-Status: Backport
+---
+ ext/curl/curl_arginfo.h | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
+
+diff --git a/ext/curl/curl_arginfo.h b/ext/curl/curl_arginfo.h
+index c746edbb..c033e242 100644
+--- a/ext/curl/curl_arginfo.h
++++ b/ext/curl/curl_arginfo.h
+@@ -723,13 +723,16 @@ static void register_curl_symbols(int module_number)
  #if LIBCURL_VERSION_NUM >= 0x072200 /* Available since 7.34.0 */
  	REGISTER_LONG_CONSTANT("CURLOPT_LOGIN_OPTIONS", CURLOPT_LOGIN_OPTIONS, CONST_PERSISTENT);
  #endif
