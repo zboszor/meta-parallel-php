@@ -1,7 +1,19 @@
-diff -durpN php-8.0.0.orig/build/php.m4 php-8.0.0/build/php.m4
---- php-8.0.0.orig/build/php.m4	2020-12-15 07:10:12.833206473 -0500
-+++ php-8.0.0/build/php.m4	2020-12-15 07:11:06.303634858 -0500
-@@ -1923,7 +1923,7 @@ AC_DEFUN([PHP_SETUP_ICONV], [
+From 7e35dfcfae82a4ba0a406c87f38fe01d72f3e83e Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Zolt=C3=A1n=20B=C3=B6sz=C3=B6rm=C3=A9nyi?=
+ <zboszor@gmail.com>
+Date: Mon, 15 Jan 2024 12:07:58 +0100
+Subject: [PATCH] php80: Add recipe version for PHP 8.0.30
+
+Upstream-Status: Inappropriate [cross compile specific]
+---
+ build/php.m4 | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/build/php.m4 b/build/php.m4
+index e5ead0f4..e4791930 100644
+--- a/build/php.m4
++++ b/build/php.m4
+@@ -1962,7 +1962,7 @@ AC_DEFUN([PHP_SETUP_ICONV], [
    unset ICONV_DIR
  
    dnl Check libc first if no path is provided in --with-iconv.

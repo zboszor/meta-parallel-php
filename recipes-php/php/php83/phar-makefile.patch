@@ -1,6 +1,19 @@
---- php-8.1.20/ext/phar/Makefile.frag	2018-12-04 11:12:23.000000000 -0500
-+++ php-8.1.20/ext/phar/Makefile.frag	2019-01-04 05:57:18.079360729 -0500
-@@ -8,22 +8,10 @@
+From e1a56f0436a66ea50f9da3730c4bbd261e62fe28 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Zolt=C3=A1n=20B=C3=B6sz=C3=B6rm=C3=A9nyi?=
+ <zboszor@gmail.com>
+Date: Mon, 15 Jan 2024 12:06:09 +0100
+Subject: [PATCH] php74: Add recipe for PHP 7.4.33
+
+Upstream-Status: Inappropriate [cross compile specific]
+---
+ ext/phar/Makefile.frag | 32 ++++++++------------------------
+ 1 file changed, 8 insertions(+), 24 deletions(-)
+
+diff --git a/ext/phar/Makefile.frag b/ext/phar/Makefile.frag
+index 7a867dd7..84ab685f 100644
+--- a/ext/phar/Makefile.frag
++++ b/ext/phar/Makefile.frag
+@@ -8,22 +8,10 @@ $(srcdir)/phar_path_check.c: $(srcdir)/phar_path_check.re
  
  pharcmd: $(builddir)/phar.php $(builddir)/phar.phar
  
@@ -27,7 +40,7 @@
  
  $(builddir)/phar/phar.inc: $(srcdir)/phar/phar.inc
  	-@test -d $(builddir)/phar || mkdir $(builddir)/phar
-@@ -35,22 +23,18 @@
+@@ -35,22 +23,18 @@ TEST_PHP_EXECUTABLE_RES = $(shell echo "$(TEST_PHP_EXECUTABLE)" | grep -c 'Exec
  
  $(builddir)/phar.php: $(srcdir)/build_precommand.php $(srcdir)/phar/*.inc $(srcdir)/phar/*.php $(SAPI_CLI_PATH)
  	-@(echo "Generating phar.php"; \

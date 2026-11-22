@@ -1,49 +1,16 @@
-diff -up ./scripts/phpize.in.headers ./scripts/phpize.in
---- ./scripts/phpize.in.headers	2019-07-23 10:05:11.000000000 +0200
-+++ ./scripts/phpize.in	2019-07-23 10:18:13.648098089 +0200
-@@ -166,6 +166,15 @@ phpize_autotools()
-   $PHP_AUTOHEADER || exit 1
- }
- 
-+phpize_check_headers()
-+{
-+  if test ! -f $includedir/main/php.h; then
-+    echo "Can't find PHP headers in $includedir"
-+    echo "The php-devel package is required for use of this command."
-+    exit 1
-+  fi
-+}
-+
- # Main script
- 
- case "$1" in
-@@ -184,12 +193,15 @@ case "$1" in
- 
-   # Version
-   --version|-v)
-+    phpize_check_headers
-     phpize_print_api_numbers
-     exit 0
-   ;;
- 
-   # Default
-   *)
-+     phpize_check_headers
-+
-      phpize_check_configm4 0
- 
-      phpize_check_build_files
-From c454f120857df6f771c5475bf1fcc99e683b87dc Mon Sep 17 00:00:00 2001
-From: Remi Collet <remi@remirepo.net>
-Date: Thu, 7 Sep 2023 09:56:51 +0200
-Subject: [PATCH] also display PHP version in phpize
+From dfb8b2ad38bd2a0c7766414736ee67ebba162125 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Zolt=C3=A1n=20B=C3=B6sz=C3=B6rm=C3=A9nyi?=
+ <zboszor@gmail.com>
+Date: Mon, 15 Jan 2024 12:10:15 +0100
+Subject: [PATCH] php83: Add recipe for PHP 8.3.1
 
+Upstream-Status: Inappropriate [cross compile specific]
 ---
- scripts/phpize.in | 3 +++
- 1 file changed, 3 insertions(+)
+ scripts/phpize.in | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
 
 diff --git a/scripts/phpize.in b/scripts/phpize.in
-index 7d9c1df14c8e..81605e06a590 100644
+index 7d9c1df1..d28b88dc 100644
 --- a/scripts/phpize.in
 +++ b/scripts/phpize.in
 @@ -59,6 +59,8 @@ phpize_check_configm4()
@@ -63,3 +30,35 @@ index 7d9c1df14c8e..81605e06a590 100644
    echo "PHP Api Version:        "$PHP_API_VERSION
    echo "Zend Module Api No:     "$ZEND_MODULE_API_NO
    echo "Zend Extension Api No:  "$ZEND_EXTENSION_API_NO
+@@ -166,6 +169,15 @@ phpize_autotools()
+   $PHP_AUTOHEADER || exit 1
+ }
+ 
++phpize_check_headers()
++{
++  if test ! -f $includedir/main/php.h; then
++    echo "Can't find PHP headers in $includedir"
++    echo "The php-devel package is required for use of this command."
++    exit 1
++  fi
++}
++
+ # Main script
+ 
+ case "$1" in
+@@ -184,12 +196,15 @@ case "$1" in
+ 
+   # Version
+   --version|-v)
++    phpize_check_headers
+     phpize_print_api_numbers
+     exit 0
+   ;;
+ 
+   # Default
+   *)
++     phpize_check_headers
++
+      phpize_check_configm4 0
+ 
+      phpize_check_build_files
