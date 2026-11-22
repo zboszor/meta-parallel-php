@@ -1,6 +1,19 @@
---- php-8.1.0.orig/scripts/phpize.m4.old	2016-07-26 10:26:52.306196789 -0400
-+++ php-8.1.0/scripts/phpize.m4	2016-07-26 10:27:26.708520553 -0400
-@@ -50,8 +50,8 @@
+From 65837f5a5ec18b046512f12338a9687e801f0969 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Zolt=C3=A1n=20B=C3=B6sz=C3=B6rm=C3=A9nyi?=
+ <zboszor@gmail.com>
+Date: Mon, 15 Jan 2024 12:07:58 +0100
+Subject: [PATCH] php80: Add recipe version for PHP 8.0.30
+
+Upstream-Status: Inappropriate [cross compile specific]
+---
+ scripts/phpize.m4 | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/scripts/phpize.m4 b/scripts/phpize.m4
+index b713dcc6..a155bbb4 100644
+--- a/scripts/phpize.m4
++++ b/scripts/phpize.m4
+@@ -50,8 +50,8 @@ PHP_SHLIB_SUFFIX_NAMES
  dnl Find php-config script.
  PHP_ARG_WITH([php-config],,
    [AS_HELP_STRING([--with-php-config=PATH],
