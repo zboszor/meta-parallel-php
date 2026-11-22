@@ -1,8 +1,19 @@
-Upstream-Status: Inappropriate [cross compile specific]
+From 6cbc764a34308fa51b8fa735104355d8f7c260c5 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Zolt=C3=A1n=20B=C3=B6sz=C3=B6rm=C3=A9nyi?=
+ <zboszor@gmail.com>
+Date: Mon, 15 Jan 2024 12:06:09 +0100
+Subject: [PATCH] php74: Add recipe for PHP 7.4.33
 
-diff -up ./ext/dba/config.m4.libdb ./ext/dba/config.m4
---- ./ext/dba/config.m4.libdb	2020-04-09 14:06:11.000000000 +0200
-+++ ./ext/dba/config.m4	2020-04-09 14:35:08.208605065 +0200
+Upstream-Status: Inappropriate [cross compile specific]
+---
+ ext/dba/config.m4 | 64 +----------------------------------------------
+ ext/dba/dba.c     |  8 ++++++
+ 2 files changed, 9 insertions(+), 63 deletions(-)
+
+diff --git a/ext/dba/config.m4 b/ext/dba/config.m4
+index 6d8867e0..de7f1e61 100644
+--- a/ext/dba/config.m4
++++ b/ext/dba/config.m4
 @@ -421,55 +421,7 @@ if test "$PHP_DB4" != "no"; then
      /usr/local \
      /usr \
@@ -81,9 +92,10 @@ diff -up ./ext/dba/config.m4.libdb ./ext/dba/config.m4
        db
      ],
      [(void)db_create((DB**)0, (DB_ENV*)0, 0)])
-diff -up ./ext/dba/dba.c.libdb ./ext/dba/dba.c
---- ./ext/dba/dba.c.libdb	2020-04-09 14:06:11.000000000 +0200
-+++ ./ext/dba/dba.c	2020-04-09 14:36:30.593275190 +0200
+diff --git a/ext/dba/dba.c b/ext/dba/dba.c
+index 29e996e4..3f86248e 100644
+--- a/ext/dba/dba.c
++++ b/ext/dba/dba.c
 @@ -49,6 +49,10 @@
  #include "php_lmdb.h"
  #include "dba_arginfo.h"
@@ -95,7 +107,7 @@ diff -up ./ext/dba/dba.c.libdb ./ext/dba/dba.c
  PHP_MINIT_FUNCTION(dba);
  PHP_MSHUTDOWN_FUNCTION(dba);
  PHP_MINFO_FUNCTION(dba);
-@@ -444,6 +448,10 @@ PHP_MINFO_FUNCTION(dba)
+@@ -445,6 +449,10 @@ PHP_MINFO_FUNCTION(dba)
  
  	php_info_print_table_start();
  	php_info_print_table_row(2, "DBA support", "enabled");

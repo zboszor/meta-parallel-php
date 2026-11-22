@@ -1,10 +1,20 @@
+From 34d42390ad01622e0174f40d2ba4338861a27119 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Zolt=C3=A1n=20B=C3=B6sz=C3=B6rm=C3=A9nyi?=
+ <zboszor@gmail.com>
+Date: Fri, 22 Nov 2024 13:42:27 +0100
+Subject: [PATCH] Use -lldap_r by default.
 
 Use -lldap_r by default.
 
 Upstream-Status: Inappropriate [Red Hat specific]
-diff -up php-8.4.0beta1/ext/ldap/config.m4.ldap_r php-8.4.0beta1/ext/ldap/config.m4
---- php-8.4.0beta1/ext/ldap/config.m4.ldap_r	2024-08-13 15:48:12.000000000 +0200
-+++ php-8.4.0beta1/ext/ldap/config.m4	2024-08-13 16:23:24.744311776 +0200
+---
+ ext/ldap/config.m4 | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/ext/ldap/config.m4 b/ext/ldap/config.m4
+index bb57d636..7c8033bf 100644
+--- a/ext/ldap/config.m4
++++ b/ext/ldap/config.m4
 @@ -72,7 +72,11 @@ if test "$PHP_LDAP" != "no"; then
    AH_TEMPLATE([HAVE_ORALDAP],
      [Define to 1 if the ldap extension uses the Oracle Instant Client.])

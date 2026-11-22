@@ -1,3 +1,9 @@
+From 1395135535ed003f478cae9f3a151180e10d7b09 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Zolt=C3=A1n=20B=C3=B6sz=C3=B6rm=C3=A9nyi?=
+ <zboszor@gmail.com>
+Date: Mon, 15 Jan 2024 12:06:09 +0100
+Subject: [PATCH] php74: Add recipe for PHP 7.4.33
+
 # License: MIT
 # http://opensource.org/licenses/MIT
 
@@ -36,11 +42,17 @@ r2: add filesystem trawl to set up name alias index
 r1: initial revision
 
 Upstream-Status: Inappropriate [Red Hat specific]
+---
+ ext/date/config0.m4     |  12 +
+ ext/date/lib/parse_tz.c | 597 +++++++++++++++++++++++++++++++++++++++-
+ ext/date/php_date.c     |   4 +
+ 3 files changed, 610 insertions(+), 3 deletions(-)
 
-diff -up ./ext/date/config0.m4.systzdata ./ext/date/config0.m4
---- ./ext/date/config0.m4.systzdata	2026-05-19 17:02:38.000000000 +0200
-+++ ./ext/date/config0.m4	2026-05-20 07:34:14.360175792 +0200
-@@ -8,6 +8,18 @@ AX_CHECK_COMPILE_FLAG([-Wno-implicit-fal
+diff --git a/ext/date/config0.m4 b/ext/date/config0.m4
+index 9bd80e46..758490f3 100644
+--- a/ext/date/config0.m4
++++ b/ext/date/config0.m4
+@@ -8,6 +8,18 @@ AX_CHECK_COMPILE_FLAG([-Wno-implicit-fallthrough],
    [PHP_DATE_CFLAGS="$PHP_DATE_CFLAGS -Wno-implicit-fallthrough"],,
    [-Werror])
  
@@ -59,9 +71,10 @@ diff -up ./ext/date/config0.m4.systzdata ./ext/date/config0.m4
  PHP_DATE_CFLAGS="$PHP_DATE_CFLAGS -I@ext_builddir@/lib -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -DHAVE_TIMELIB_CONFIG_H=1"
  
  AX_CHECK_COMPILE_FLAG([-fwrapv],
-diff -up ./ext/date/lib/parse_tz.c.systzdata ./ext/date/lib/parse_tz.c
---- ./ext/date/lib/parse_tz.c.systzdata	2026-05-19 17:02:38.000000000 +0200
-+++ ./ext/date/lib/parse_tz.c	2026-05-20 07:33:10.301120979 +0200
+diff --git a/ext/date/lib/parse_tz.c b/ext/date/lib/parse_tz.c
+index c7f93580..c8dbb64c 100644
+--- a/ext/date/lib/parse_tz.c
++++ b/ext/date/lib/parse_tz.c
 @@ -26,9 +26,33 @@
  #include "timelib.h"
  #include "timelib_private.h"
@@ -96,7 +109,7 @@ diff -up ./ext/date/lib/parse_tz.c.systzdata ./ext/date/lib/parse_tz.c
  
  #if (defined(__APPLE__) || defined(__APPLE_CC__)) && (defined(__BIG_ENDIAN__) || defined(__LITTLE_ENDIAN__))
  # if defined(__LITTLE_ENDIAN__)
-@@ -95,6 +119,11 @@ static int read_php_preamble(const unsig
+@@ -95,6 +119,11 @@ static int read_php_preamble(const unsigned char **tzf, timelib_tzinfo *tz)
  {
  	uint32_t version;
  
@@ -108,7 +121,7 @@ diff -up ./ext/date/lib/parse_tz.c.systzdata ./ext/date/lib/parse_tz.c
  	/* read ID */
  	version = (*tzf)[3] - '0';
  	*tzf += 4;
-@@ -577,7 +606,475 @@ void timelib_dump_tzinfo(timelib_tzinfo
+@@ -577,7 +606,475 @@ void timelib_dump_tzinfo(timelib_tzinfo *tz)
  	}
  }
  
@@ -585,7 +598,7 @@ diff -up ./ext/date/lib/parse_tz.c.systzdata ./ext/date/lib/parse_tz.c
  {
  	int left = 0, right = tzdb->index_size - 1;
  
-@@ -603,9 +1100,49 @@ static int seek_to_tz_position(const uns
+@@ -603,9 +1100,49 @@ static int seek_to_tz_position(const unsigned char **tzf, const char *timezone,
  	return 0;
  }
  
@@ -635,7 +648,7 @@ diff -up ./ext/date/lib/parse_tz.c.systzdata ./ext/date/lib/parse_tz.c
  }
  
  const timelib_tzdb_index_entry *timelib_timezone_identifiers_list(const timelib_tzdb *tzdb, int *count)
-@@ -617,7 +1154,32 @@ const timelib_tzdb_index_entry *timelib_
+@@ -617,7 +1154,32 @@ const timelib_tzdb_index_entry *timelib_timezone_identifiers_list(const timelib_
  int timelib_timezone_id_is_valid(const char *timezone, const timelib_tzdb *tzdb)
  {
  	const unsigned char *tzf;
@@ -669,7 +682,7 @@ diff -up ./ext/date/lib/parse_tz.c.systzdata ./ext/date/lib/parse_tz.c
  }
  
  static int skip_64bit_preamble(const unsigned char **tzf, timelib_tzinfo *tz)
-@@ -662,6 +1224,8 @@ static timelib_tzinfo* timelib_tzinfo_ct
+@@ -662,6 +1224,8 @@ static timelib_tzinfo* timelib_tzinfo_ctor(const char *name)
  timelib_tzinfo *timelib_parse_tzfile(const char *timezone, const timelib_tzdb *tzdb, int *error_code)
  {
  	const unsigned char *tzf;
@@ -678,7 +691,7 @@ diff -up ./ext/date/lib/parse_tz.c.systzdata ./ext/date/lib/parse_tz.c
  	timelib_tzinfo *tmp;
  	int version;
  	int transitions_result, types_result;
-@@ -669,7 +1233,7 @@ timelib_tzinfo *timelib_parse_tzfile(con
+@@ -669,7 +1233,7 @@ timelib_tzinfo *timelib_parse_tzfile(const char *timezone, const timelib_tzdb *t
  
  	*error_code = TIMELIB_ERROR_NO_ERROR;
  
@@ -687,7 +700,7 @@ diff -up ./ext/date/lib/parse_tz.c.systzdata ./ext/date/lib/parse_tz.c
  		tmp = timelib_tzinfo_ctor(timezone);
  
  		version = read_preamble(&tzf, tmp, &type);
-@@ -712,11 +1276,38 @@ timelib_tzinfo *timelib_parse_tzfile(con
+@@ -712,11 +1276,38 @@ timelib_tzinfo *timelib_parse_tzfile(const char *timezone, const timelib_tzdb *t
  			return NULL;
  		}
  
@@ -726,10 +739,11 @@ diff -up ./ext/date/lib/parse_tz.c.systzdata ./ext/date/lib/parse_tz.c
  	} else {
  		*error_code = TIMELIB_ERROR_NO_SUCH_TIMEZONE;
  		tmp = NULL;
-diff -up ./ext/date/php_date.c.systzdata ./ext/date/php_date.c
---- ./ext/date/php_date.c.systzdata	2026-05-19 17:02:38.000000000 +0200
-+++ ./ext/date/php_date.c	2026-05-20 07:33:10.301467311 +0200
-@@ -483,7 +483,11 @@ PHP_MINFO_FUNCTION(date)
+diff --git a/ext/date/php_date.c b/ext/date/php_date.c
+index d97dc082..52f4750d 100644
+--- a/ext/date/php_date.c
++++ b/ext/date/php_date.c
+@@ -485,7 +485,11 @@ PHP_MINFO_FUNCTION(date)
  	php_info_print_table_row(2, "date/time support", "enabled");
  	php_info_print_table_row(2, "timelib version", TIMELIB_ASCII_VERSION);
  	php_info_print_table_row(2, "\"Olson\" Timezone Database Version", tzdb->version);
