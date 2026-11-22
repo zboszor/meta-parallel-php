@@ -1,9 +1,19 @@
-Upstream-Status: Inappropriate [Red Hat specific]
+From 368612b84954cf87559f3f0105be2039c7d86257 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Zolt=C3=A1n=20B=C3=B6sz=C3=B6rm=C3=A9nyi?=
+ <zboszor@gmail.com>
+Date: Mon, 15 Jan 2024 12:07:58 +0100
+Subject: [PATCH] php80: Add recipe version for PHP 8.0.30
 
-diff -up ./build/gen_stub.php.syslib ./build/gen_stub.php
---- ./build/gen_stub.php.syslib	2025-06-30 12:31:27.000000000 +0200
-+++ ./build/gen_stub.php	2025-06-30 15:49:00.751144274 +0200
-@@ -6082,6 +6082,12 @@ function initPhpParser() {
+Upstream-Status: Inappropriate [Red Hat specific]
+---
+ build/gen_stub.php | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/build/gen_stub.php b/build/gen_stub.php
+index 52ddb4d3..5b1f01d7 100755
+--- a/build/gen_stub.php
++++ b/build/gen_stub.php
+@@ -6280,6 +6280,12 @@ function initPhpParser() {
      }
  
      $isInitialized = true;
