@@ -1,9 +1,19 @@
-Upstream-Status: Inappropriate [cross compile specific]
+From 91d5b05d6918a9d91422a364448ba3b2829e0077 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Zolt=C3=A1n=20B=C3=B6sz=C3=B6rm=C3=A9nyi?=
+ <zboszor@gmail.com>
+Date: Fri, 22 Nov 2024 13:42:27 +0100
+Subject: [PATCH] php84: New recipe for PHP 8.4.1
 
-diff -durpN php-8.0.0.orig/build/php.m4 php-8.0.0/build/php.m4
---- php-8.4.0.orig/build/php.m4	2020-12-15 07:10:12.833206473 -0500
-+++ php-8.4.0/build/php.m4	2020-12-15 07:11:06.303634858 -0500
-@@ -1820,7 +1820,7 @@
+Upstream-Status: Inappropriate [cross compile specific]
+---
+ build/php.m4 | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/build/php.m4 b/build/php.m4
+index 0a2169f6..46761710 100644
+--- a/build/php.m4
++++ b/build/php.m4
+@@ -1786,7 +1786,7 @@ AC_DEFUN([PHP_SETUP_ICONV], [
      [Define to 1 if you have the 'libiconv' function.])
  
    dnl Check libc first if no path is provided in --with-iconv.
