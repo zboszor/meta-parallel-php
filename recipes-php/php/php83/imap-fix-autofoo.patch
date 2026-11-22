@@ -1,9 +1,19 @@
-Upstream-Status: Inappropriate [cross compile specific]
+From 4bffb7197be3b2c0cb5f5cd72529129f616eb7b3 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Zolt=C3=A1n=20B=C3=B6sz=C3=B6rm=C3=A9nyi?=
+ <zboszor@gmail.com>
+Date: Mon, 15 Jan 2024 12:06:09 +0100
+Subject: [PATCH] php74: Add recipe for PHP 7.4.33
 
-diff -durpN php-7.3.3.orig/ext/imap/config.m4 php-7.3.3/ext/imap/config.m4
---- php-7.3.3.orig/ext/imap/config.m4	2019-03-05 08:50:41.000000000 -0500
-+++ php-7.3.3/ext/imap/config.m4	2019-03-27 05:51:02.953967860 -0400
-@@ -110,7 +110,7 @@
+Upstream-Status: Inappropriate [cross compile specific]
+---
+ ext/imap/config.m4 | 10 ++--------
+ 1 file changed, 2 insertions(+), 8 deletions(-)
+
+diff --git a/ext/imap/config.m4 b/ext/imap/config.m4
+index 3c4782cd..8621d9ef 100644
+--- a/ext/imap/config.m4
++++ b/ext/imap/config.m4
+@@ -122,7 +122,7 @@ if test "$PHP_IMAP" != "no"; then
      PHP_NEW_EXTENSION(imap, php_imap.c, $ext_shared,, -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1)
      AC_DEFINE(HAVE_IMAP,1,[ ])
  
@@ -12,7 +22,7 @@ diff -durpN php-7.3.3.orig/ext/imap/config.m4 php-7.3.3/ext/imap/config.m4
        IMAP_INC_CHK()
        el[]IMAP_INC_CHK(/include/c-client)
        el[]IMAP_INC_CHK(/include/imap)
-@@ -199,13 +199,7 @@
+@@ -211,13 +211,7 @@ if test "$PHP_IMAP" != "no"; then
        AC_MSG_ERROR(Cannot find rfc822.h. Please check your c-client installation.)
      fi
  
