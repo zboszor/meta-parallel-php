@@ -1,3 +1,9 @@
+From 041c9cf45e819284ace9a3a204fc9c61df7df886 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Zolt=C3=A1n=20B=C3=B6sz=C3=B6rm=C3=A9nyi?=
+ <zboszor@gmail.com>
+Date: Mon, 15 Jan 2024 12:06:09 +0100
+Subject: [PATCH] php74: Add recipe for PHP 7.4.33
+
 # License: MIT
 # http://opensource.org/licenses/MIT
 
@@ -36,12 +42,17 @@ r2: add filesystem trawl to set up name alias index
 r1: initial revision
 
 Upstream-Status: Inappropriate [Red Hat specific]
+---
+ ext/date/config0.m4     |  13 +
+ ext/date/lib/parse_tz.c | 597 +++++++++++++++++++++++++++++++++++++++-
+ ext/date/php_date.c     |   4 +
+ 3 files changed, 611 insertions(+), 3 deletions(-)
 
 diff --git a/ext/date/config0.m4 b/ext/date/config0.m4
-index 6b803bf33e..53c3cdb3f4 100644
+index d7ec9268..e3e12525 100644
 --- a/ext/date/config0.m4
 +++ b/ext/date/config0.m4
-@@ -4,6 +4,19 @@
+@@ -4,6 +4,19 @@ AC_CHECK_HEADERS([io.h])
  dnl Check for strtoll, atoll
  AC_CHECK_FUNCS(strtoll atoll)
  
@@ -62,7 +73,7 @@ index 6b803bf33e..53c3cdb3f4 100644
    [PHP_DATE_CFLAGS="$PHP_DATE_CFLAGS -Wno-implicit-fallthrough"],,
    [-Werror])
 diff --git a/ext/date/lib/parse_tz.c b/ext/date/lib/parse_tz.c
-index c7f93580d7..ec196a98b6 100644
+index c7f93580..c8dbb64c 100644
 --- a/ext/date/lib/parse_tz.c
 +++ b/ext/date/lib/parse_tz.c
 @@ -26,9 +26,33 @@
@@ -730,10 +741,10 @@ index c7f93580d7..ec196a98b6 100644
  		*error_code = TIMELIB_ERROR_NO_SUCH_TIMEZONE;
  		tmp = NULL;
 diff --git a/ext/date/php_date.c b/ext/date/php_date.c
-index 48c82bf7ec..443299c089 100644
+index c71cef2c..870d905a 100644
 --- a/ext/date/php_date.c
 +++ b/ext/date/php_date.c
-@@ -490,7 +490,11 @@ PHP_MINFO_FUNCTION(date)
+@@ -472,7 +472,11 @@ PHP_MINFO_FUNCTION(date)
  	php_info_print_table_row(2, "date/time support", "enabled");
  	php_info_print_table_row(2, "timelib version", TIMELIB_ASCII_VERSION);
  	php_info_print_table_row(2, "\"Olson\" Timezone Database Version", tzdb->version);
