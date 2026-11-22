@@ -1,9 +1,19 @@
-Upstream-Status: Inappropriate [cross compile specific]
+From 3a31d3881b47a2a6f8dd54aa3e1880c9f7aeadeb Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Zolt=C3=A1n=20B=C3=B6sz=C3=B6rm=C3=A9nyi?=
+ <zboszor@gmail.com>
+Date: Mon, 15 Jan 2024 12:06:09 +0100
+Subject: [PATCH] php74: Add recipe for PHP 7.4.33
 
-diff -up ./scripts/phpize.in.headers ./scripts/phpize.in
---- ./scripts/phpize.in.headers	2019-07-23 10:05:11.000000000 +0200
-+++ ./scripts/phpize.in	2019-07-23 10:18:13.648098089 +0200
-@@ -166,6 +166,15 @@ phpize_autotools()
+Upstream-Status: Inappropriate [cross compile specific]
+---
+ scripts/phpize.in | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+
+diff --git a/scripts/phpize.in b/scripts/phpize.in
+index 2f117656..43db52a5 100644
+--- a/scripts/phpize.in
++++ b/scripts/phpize.in
+@@ -169,6 +169,15 @@ phpize_autotools()
    $PHP_AUTOHEADER || exit 1
  }
  
@@ -19,7 +29,7 @@ diff -up ./scripts/phpize.in.headers ./scripts/phpize.in
  # Main script
  
  case "$1" in
-@@ -184,12 +193,15 @@ case "$1" in
+@@ -187,12 +196,15 @@ case "$1" in
  
    # Version
    --version|-v)

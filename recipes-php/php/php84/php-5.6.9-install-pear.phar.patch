@@ -1,10 +1,20 @@
-Upstream-Status: Inappropriate [cross compile specific]
+From d2a7a6545baf8784a60e322ec78af566f6937ea0 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Zolt=C3=A1n=20B=C3=B6sz=C3=B6rm=C3=A9nyi?=
+ <zboszor@gmail.com>
+Date: Mon, 15 Jan 2024 12:06:09 +0100
+Subject: [PATCH] php74: Add recipe for PHP 7.4.33
 
-diff -durpN php-7.3.0/pear/Makefile.frag php-7.3.0.new/pear/Makefile.frag
---- php-7.3.0/pear/Makefile.frag	2019-01-04 08:39:10.475516568 -0500
-+++ php-7.3.0.new/pear/Makefile.frag	2019-01-04 09:12:25.670213378 -0500
-@@ -12,7 +12,7 @@ PEAR_SUFFIX = -ds a$(program_suffix)
- PEAR_INSTALLER_URL = https://pear.php.net/install-pear-nozlib.phar
+Upstream-Status: Inappropriate [cross compile specific]
+---
+ pear/Makefile.frag | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/pear/Makefile.frag b/pear/Makefile.frag
+index dc543235..71a1da6f 100644
+--- a/pear/Makefile.frag
++++ b/pear/Makefile.frag
+@@ -7,7 +7,7 @@ PEAR_PREFIX = -dp a${program_prefix}
+ PEAR_SUFFIX = -ds a$(program_suffix)
  
  install-pear-installer: $(SAPI_CLI_PATH)
 -	@$(PHP_NATIVE_DIR)/php$(program_suffix) $(PEAR_INSTALL_FLAGS) $(builddir)/install-pear-nozlib.phar -d "$(peardir)" -b "$(bindir)" ${PEAR_PREFIX} ${PEAR_SUFFIX}

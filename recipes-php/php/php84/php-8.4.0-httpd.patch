@@ -1,14 +1,22 @@
-Disable MPM detection
+From 2124dd9c8634ca0fa3da5186919bade032869dc1 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Zolt=C3=A1n=20B=C3=B6sz=C3=B6rm=C3=A9nyi?=
+ <zboszor@gmail.com>
+Date: Fri, 22 Nov 2024 13:42:27 +0100
+Subject: [PATCH] Disable MPM detection
 
 mod_php is build twice
 - as NTS without option
 - as ZTS using --enable-maintainer-zts
 
 Upstream-Status: Inappropriate [Red Hat specific]
+---
+ sapi/apache2handler/config.m4 | 5 -----
+ 1 file changed, 5 deletions(-)
 
-diff -up ./sapi/apache2handler/config.m4.mpmcheck ./sapi/apache2handler/config.m4
---- ./sapi/apache2handler/config.m4.mpmcheck	2024-07-03 15:56:56.882370597 +0200
-+++ ./sapi/apache2handler/config.m4	2024-07-03 15:59:15.967824949 +0200
+diff --git a/sapi/apache2handler/config.m4 b/sapi/apache2handler/config.m4
+index e335721f..320081e1 100644
+--- a/sapi/apache2handler/config.m4
++++ b/sapi/apache2handler/config.m4
 @@ -120,11 +120,6 @@ if test "$PHP_APXS2" != "no"; then
        -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1
      ])
