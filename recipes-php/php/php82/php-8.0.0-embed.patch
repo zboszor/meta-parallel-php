@@ -1,6 +1,19 @@
-diff -up ./sapi/embed/config.m4.embed ./sapi/embed/config.m4
---- ./sapi/embed/config.m4.embed	2020-07-07 13:51:05.879764972 +0200
-+++ ./sapi/embed/config.m4	2020-07-07 13:52:50.128412148 +0200
+From 9dc644e12ac18f2fd81ec10633c28d61cce830da Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Zolt=C3=A1n=20B=C3=B6sz=C3=B6rm=C3=A9nyi?=
+ <zboszor@gmail.com>
+Date: Mon, 15 Jan 2024 12:06:09 +0100
+Subject: [PATCH] php74: Add recipe for PHP 7.4.33
+
+Upstream-Status: Inappropriate [cross compile specific]
+---
+ sapi/embed/config.m4  | 3 ++-
+ scripts/php-config.in | 2 +-
+ 2 files changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/sapi/embed/config.m4 b/sapi/embed/config.m4
+index 39d7dcf0..b1962a24 100644
+--- a/sapi/embed/config.m4
++++ b/sapi/embed/config.m4
 @@ -12,7 +12,8 @@ if test "$PHP_EMBED" != "no"; then
      yes|shared)
        LIBPHP_CFLAGS="-shared"
@@ -11,9 +24,10 @@ diff -up ./sapi/embed/config.m4.embed ./sapi/embed/config.m4
        ;;
      static)
        LIBPHP_CFLAGS="-static"
-diff -up ./scripts/php-config.in.embed ./scripts/php-config.in
---- ./scripts/php-config.in.embed	2020-07-07 12:54:42.000000000 +0200
-+++ ./scripts/php-config.in	2020-07-07 13:51:05.880764968 +0200
+diff --git a/scripts/php-config.in b/scripts/php-config.in
+index 15e6a945..74fd2e84 100644
+--- a/scripts/php-config.in
++++ b/scripts/php-config.in
 @@ -18,7 +18,7 @@ exe_extension="@EXEEXT@"
  php_cli_binary=NONE
  php_cgi_binary=NONE

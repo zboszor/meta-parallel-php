@@ -1,4 +1,4 @@
-From 98d2b923243d406b3d26f0770ac02f917729b948 Mon Sep 17 00:00:00 2001
+From 022b0ae5a90ac7cb7e13922d402b03d627f75eb9 Mon Sep 17 00:00:00 2001
 From: Remi Collet <remi@remirepo.net>
 Date: Thu, 4 Sep 2025 09:01:49 +0200
 Subject: [PATCH] Fix GH-19681 PHP_EXPAND_PATH broken with bash 5.3.0
@@ -9,7 +9,7 @@ Upstream-Status: Backport
  1 file changed, 5 insertions(+), 1 deletion(-)
 
 diff --git a/build/php.m4 b/build/php.m4
-index 142ddf08fd98b..e5ead0f4c44af 100644
+index 64f5f44a..9bda7c8c 100644
 --- a/build/php.m4
 +++ b/build/php.m4
 @@ -64,7 +64,11 @@ AC_DEFUN([PHP_EXPAND_PATH],[

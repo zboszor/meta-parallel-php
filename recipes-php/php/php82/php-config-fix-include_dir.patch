@@ -1,6 +1,19 @@
---- php-5.6.30/scripts/php-config.in.old	2017-01-18 19:17:47.000000000 -0500
-+++ php-5.6.30/scripts/php-config.in	2017-04-11 09:36:55.171279029 -0400
-@@ -6,7 +6,7 @@
+From 9bf5db2a6e7d6df3361f707fec3cac9161897fc4 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Zolt=C3=A1n=20B=C3=B6sz=C3=B6rm=C3=A9nyi?=
+ <zboszor@gmail.com>
+Date: Mon, 15 Jan 2024 12:06:09 +0100
+Subject: [PATCH] php74: Add recipe for PHP 7.4.33
+
+Upstream-Status: Inappropriate [cross compile specific]
+---
+ scripts/php-config.in | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/scripts/php-config.in b/scripts/php-config.in
+index 9271e872..15e6a945 100644
+--- a/scripts/php-config.in
++++ b/scripts/php-config.in
+@@ -6,7 +6,7 @@ datarootdir="@datarootdir@"
  exec_prefix="@exec_prefix@"
  version="@PHP_VERSION@"
  vernum="@PHP_VERSION_ID@"
